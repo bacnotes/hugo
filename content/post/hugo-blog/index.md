@@ -27,7 +27,7 @@ Um...工程師的世界永遠有追不完的技術，
 
 1. 安裝Git Bash(可使用 Linux 指令操作 Window 的檔案系統)
 2. 設定git config --global user.name & user.email
-3. 安裝VS Code 跟套件(Bracket Pair Colorizer已經內建好了不用再安裝)
+3. 安裝VS Code 跟套件(Bracket Pair Colorizer已經內建好了不用再安裝)  
 a. Emmet (自動跳出提示跟各種好用的縮寫)  
 b. Live Server (可以直接用本地端瀏覽器看到結果) +DevTools方便debug  
 c. EsLint (檢查語法，VSCode好像有內建但如果沒安裝的話可以補一下)  

@@ -5,7 +5,7 @@ paginate: 5
 title: bacnotes 備份筆記
 
 # Change it to your Disqus shortname before using
-disqusShortname: hugo-theme-stack
+disqusShortname: https-bacnotes-github-io
 
 # GA Tracking ID
 googleAnalytics: G-Y4R93LRYFV
@@ -58,7 +58,7 @@ params:
         provider: disqus
 
         disqusjs:
-            shortname: https-bacnotes-github-io
+            shortname:
             apiUrl:
             apiKey:
             admin:

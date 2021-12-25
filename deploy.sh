@@ -20,5 +20,5 @@ git commit -m 'deploy'
 # git remote remove origin
 git remote add origin git@gh.b:bacnotes/bacnotes.github.io.git
 
-git push --set-upstream origin main
+git push -f --set-upstream origin main
 cd -
