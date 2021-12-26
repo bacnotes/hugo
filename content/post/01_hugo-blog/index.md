@@ -1,5 +1,5 @@
 ---
-title: 工程師的技術部落格要怎麼架？|使用Hugo！
+title: 工程師的技術部落格要怎麼架？使用Hugo！｜bacnotes備份筆記
 description: 很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。
 date: 2021-12-23
 slug: hugo-blog
@@ -22,7 +22,7 @@ Um...工程師的世界永遠有追不完的技術，
 然後也開始思考，過去半年來用MAC開發，但未來也許工作不一定分到MAC電腦  
 要不要把之前沒在用的windows的電腦拿來寫code，演練一下上工後拿到的是Windows(希望不是ＱＱ)
 
-## 用Windows來寫code
+## Windows寫程式需要的基本工具
 身為JavaScript開發者，電腦空空的我可能會需要
 
 1. 安裝Git Bash(可使用 Linux 指令操作 Window 的檔案系統)
@@ -36,7 +36,7 @@ d. vscode-icons (有賞心悅目的icon)
 
 ok! 來開始架站吧！
 
-## 架站選擇 - Jeykyll, Hexo, Gatsby(不是那個抓頭髮的)
+## 部落格架站選擇很多元 - Jeykyll, Hexo, Hugo, Gatsby(不是那個抓頭髮的)
 除了hugo外，其實還有很多人氣的框架 [Jeykyll (Ruby)](https://jekyllrb.com/ "Jeykyll (Ruby)") / [Hexo (JavaScript)](https://hexo.io/zh-tw/ "Hexo (JavaScript)") / [Gatsby (React)](https://www.gatsbyjs.com/ "Gatsby (React)")等  
 [Hugo](https://gohugo.io/getting-started/installing/ "Hugo")用Go寫，號稱部屬最快的框架，也許未來有時間會想學學看這個google工程師團隊開發的語言  
 而且時間就是金錢！就先選用這個
@@ -75,8 +75,10 @@ cd到`C:\Hugo\Sites>`
 
 
 出現的瞬間真的好感人啊！等等...現在只有自己可以看到  
-下一篇來介紹如何使用gitHub來部署我們的部落格吧  
-但記得先來客製一下部落格標題跟說明文字唷
+下一篇會來介紹如何使用GitHub來部署我們的部落格吧  
+[只要3秒鐘，使用GitHub部署你的Hugo部落格](https://bacnotes.github.io/p/hugo-blog/ "只要3秒鐘，使用GitHub部署你的Hugo部落格")  
+但記得部署前先來客製一下部落格標題跟說明文字唷  
+你說不太確定該怎麼設定嗎？可以參考這篇[關於Hugo config.yaml設定跟disqus討論區](https://bacnotes.github.io/p/hugo-config-and-disqus/ "關於Hugo config.yaml設定跟disqus討論區")
 
 參考文章:  
 [用指令安裝程式--Chocolatey](https://ithelp.ithome.com.tw/articles/10242201 "用指令安裝程式--Chocolatey")  
