@@ -1,5 +1,5 @@
 ---
-title: 工程師的技術部落格要怎麼架？使用Hugo！｜bacnotes備份筆記
+title: 工程師的技術部落格要怎麼架？使用Hugo｜bacnotes備份筆記
 description: 很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。
 date: 2021-12-23
 slug: hugo-blog
@@ -76,7 +76,7 @@ cd到`C:\Hugo\Sites>`
 
 出現的瞬間真的好感人啊！等等...現在只有自己可以看到  
 下一篇會來介紹如何使用GitHub來部署我們的部落格吧  
-[只要3秒鐘，使用GitHub部署你的Hugo部落格](https://bacnotes.github.io/p/hugo-blog/ "只要3秒鐘，使用GitHub部署你的Hugo部落格")  
+[只要3秒，使用GitHub部署你的Hugo部落格](https://bacnotes.github.io/p/github-deploy-hugo/ "只要3秒鐘，使用GitHub部署你的Hugo部落格")  
 但記得部署前先來客製一下部落格標題跟說明文字唷  
 你說不太確定該怎麼設定嗎？可以參考這篇[關於Hugo config.yaml設定跟disqus討論區](https://bacnotes.github.io/p/hugo-config-and-disqus/ "關於Hugo config.yaml設定跟disqus討論區")
 

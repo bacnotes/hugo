@@ -13,7 +13,7 @@ tags:
 
 Um...在部署前卡到了Github多組帳號權限的問題  
 如果你的電腦只有使用1組GitHub帳號，可以點下方連結直接到下一篇  
-[只要3秒鐘，使用GitHub一鍵部署你的Hugo部落格](https://bacnotes.github.io/p/github-deploy-hugo "[只要3秒鐘，使用GitHub一鍵部署你的Hugo部落格")
+[只要3秒，使用GitHub一鍵部署你的Hugo部落格](https://bacnotes.github.io/p/github-deploy-hugo "[只要3秒鐘，使用GitHub一鍵部署你的Hugo部落格")
 
 
 ## WHY 要用一台電腦使用多組GitHub帳號
@@ -21,8 +21,8 @@ Um...在部署前卡到了Github多組帳號權限的問題
 工作時勢必會有1組公司用的GitHub帳號(或GitLab或...其他的雲端協作平台)   
 但自己在寫side project也會用到1組GitHub帳號   
 先演練一下1台電腦可以使用2組GitHub帳號的情境  
-聽起來好像很簡單，辦第2組GitHub帳號就好了吧（就跟google帳號一樣（？  
-但你用GitHub的新帳號，在你的terminal照著下方指令做到最後一步
+聽起來好像很簡單，辦第2組GitHub帳號就好了吧（就跟google帳號一樣？  
+但你在GitHub的新帳號開了一個Repo，在編輯器的terminal依序輸入下方指令
 ```
 git init
 git add .
@@ -31,7 +31,7 @@ git branch -M main
 git remote add origin 'your repo'
 git push -u origin main
 ```
-就會發現跳出這個訊息
+就會發現在最後一步跳出這個訊息
 >ERROR: Permission to aaa/aaa.git denied to bbb
 fatal: 無法讀取遠端版本庫。
 
@@ -42,8 +42,8 @@ Um...啊！
 之前的帳號有設定一組對應的SSH key讓GitHub驗證身份  
 應該是SSH key的問題吧？  
 有2組帳號，生2組key應該就沒問題了吧！  
-欸不對，我的terminal在push的時候，怎麼知道哪組帳號對應哪個SSH key  
-上網查了一下相關文章，發現可以寫一個config來對應各自的key  
+欸不對，我的terminal在git push的時候，怎麼知道哪組帳號對應哪個SSH key  
+上網查了一下相關文章，發現可以寫一個config來讓不同帳號對應各自的key  
 
 ## 管理多組SSH key流程如下
 aaa為範例，可自由代入你的帳號
@@ -90,7 +90,7 @@ IdentityFile ~/.ssh/id_rsa_bbb
 git@github.com:ooo/ooo.git 變成 git@gh.aaa:ooo/ooo.git  
 後續在新增repo連結時需注意，不然可能吃不到config設定檔唷  
 
-參考文章:  
+參考文章:
 [[Git] 多個SSH Key與帳號的設定(Mac)](https://dotblogs.com.tw/as15774/2018/04/30/174737 "[[Git] 多個SSH Key與帳號的設定(Mac)")
 
 
