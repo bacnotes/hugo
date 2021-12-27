@@ -2,11 +2,12 @@
 title: 關於SSH key與多組GitHub帳號切換｜bacnotes備份筆記
 description: 你也有Github多組帳號切換的問題嗎？同一台電腦怎麼管理公司和個人GitHub帳號？生成的SSH key檔案如何不會覆蓋原本的檔案，來試試建立一個config管理Github多組帳號吧！
 date: 2021-12-25
+author: bacnotes
 slug: github-ssh-key
 image: maria-ziegler-jJnZg7vBfMs-unsplash.jpg
 tags:
-    - SSH key
     - GitHub
+    - SSH key
 ---
 
 <img src="./cat_white.png" alt="white-cat-meme" width="400"/>  

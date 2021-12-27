@@ -2,6 +2,7 @@
 title: 工程師的技術部落格要怎麼架？使用Hugo｜bacnotes備份筆記
 description: 為什麼工程師要寫部落格？很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。
 date: 2021-12-23
+author: bacnotes
 slug: hugo-blog
 image: helena-hertz-wWZzXlDpMog-unsplash.jpg
 tags:

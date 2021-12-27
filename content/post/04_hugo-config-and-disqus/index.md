@@ -1,20 +1,20 @@
 ---
 title: 如何設定Hugo config跟Disqus討論區｜bacnotes備份筆記
-description: 原以為Hugo config大概就是設定個網址、網站標題title、網站敘述description跟關鍵字等等的，沒想到還可以在部落格嵌入討論區套件。
-author: "bacnotes"
+description: 原以為Hugo config大概就是設定網站網址、網站標題title、網站敘述description跟關鍵字等等的，沒想到還可以用Disqus服務在部落格嵌入討論區，讓你的文章可以跟訪客互動！
 date: 2021-12-27
+author: bacnotes
 slug: hugo-config-and-disqus
 image: hugo.jpeg
 tags:
-    - Disqus
     - Hugo
+    - Disqus
 ---
 
 ## Hugo config設定參數
 如果跟我一樣是第一次自架部落格，看到config設定檔玲瑯滿目的內容可能會有下面的感受  
 <img src="./blind_meme.jpeg" alt="blind_meme" width="400"/>  
   
-Um...可能有點誇大了，其實花點時間研究再搭配其他文章分享其實也算好上手  
+Um...可能有點誇大了，其實花點時間研究再搭配其他文章分享也算好上手  
 應該吧...  
 Hugo官方文件[Hugo configuration](https://gohugo.io/getting-started/configuration/ "Hugo configuration")雖然有寫一些配置  
 但不同主題的設定檔還是會有些不同，建議先參考使用主題檔案的說明文件  
@@ -23,8 +23,8 @@ Hugo官方文件[Hugo configuration](https://gohugo.io/getting-started/configura
 ```
 # config.yaml
 
-baseurl: # e.g. https://bacnotes.github.io/
-languageCode: # 語言代碼 我下載的主題預設en-us 我改成zh-tw
+baseurl: https://bacnotes.github.io/ # 網址
+languageCode: zh-tw # 語言代碼 stack主題預設en-us
 theme: hugo-theme-stack # hugo主題名
 paginate: 5 # 單頁文章篇數
 title: # 網站標題
@@ -109,6 +109,9 @@ comments:
 ### 如果想要刪除site，重新取得shortname
 可以透過這個連結[How do I remove my site?](https://disqus.com/profile/signup/intent/ "How do I remove my site?")  
 單純點editing不會出現刪除介面，要點advanced進階設定才會看到
+
+太好了，這下我們的部落格可以透過Disqus，有效擺脫空虛寂寞的邊緣感了(並沒有
+
 
 參考文章: [Hugo 加入 Disqus 整合性留言管理系統](https://coreychen71.github.io/posts/2019-05/hugoadddisqus/ "Hugo 加入 Disqus 整合性留言管理系統")
 
