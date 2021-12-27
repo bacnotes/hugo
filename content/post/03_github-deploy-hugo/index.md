@@ -1,17 +1,18 @@
 ---
 title: 只要3秒，使用GitHub一鍵部署你的Hugo部落格｜bacnotes備份筆記
-description: 關於如何使用GitHub Pages，教你如何不再重複打指令，terminal直接輸入./deploy.sh，馬上讓部落格文章上線！
+description: GitHub Pages是GitHub提供的免費靜態網頁託管服務，教你如何使用GitHub Pages，不再重複打指令，terminal直接輸入./deploy.sh，馬上讓部落格文章上線！
 date: 2021-12-26
 slug: github-deploy-hugo
 image: mohammad-rahmani-q1p2DrLBtko-unsplash.jpg
 tags:
-    - SSH key
+    - Hugo
     - GitHub
 ---
 
-關於部署的工具有很多，身為工程師的你一定聽過GitHub!
+關於部署的工具有很多，身為工程師的你一定聽過GitHub!  
+<img src="./github_logo.png" alt="github" width="500"/>
 
-## WHY GitHub部署
+## 為什麼用GitHub部署
 
 1. 因為免費(o)
 2. 因為用起來很親切，簡單又方便(o)

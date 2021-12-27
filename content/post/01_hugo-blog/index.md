@@ -1,6 +1,6 @@
 ---
 title: 工程師的技術部落格要怎麼架？使用Hugo｜bacnotes備份筆記
-description: 很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。
+description: 為什麼工程師要寫部落格？很多新技術要學，腦袋卻又記不住的時候，技術部落格就是你的另一個大腦，而Hugo是你的好夥伴。
 date: 2021-12-23
 slug: hugo-blog
 image: helena-hertz-wWZzXlDpMog-unsplash.jpg
@@ -8,7 +8,7 @@ tags:
     - Hugo
 ---
 
-## Why 工程師要寫部落格
+## 為什麼工程師要寫部落格
 身為一個**專業的工程師**，你也許會需要
 1. 一台筆電(o)
 2. 持續學習(o)
@@ -36,10 +36,14 @@ d. vscode-icons (有賞心悅目的icon)
 
 ok! 來開始架站吧！
 
-## 部落格架站選擇很多元 - Jeykyll, Hexo, Hugo, Gatsby(不是那個抓頭髮的)
-除了hugo外，其實還有很多人氣的框架 [Jeykyll (Ruby)](https://jekyllrb.com/ "Jeykyll (Ruby)") / [Hexo (JavaScript)](https://hexo.io/zh-tw/ "Hexo (JavaScript)") / [Gatsby (React)](https://www.gatsbyjs.com/ "Gatsby (React)")等  
+## 部落格架站選擇很多元 - Jekyll, Hexo, Hugo, Gatsby(不是那個抓頭髮的)
+除了hugo外，其實還有很多人氣的靜態網站生成器 [Jekyll (Ruby)](https://jekyllrb.com/ "Jekyll (Ruby)") / [Hexo (JavaScript)](https://hexo.io/zh-tw/ "Hexo (JavaScript)") / [Gatsby (React)](https://www.gatsbyjs.com/ "Gatsby (React)")等  
+關於比較文也有很多  
+1. [[Day06] Jekyll vs Hexo vs Hugo](https://ithelp.ithome.com.tw/m/articles/10269253 "[Day06] Jekyll vs Hexo vs Hugo")
+2. [Hexo Hugo Vuepress Gatsby静态网站生成器的选择](https://www.tangruiping.com/post/hexo-hugo-vuepress-gatsby.html "Hexo Hugo Vuepress Gatsby静态网站生成器的选择")
+
 [Hugo](https://gohugo.io/getting-started/installing/ "Hugo")用Go寫，號稱部屬最快的框架，也許未來有時間會想學學看這個google工程師團隊開發的語言  
-而且時間就是金錢！就先選用這個
+而且時間就是金錢！就先選用這個！
 
 ### 安裝Hugo
 在Hugo install發現windows有個Chocolatey可以管理套件  
@@ -73,12 +77,11 @@ cd到`C:\Hugo\Sites>`
 哇真的出現了  
 <img src="./screenshot.png" alt="drawing" width="600"/>
 
-
 出現的瞬間真的好感人啊！等等...現在只有自己可以看到  
-下一篇會來介紹如何使用GitHub來部署我們的部落格吧  
-[只要3秒，使用GitHub部署你的Hugo部落格](https://bacnotes.github.io/p/github-deploy-hugo/ "只要3秒鐘，使用GitHub部署你的Hugo部落格")  
-但記得部署前先來客製一下部落格標題跟說明文字唷  
-你說不太確定該怎麼設定嗎？可以參考這篇[關於Hugo config.yaml設定跟disqus討論區](https://bacnotes.github.io/p/hugo-config-and-disqus/ "關於Hugo config.yaml設定跟disqus討論區")
+下一篇會來介紹如何使用GitHub來部署我們的部落格  
+[只要3秒，使用GitHub一鍵部署你的Hugo部落格](https://bacnotes.github.io/p/github-deploy-hugo/ "只要3秒，使用GitHub一鍵部署你的Hugo部落格")  
+但記得部署前記得先來客製一下部落格標題跟說明文字唷  
+你說不太確定該怎麼設定嗎？那來看看這篇  [如何設定Hugo config跟Disqus討論區](https://bacnotes.github.io/p/hugo-config-and-disqus/ "如何設定Hugo config跟Disqus討論區")
 
 參考文章:  
 [用指令安裝程式--Chocolatey](https://ithelp.ithome.com.tw/articles/10242201 "用指令安裝程式--Chocolatey")  

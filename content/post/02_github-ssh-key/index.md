@@ -1,6 +1,6 @@
 ---
 title: 關於SSH key與多組GitHub帳號切換｜bacnotes備份筆記
-description: 一台電腦怎麼管理多組GitHub帳號？生成的rsa檔案為什麼一直覆蓋原本的檔案，難道一台電腦只能登一個GitHub帳戶嗎？來試試看管理多組帳戶的config吧
+description: 你也有Github多組帳號切換的問題嗎？同一台電腦怎麼管理公司和個人GitHub帳號？生成的SSH key檔案如何不會覆蓋原本的檔案，來試試建立一個config管理Github多組帳號吧！
 date: 2021-12-25
 slug: github-ssh-key
 image: maria-ziegler-jJnZg7vBfMs-unsplash.jpg
@@ -13,10 +13,10 @@ tags:
 
 Um...在部署前卡到了Github多組帳號權限的問題  
 如果你的電腦只有使用1組GitHub帳號，可以點下方連結直接到下一篇  
-[只要3秒，使用GitHub一鍵部署你的Hugo部落格](https://bacnotes.github.io/p/github-deploy-hugo "[只要3秒鐘，使用GitHub一鍵部署你的Hugo部落格")
+[只要3秒，使用GitHub一鍵部署你的Hugo部落格](https://bacnotes.github.io/p/github-deploy-hugo "[只要3秒，使用GitHub一鍵部署你的Hugo部落格")
 
 
-## WHY 要用一台電腦使用多組GitHub帳號
+## 為什麼要用一台電腦使用多組GitHub帳號
 在**後疫情時代**，遠距工作變成時代趨勢  
 工作時勢必會有1組公司用的GitHub帳號(或GitLab或...其他的雲端協作平台)   
 但自己在寫side project也會用到1組GitHub帳號   
@@ -32,10 +32,10 @@ git remote add origin 'your repo'
 git push -u origin main
 ```
 就會發現在最後一步跳出這個訊息
->ERROR: Permission to aaa/aaa.git denied to bbb
+>ERROR: Permission to userB/repo.git denied to userA
 fatal: 無法讀取遠端版本庫。
 
-要commit的時候，被最初註冊的bbb帳號deny
+要commit的時候，被最初註冊的userA帳號deny
 
 Um...啊！  
 <img src="./cat.jpg" alt="cat-meme" width="400"/>  
@@ -52,8 +52,8 @@ aaa為範例，可自由代入你的帳號
 在Enter file in which to save the key (/Users/XXX/.ssh/id_rsa):  
 後方填入 `/Users/aaa/.ssh/id_rsa_aaa`  
 *如果沒有新的命名，就會覆蓋原本的id_rsa
-3. Enter passphrase(如果不想加密，可以直接enter不設定密碼)    
-4. Enter same passphrase again(同上判斷)  
+3. Enter passphrase(看個人，可以直接enter不設定密碼)    
+4. Enter same passphrase again(如果有設定要再輸入一次，沒有就直接enter)  
 5. 把對應的公鑰(id_rsa_aaa.pub裡面的文字)新增到GitHub的SSH key，[官方圖文教學](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)  
 6. 在.ssh目錄下，touch一個config(不用副檔名)
 
