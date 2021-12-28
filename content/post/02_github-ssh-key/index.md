@@ -4,7 +4,7 @@ description: 你也有Github多組帳號切換的問題嗎？同一台電腦怎�
 date: 2021-12-25
 author: bacnotes
 slug: github-ssh-key
-image: maria-ziegler-jJnZg7vBfMs-unsplash.jpg
+image: maria-ziegler-jJnZg7vBfMs-unsplash.jpeg
 tags:
     - GitHub
     - SSH key

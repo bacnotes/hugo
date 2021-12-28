@@ -2,7 +2,6 @@
 title: 如何設定Hugo config跟Disqus討論區｜bacnotes備份筆記
 description: 原以為Hugo config大概就是設定網站網址、網站標題title、網站敘述description跟關鍵字等等的，沒想到還可以用Disqus服務在部落格嵌入討論區，讓你的文章可以跟訪客互動！
 date: 2021-12-27
-author: bacnotes
 slug: hugo-config-and-disqus
 image: hugo.jpeg
 tags:
