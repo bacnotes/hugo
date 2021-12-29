@@ -3,6 +3,12 @@ languageCode: zh-tw
 theme: hugo-theme-stack
 paginate: 5
 title: bacnotes 備份筆記｜相信科技讓社會更美好，所以開始寫起了程式
+enableRobotsTXT: true
+
+sitemap:
+  changefreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
 
 # Change it to your Disqus shortname before using
 disqusShortname: https-bacnotes-github-io
@@ -39,7 +45,7 @@ params:
 
     sidebar:
         emoji: 🌟
-        subtitle: 筆記補足腦容量不足的部分，記錄小小Junior的進化過程，希望有朝一日可以變成厲害的工程師，打造出很棒的產品。
+        subtitle: 筆記補足腦容量不足的部分，記錄小小Junior的進化過程，希望有朝一日變成厲害的工程師，打造出很棒的產品。
         avatar:
             enabled: true
             local: true

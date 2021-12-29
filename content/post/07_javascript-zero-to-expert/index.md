@@ -1,9 +1,9 @@
 ---
 title: favicon設定好簡單，使用免費線上工具快速生成瀏覽器頁籤上的小圖示｜bacnotes備份筆記
 description: 該怎麼把我的logo或是客製化圖片設置在網頁頁籤上呢？Real Favicon Generator直接幫你產生所有平台適合的最佳解析度圖檔
-date: 2021-12-28T00:00:00+08:00
-slug: favicon-setting
-image: aleks-dorohovich-nJdwUHmaY8A-unsplash.jpg
+date: 2021-12-30T00:00:00+08:00
+slug: javascript-zero-to-expert
+image: 
 tags:
     - favicon
 ---
