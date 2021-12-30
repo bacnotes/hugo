@@ -26,7 +26,7 @@ favicon為favorites icon的縮寫，也就是網頁頁籤標題左邊的圖案
 <img src="./problem.png" alt="problem-check" width="600"/> 
 
 看到有紅色需改進的地方，是不是就會馬上就想用用看了呢！  
-## Real Favicon Generator使用的步驟說明：  
+## Real Favicon Generator的使用步驟  
 1. 進到 https://realfavicongenerator.net/  
 2. 選右邊的Select Your Favicon Image 選擇要製作成favicon的圖案(正方形的)  
 <img src="./select.png" alt="select" width="600"/>  
@@ -39,7 +39,7 @@ Desktop Browsers and Google Result Pages, iOS , Android Chrome, Windows Metro, S
 5. 可以調整顏色尺寸樣式等  
 6. 點選最下方的Generate your favicons and HTML code  
 <img src="./generate.png" alt="generate" width="600"/>  
-7. 點選Download your package旁邊的Favicon Package
+7. 點選Download your package旁邊的Favicon Package  
 <img src="./install.png" alt="install" width="600"/>  
 8. zip解壓縮後，把圖檔丟到網站的根目錄  
 9. 網站上的code記得貼到網頁的`<head>`裡面  

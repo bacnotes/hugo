@@ -31,8 +31,9 @@ Um...工程師的世界永遠有追不完的技術，
 3. 安裝VS Code 跟套件(Bracket Pair Colorizer已經內建好了不用再安裝)  
 a. Emmet (自動跳出提示跟各種好用的縮寫)  
 b. Live Server (可以直接用本地端瀏覽器看到結果) +DevTools方便debug  
-c. EsLint (檢查語法，VSCode好像有內建但如果沒安裝的話可以補一下)  
+c. ESLint (檢查語法錯誤/統一coding style/提高程式碼品質)  
 d. vscode-icons (有賞心悅目的icon)
+e. Prettier (自動排版)
 4. 安裝Node.js (未來開發時需要有個執行環境在本地跑)
 
 ok! 來開始架站吧！

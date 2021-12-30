@@ -67,7 +67,7 @@ ok 進到了資源頁面了！一般來說會需要等個1天時間跑資料
 
 <img src="./GoogleSearchConsole_nodata.png" alt="GoogleSearchConsole" width="600"/> 
 
-### 在網站根目錄下建立robots.txt
+## 在網站根目錄下建立robots.txt
 使用Hugo的話，在config檔裡面加入參數
 ```
 enableRobotsTXT: true  
@@ -96,7 +96,7 @@ sitemap:
   priority: 0.5
 ```
 
-### 到Google Search Console提交sitemap
+## 到Google Search Console提交sitemap
 使用hugo指令生成靜態網頁的時候會自動產出sitemap檔案  
 網址是<你的網站名>/sitemap.xml e.g. https://bacnotes.github.io/sitemap.xml
 
@@ -117,7 +117,7 @@ https://gohugo.io/templates/sitemap-template/
 雖然sitemap擷取上好像卡住了，不過在文章數相對少的狀況下  
 還有一種方式可以呼叫爬蟲來爬取這些頁面  
 
-### 使用Google Search Console的「要求建立索引」  
+## 使用Google Search Console的「要求建立索引」  
 發布文章後，會希望可以盡早被爬蟲爬取建立索引  
 因為我的部落格是自架的，可以自行處理產出更新的sitemap檔並提交給Google   
 但如果是公司的行銷人員，可能不一定可以迅速取得工程師的即時協助  
@@ -134,7 +134,7 @@ https://gohugo.io/templates/sitemap-template/
 點下方的「要求建立索引」，就會跟Google提交建立索引的要求且進入排程  
 爬蟲就會依照排程順序來看你剛剛提交的網址了
 
-### 跟Google提交Sitemap完之後，其他的搜尋引擎也需要嗎？  
+## 跟Google提交Sitemap完之後，其他的搜尋引擎也需要嗎？  
 我們用[Statcounter](https://gs.statcounter.com/ "Statcounter")看看目前搜尋引擎各家的市佔率  
 Statcounter是一個網站流量分析工具，主要提供網頁瀏覽器跟搜尋引擎的使用分佈的訊息
 
