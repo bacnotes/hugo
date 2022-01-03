@@ -106,7 +106,7 @@ comments:
 
 就可以在文章下方看到你的討論區出現囉！  
 <img src="./deploy.png" alt="disqus" width="500"/>  
-\*localhost 下是不會出現的，部署上線才會出現唷  
+＊localhost 下是不會出現的，部署上線才會出現唷  
 <img src="./local.png" alt="disqus" width="500"/>
 
 ### 如果想要刪除 site，重新取得 shortname

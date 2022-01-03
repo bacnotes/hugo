@@ -3,7 +3,7 @@ title: DOM操作基礎知識｜The Complete JavaScript Course｜bacnotes備份�
 description: DOM跟HTML不一樣嗎？其實HTML比較像是網頁的設計稿，而DOM是由W3C制定的文件物件模型，我們可以透過DOM提供的一些方法跟屬性操作網頁。操作DOM時不知道該怎麼選取元素或修改屬性值嗎？監聽事件不太確定該怎麼設置嗎？這篇會介紹關於JavaScript DOM操作的基礎知識。
 date: 2022-01-02T00:00:00+08:00
 slug: javascript-dom-manipulation
-image: javascript.jpeg
+image: jade-seok-WOv2t_N6iwQ-unsplash.jpg
 tags:
   - JavaScript
 ---

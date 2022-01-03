@@ -46,7 +46,7 @@ fruitProcessor(2, 5); // 'juice with 2 apples & 5 oranges'
 fruitProcessor(3, 4); // 'juice with 3 apples & 4 oranges'
 ```
 
-### 宣告函式
+### 函式宣告 function declaration
 
 - 呼叫後存到變數
 
@@ -58,7 +58,7 @@ const age = calcAge(2036); // 放在function前後都可以 因為hoisting
 console.log(age); // 1
 ```
 
-### 函式表達式
+### 函式表達式 function expression
 
 - 匿名函式是 expression 會產生 value，存到左邊變數
 
@@ -69,7 +69,7 @@ const calcAge = function (birthYear) {
 console.log(calcAge(2036)); // 1
 ```
 
-### 箭頭函式
+### 箭頭函式 arrow function
 
 - ES6 語法，沒有自己的 this
 
@@ -341,9 +341,9 @@ lifting weights repetition 0 🏋️‍♀️
 
 ```
 
-- 陣列迴圈範例
-
+- 陣列使用迴圈迭代元素
 ```javascript
+// 範例1 迭代元素資料類型並放到另一陣列type
 const arr = [1, 2, 3];
 const type = [];
 
@@ -354,6 +354,7 @@ for (let i = 0; i < arr.length; i++) {
 }
 console.log(type); // [ 'number', 'number', 'number' ]
 
+// 範例2 迭代元素元素值並放到另一陣列ages
 const years = [1991, 2003, 2022, 1972];
 const ages = [];
 
@@ -362,6 +363,12 @@ for (let i = 0; i < years.length; i++) {
 }
 
 //[ 47, 35, 16, 66 ]
+
+// 範例3 使用比較簡潔的forEach語法 列印出元素
+const arr = [1, 2, 3];
+arr.forEach(function(element){
+  console.log(element)
+})
 ```
 
 - continue: 跳出本次迴圈，執行下個迴圈(e.g. i = 2 → i = 3)
@@ -426,4 +433,4 @@ while (dice !== 6) {
 // Math.random() 回傳一個偽隨機小數(pseudo-random) 介於0到1之間(包含0，不包含1)
 ```
 
-*文章內容有錯誤的地方，都歡迎討論與指正
+＊文章內容有錯誤的地方，都歡迎討論與指正

@@ -15,10 +15,10 @@ tags:
 
 ## 為什麼用GitHub部署
 
-1. 因為免費(o)
-2. 因為用起來很親切，簡單又方便(o)
-3. 因為部署到生效的過程很快速(o)
-4. 因為部落格後面有GitHub域名很潮(x)
+- 因為免費(o)
+- 因為用起來很親切，簡單又方便(o)
+- 因為部署到生效的過程很快速(o)
+- 因為部落格後面有GitHub域名很潮(x)
 
 GitHub Pages是GitHub提供的**免費**靜態網頁託管服務  
 雖然是免費，不過用起來體驗也很好  
@@ -39,9 +39,9 @@ GitHub Pages是GitHub提供的**免費**靜態網頁託管服務
 
 ## GitHub Pages部署靜態網頁 
 GitHub Pages有兩種
-1. 專案型網址 https://username.github.io/reponame  
+- 專案型網址 https://username.github.io/reponame  
 （一個帳號可以有很多個repo專案，每個專案都可以有一個靜態網頁）
-2. 帳號型網址 https://username.github.io  
+- 帳號型網址 https://username.github.io  
 （一個使用者帳號只會有一個，可以拿來經營個人網站）
 
 第1種網址適合把Hugo這個部落格專案，備份到GitHub上(非部署)，執行步驟如下

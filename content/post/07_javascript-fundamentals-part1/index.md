@@ -89,16 +89,14 @@ And I love ${codeName}!!`;
 - `name` 是 Reserved keywords，可以合法使用但可能有風險，寧願用`firstName`等等
 
 ## error msg 與 console.log
-
-1. SyntaxError: 語法結構錯誤（可能是括弧、拼字大小寫）
-2. ReferenceError: 引用錯誤（沒被定義、找不到檔案）
-3. RangeError: 超出參數範圍
-4. TypeError: 型別錯誤
-5. EvalError: eval()方法使用錯誤
-6. URIError: url 錯誤
-
-- 如果發現 console.log 結果無法在瀏覽器的 dev tools 顯示出來，可以點右邊齒輪確認一下是否有沒勾選到的
-  https://blog.csdn.net/xianyu_Padding/article/details/78013754
+- SyntaxError: 語法結構錯誤（可能是括弧、拼字大小寫）
+- ReferenceError: 引用錯誤（沒被定義、找不到檔案）
+- RangeError: 超出參數範圍
+- TypeError: 型別錯誤
+- EvalError: eval()方法使用錯誤
+- URIError: url 錯誤
+- 如果console.log 結果無法在瀏覽器的 dev tools 顯示出來，點右邊齒輪確認勾選狀況(一般會是勾default value)，可參考這篇
+https://blog.csdn.net/xianyu_Padding/article/details/78013754
 
 ## Data types 型別跟 Dynamic type
 
@@ -125,28 +123,24 @@ And I love ${codeName}!!`;
 從 ES6 開始有了`const`跟`let`兩種新的呼叫方式  
 並且最小的區塊切分從`function`變成 block{}，避免變數污染的發生
 
-1. `let` 跟 `const` 的差異
+- `let` 跟 `const` 的差異  
+-- `let`的變數隨時可以用 = 重新賦值  
+-- `const`的變數無法用 = 重新賦值，適合用在常數，若為陣列或物件屬性的值還是可被改變   
+-- `const`若為primitives，不能做 var += var的操作  
+-- 由於值的變更有產生 bug 的風險，基本上宣告會使用`const`，若會重複賦值再用`let`  
+-- 不會使用早期的宣告變數方式`var`，早期宣告變數方法只有`var`搭配`function`把作用域鎖在函式裡面，但若放在`if else`等區塊語句，會讓`var`宣告的變數洩漏到全域，造成變數污染
 
-- `let`的變數隨時可以用 = 重新賦值
-- `const`的變數無法用 = 重新賦值，適合用在常數，若為陣列或物件屬性的值還是可被改變
-- `const`若為primitives，不能做 var += var的操作
-- 由於值的變更有產生 bug 的風險，基本上宣告會使用`const`，若會重複賦值再用`let`
-- 不會使用早期的宣告變數方式`var`，早期宣告變數方法只有`var`搭配`function`把作用域鎖在函式裡面，但若放在`if else`等區塊語句，會讓`var`宣告的變數洩漏到全域，造成變數污染
+- `let` 跟 `const` 的共同處  
+-- 同區塊上不能重複宣告  
+-- 區塊內宣告不會洩漏到全域
 
-2. `let` 跟 `const` 的共同處
+- 作用域  
+-- `var`在主程式區是全域變數，在`function`內是區域變數  
+-- 在 block 區塊語句（if、else、for、while 等）裡面用 var 宣告的變數，會洩漏到全域中，造成區域變數覆蓋全域變數
 
-- 同區塊上不能重複宣告
-- 區塊內宣告不會洩漏到全域
-
-3. 作用域
-
-- `var`在主程式區是全域變數，在`function`內是區域變數
-- 在 block 區塊語句（if、else、for、while 等）裡面用 var 宣告的變數，會洩漏到全域中，造成區域變數覆蓋全域變數
-
-4. 絕對不要直接命名而不使用`let` `const` `var`
-
-- 像是`job = 'code'`
-- 沒有 scope，會變成全域變數，而且不在控管下，會造成記憶體管理問題
+- 絕對不要直接命名而不使用`let` `const` `var`  
+-- 像是`job = 'code'`  
+-- 沒有 scope，會變成全域變數，而且不在控管下，會造成記憶體管理問題
 
 ## 算數運算子 Arithmetic Operator
 
@@ -283,7 +277,7 @@ if (height) {
 <img src="./5bdbd.png" alt="table" width="500"/>
 
 有興趣可看這份[MDN 一般相等比較表](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Equality_comparisons_and_sameness '一般相等比較表')  
-\*`[]`會先由`toString()`強制轉型為字串，再強制轉型為數字
+＊`[]`會先由`toString()`強制轉型為字串，再強制轉型為數字
 
 ## AND OR ! 邏輯運算子
 
@@ -401,4 +395,4 @@ switch (time) {
 恭喜你看完這一篇 JavaScript 基礎知識(1)，休息一下再往下一篇前進吧！  
 [JavaScript 基礎知識(2)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識(2)｜The Complete JavaScript Course')
 
-\*文章內容有錯誤的地方，都歡迎討論與指正
+＊文章內容有錯誤的地方，都歡迎討論與指正
