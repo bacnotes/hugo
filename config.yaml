@@ -45,7 +45,7 @@ params:
 
     sidebar:
         emoji: 🌟
-        subtitle: 筆記補足腦容量不足的部分，記錄小小Junior的進化過程，希望有朝一日變成厲害的工程師，打造出很棒的產品。
+        subtitle: 記錄小小Junior的學習過程，希望有朝一日變成厲害的工程師，打造出很棒的產品
         avatar:
             enabled: true
             local: true

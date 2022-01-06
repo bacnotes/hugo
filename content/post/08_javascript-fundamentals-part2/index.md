@@ -342,6 +342,7 @@ lifting weights repetition 0 🏋️‍♀️
 ```
 
 - 陣列使用迴圈迭代元素
+
 ```javascript
 // 範例1 迭代元素資料類型並放到另一陣列type
 const arr = [1, 2, 3];
@@ -366,9 +367,9 @@ for (let i = 0; i < years.length; i++) {
 
 // 範例3 使用比較簡潔的forEach語法 列印出元素
 const arr = [1, 2, 3];
-arr.forEach(function(element){
-  console.log(element)
-})
+arr.forEach(function (element) {
+  console.log(element);
+});
 ```
 
 - continue: 跳出本次迴圈，執行下個迴圈(e.g. i = 2 → i = 3)
