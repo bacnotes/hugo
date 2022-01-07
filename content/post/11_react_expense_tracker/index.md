@@ -8,8 +8,8 @@ tags:
   - react
 ---
 
-本文是基於下方這堂 Udemy 課程的整理，歡迎大家去親自體驗看看。
-[React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/"React - The Complete Guide (incl Hooks, React Router, Redux")
+本文是基於下方這堂 Udemy 課程的筆記，歡迎大家去親自體驗看看。  
+[React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/ 'React - The Complete Guide (incl Hooks, React Router, Redux')
 
 讓我們娓娓道來 React 的各種知識吧！
 
@@ -171,7 +171,7 @@ ReactDom.render(<App />, document.getElementById('root'));
 function APP() {
   return (
     <div>
-      <h1 className='card'>Hello</h1>
+      <h1 className='container'>Hello</h1>
     </div>
   );
 }
@@ -186,7 +186,7 @@ export default App;
 // 客製化元件大寫命名，跟內建HTML元素做區隔
 function Todo() {
   return (
-    <div className='card'>
+    <div className='container'>
       <h2>Title</h2>
       <div className='actions'>
         <span>A span</span>
@@ -206,7 +206,7 @@ import Todo from './components/Todo';
 function APP() {
   return (
     <div>
-      <h1 className='card'>Hello</h1>
+      <h1 className='container'>Hello</h1>
       <Todo />
       <Todo />
     </div>
@@ -217,7 +217,7 @@ export default App;
 
 ## 9. 父層透過 props 傳資料到子層元件
 
-- {}放入表達式 ，用同樣邏輯渲染出動態資料
+- `{}`放入表達式 ，用同樣邏輯渲染出動態資料
 
 ```jsx
 // App.js
@@ -226,7 +226,7 @@ import Todo from './components/Todo'
 function APP () {
   return (
     <div>
-       <h1 className='card'>Hello</h1>
+       <h1 className='container'>Hello</h1>
        <Todo text='Learn React'/>
        <Todo text='Master React'/>
     </div>
@@ -239,7 +239,7 @@ export default App
 // 利用props收到的動態資料，渲染出2項Todo
 function Todo(props) {
   return (
-  <div className='card'>
+  <div className='container'>
     <h2>{props.text}</h2>
     <div className='actions'>
       <span>A span</span>
@@ -267,7 +267,7 @@ function Todo(props) {
     console.log('click', props.text);
   }
   return (
-    <div className='card'>
+    <div className='container'>
       <h2>{props.text}</h2>
       <div className='actions'>
         <span>A span</span> // openModalHandler這邊不會加上執行() 等觸發才執行
@@ -317,7 +317,7 @@ import Backdrop from './components/Backdrop';
 function APP() {
   return (
     <div>
-      <h1 className='card'>Hello</h1>
+      <h1 className='container'>Hello</h1>
       <Todo text='Learn React' />
       <Todo text='Master React' />
       <Modal />
@@ -360,7 +360,7 @@ function Todo(props) {
 
   return (
     <div>
-      <h1 className='card'>Hello</h1>
+      <h1 className='container'>Hello</h1>
       <Todo text='Learn React' />
       <Todo text='Master React' />
       {modalIsOpen && <Modal />}
@@ -391,7 +391,7 @@ function Todo(props) {
   }
 
   return (
-    <div className='card'>
+    <div className='container'>
       <h2>{props.text}</h2>
       <div className='actions'>
         <button onClick={openModalHandler} className='btn'>
@@ -502,16 +502,16 @@ function App() {
 export default App;
 ```
 
-## 14. 設置 Navbar 來練習 Link
+## 14. 用導覽列來練習 Link
 
-- Navbar 一般會設置在 src 下方資料夾 layout，因為 nav 是整體佈局的元件
+- 導覽列一般會設置在 src 下方資料夾 layout，因為是整體佈局的元件
 - `a href`屬性可以用，但我們不想用伺服器傳 HTML，失去 SPA 優勢
 - import link 元件，會搭配`to`屬性加入路徑使用
 - `<Link>`tag 自動在 DOM 加入監聽，阻擋瀏覽器預設行為送出請求
 - 且只會解析 url，修改網址列跟 load 相對應的元件(React/JavaScript)
 
 ```jsx
-// MainNavigation.js
+// MainNavigation.js 
 
 import { Link } from 'react-router-dom'
 function MainNavigation() {
@@ -537,7 +537,7 @@ function MainNavigation() {
 export default MainNavigation
 ```
 
-- Navbar 引入 App.js
+- 導覽列 引入 App.js
 
 ```jsx
 // App.js
@@ -605,7 +605,7 @@ export default App
 
 ```
 
-## 16. 使用 dummyData map 迴圈渲染資料
+## 16. 使用 map 迴圈渲染資料
 
 ### React 能渲染出 JSX 元素裡的陣列
 
@@ -639,7 +639,6 @@ function AllMeetupsPage() {
   return (
     <section>
       <h1>AllMeetupsPage</h1>
-
       {DUMMY_DATA.map((el) => {
         return <li key={el.id}>{el.title}</li>;
       })}
@@ -656,14 +655,555 @@ export default AllMeetupsPage;
 - 透過設置 key 告訴 React 你改動的元素，而非讓 React 自己比較元素內容差異
 - 避免使用 index(元素完全位移), Math.random(key 值非固定)等方式來建立 key
 
-（持續更新中）
+## 17. 客製化元件的其他使用方式，目的在於讓元件專注在一件事
 
-＊這篇是大方向的介紹，後續還會寫其他 React 學習的筆記
+### 元件作為容器 Wrapper/Container 使用
+
+```jsx
+import classes from './Container.module.css';
+// 引入props.children children是每個元件都可以獲取的預設屬性，值是tag包覆的內容
+function Container(props) {
+  return <div className={classes.container}>{props.children}</div>;
+}
+
+export default Container;
+```
+
+```jsx
+import Container from '../ui/Container';
+// 會加上一層Container的內容 上方的div
+
+function MeetUpItem(props) {
+  return (
+    <Container>
+      <div>some content</div>
+    </Container>
+  );
+}
+```
+
+### 元件作為 Layout 使用(排版 body 內容)
+
+- Layout 放導覽列跟語意化標籤 main 包裹其他內容
+- 在 components/layout 資料夾製作一個 Layout.js
+
+```jsx
+import MainNavigation from './MainNavigation';
+import classes from './Layout.module.css';
+
+function Layout(props) {
+  return (
+    <div>
+      <MainNavigation />
+      <main className={classes.main}>{props.children}</main>
+    </div>
+  );
+}
+export default Layout;
+```
+
+- Layout 包裹路由內容
+
+```jsx
+// App.js
+import { Route } from 'react-router-dom';
+import AllMeetupsPage from './pages/AllMeetups';
+import NewMeetupsPage from './pages/NewMeetups';
+import FavoritesPage from './pages/Favorites';
+// 拿掉之前的MainNavigation 換成Layout
+import Layout from './components/layout/Layout';
+
+function App() {
+  return (
+    <div>
+      <Layout>
+      <Switch>
+        <Route path='/' exact={true}>
+          <AllMeetupsPage />
+        </Route>
+        <Route path='/newmeetup'>
+          <NewMeetupsPage />
+        </Route>
+        <Route path='/favorites'>
+          <FavoritesPage />
+        </Route>
+      </Layout>
+    </div>
+  );
+}
+export default App;
+```
+
+## 18. 加上表單
+
+- Page 新增一頁 裡面放表單元件
+
+```jsx
+function NewMeetupPage() {
+  return (
+    <section>
+      <h1>Add New Meetup</h1>
+      <NewMeetupFrom>
+    </section>
+  );
+}
+export default NewMeetupPage;
+```
+
+- 新增表單元件
+- for 屬性要寫 htmlFor
+
+```jsx
+// NewMeetupForm.js
+import Container from '../ui/Container';
+import classes from './NewMeetupForm.module.css';
+function NewMeetupForm() {
+  return (
+    <Container>
+      <form className={classes.form}>
+        <div className={classes.control}>
+          <label htmlFor='title'>Title</label>
+          <input type='text' id='title' required />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='image'>Image</label>
+          <input type='url' id='image' required />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='address'>Address</label>
+          <input type='text' id='address' required />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='description'>Address</label>
+          <input type='textarea' rows='5' id='description' required />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='description'>Address</label>
+          <input type='textarea' rows='5' id='description' required />
+        </div>
+        <div className={classes.action}>
+          <button>Add</button>
+        </div>
+      </form>
+    </Container>
+  );
+}
+export default NewMeetupFrom;
+```
+
+## 19. 使用 useRef 獲取表單元素值
+
+- 偵測表單內容有兩種做法
+- 使用 useState 監聽每個 input onChange 事件，更新資料
+- 使用 useRef 直接操作 DOM 元素
+- ref 還適合用在管理 focus、文字選擇、播放影音、整合第三方 DOM 函式庫、觸發動畫
+- 非必要時不濫用 ref 操作 DOM 元素，多數元素保持用 state 管理
+- ref 建議以 callback 方式使用
+
+```jsx
+// 元素綁定this.content，使用this.xxx呼叫相關屬性
+<input type='text' ref={(el) => (this.content = el)} />;
+this.content.focus();
+```
+
+- 引入 ref object，使用 current 屬性獲取 value
+
+```jsx
+// NewMeetupForm.js
+import Container from '../ui/Container';
+import classes from './NewMeetupForm.module.css';
+import { useRef } from 'react';
+function NewMeetupForm() {
+  // 創造一個ref物件，帶有ref屬性，裡面有current屬性
+  const titleInputRef = useRef();
+  const imageInputRef = useRef();
+  const addressInputRef = useRef();
+  const descriptionInputRef = useRef();
+
+  function submitHandler(event) {
+    // 阻擋瀏覽器預設事件，避免點下表單就會對伺服器發出請求
+    event.preventDefault();
+
+    // 獲得title目前input值
+    const enteredTitle = titleInputRef.current.value;
+    const enteredImage = imageInputRef.current.value;
+    const enteredAddress = addressInputRef.current.value;
+    const enteredDescription = descriptionInputRef.current.value;
+    // 創造一個物件管理
+    const meetupData = {
+      title: enteredTitle,
+      image: enteredImage,
+      address: enteredAddress,
+      description: enteredDescription,
+    };
+    // send to server console.log(meetupData)
+    props.onAddMeetupData(meetupData);
+  }
+  return (
+    <Container>
+      // 新增 submit 監聽
+      <form className={classes.form} onSubmit={submitHandler}>
+        <div className={classes.control}>
+          <label htmlFor='title'>Title</label>
+          <input type='text' id='title' ref={titleInputRef} required />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='image'>Image</label>
+          <input type='url' id='image' ref={imageInputRef} required />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='address'>Address</label>
+          <input type='text' id='address' ref={addressInputRef} required />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor='description'>Description</label>
+          <input
+            type='textarea'
+            rows='5'
+            id='description'
+            ref={descriptionInputRef}
+            required
+          />
+        </div>
+        <div className={classes.action}>
+          <button>Add</button>
+        </div>
+      </form>
+    </Container>
+  );
+}
+export default NewMeetupFrom;
+```
+
+```jsx
+// pages/NewMeetup.js
+// 表單資料丟到父層
+function NewMeetupPage() {
+                     // 表單資料meetupData
+  function addMeetupHandler(meetupData) {
+    // send http req
+  }
+  return (
+    <section>
+      <h1>Add New Meetup</h1>
+      <NewMeetupForm onAddMeetupData={addMeetupHandler}>
+    </section>
+  );
+}
+export default NewMeetupPage;
+```
+
+## 20. API 串接
+
+### 為什麼需要 API
+
+- 前端的程式碼在 devtool 可以看到，透過 API 資料跟 server 要資料以確保安全
+- 不然懂一點程式的人透過前端程式碼呼叫 server，可以盜取使用者個資，也可以把你 server 清空
+- 可以用 firebase realtime database 測試前端丟出去的 JSON 資料
+
+```jsx
+function NewMeetupPage() {
+  function addMeetupHandler(meetupData) {
+    // firebase realtime 資料庫的API後方加上/xxx.json等於一個大表
+    fetch('firebaseAPI網址/xxx.json',
+    {
+
+      method: 'POST',
+      // body是JSON格式
+      body:JSON.stringify(meetupData),
+      // 部分API會要求提供'Content-Type'
+      headers: {
+        'Content-Type':'application/json'
+      }
+    })
+  }
+  return (
+    <section>
+      <h1>Add New Meetup</h1>
+      <NewMeetupForm onAddMeetupData={addMeetupHandler}>
+    </section>
+  );
+}
+export default NewMeetupPage;
+```
+
+## 21. 使用 useHistory 跳轉頁面
+
+- history.goBack() 回上一頁
+- history.push('/') 到首頁，新增一個網址資料到陣列尾端
+- history.replace('/') 回首頁，直接取代 current entry 資料，不新增資料，當不希望使用者回上一頁可使用
+
+```jsx
+import { useHistory } from 'react-router-dom';
+
+function NewMeetupPage() {
+  function addMeetupHandler(meetupData) {
+    // firebase realtime 資料庫的API後方加上/xxx.json等於一個大表
+    fetch('firebaseAPI網址/xxx.json', {
+      method: 'POST',
+      // body是JSON格式
+      body: JSON.stringify(meetupData),
+      // 部分API會要求提供'Content-Type'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(() => {
+      history.replace('/');
+    });
+  }
+}
+```
+
+## 22. 使用 useEffect
+
+- useEffect 可以用來限制元件不要每次渲染都執行所有的程式碼，第一個參數為函式，第二個是陣列，只有[]內容有變化才會執行
+- 若沒加第二個參數等於每次都會執行，有用跟沒用一樣
+- 若為空陣列，由於沒有相依任何變數，所以偵測不到變化，只會執行第一次
+- 若裡面有變數，則變數有變化就會再執行一次
+- 適合用在 fetch data、訂閱監聽事件、改變 DOM、輸出 log
+- get 方法讓個別頁面獲取不同資料(把 dummyData 換成實際 server 資料)
+
+```jsx
+// pages/AllMeetup.js
+import { useState, useEffect } from 'react';
+
+function AllMeetupsPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [meetups, setMeetups] = useState([]);
+  useEffect(() => {
+    // fetch回傳promise
+    fetch('firebaseUrl/meetups.json')
+      .then((response) => {
+        // 獲取body 使用.json方法 把json檔案變成JS object
+        // 因為.json也會return promise所以要用then接 課程這邊專心在獲取資料說明 沒有寫到error處理
+        return response.json();
+      })
+      .then((data) => {
+        // 我們期望是陣列資料套入到模板，而firebase上的meetups資料是巢狀物件結構
+        // 最外層是一個object，每筆資料是一個key value pair
+        // meetups = {
+        //  key1: {title:'', image:'', address:'', description:''},
+        //  key2: {title:'', image:'', address:'', description:''}
+        // }
+        const meetups = [];
+        for (const key in data) {
+          // 解構出data
+          const meetups = {
+            id: key,
+            ...data[key],
+          };
+          // 資料一筆筆推入陣列
+          meetups.push(meetup);
+        }
+        setIsLoading(false);
+
+        setMeetups(data);
+      });
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
+  // 這段不會等上面回傳資料
+  // 不能用async function AllMeetupPage await fetch來處理
+  // 元件函式應是同步函式，不應該return promise而是JSX
+  // 使用state條件渲染 loading spinner
+  return (
+    <section>
+      <h1>AllMeetupsPage</h1>
+      {meetups.map((el) => {
+        return <li key={el.id}>{el.title}</li>;
+      })}
+    </section>
+  );
+}
+export default AllMeetupsPage;
+```
+
+- 若沒使用 useEffect，當 useState 更新狀態會再跑一次元件，再 fetch 一次就會無限迴圈
+
+## 23-1 useContext 管理全域 state (這個應該是最複雜的)
+
+- 上面介紹過 useState 在單個元件的更新資料方法
+- 如果需要管理全域的 state，可以用 props 傳遞 State 更新其他元件資料，但大專案會不好維護跟管理
+- 也可以使用 redux，但 React 函式庫本身就有內建 context 管理 State 的 function
+- 管理狀態的 context 一般會建立在 src/store 下(e.g. favorites-context.js)
+
+```jsx
+import { createContext, useState } from 'react';
+
+// 建立一個context物件 裡面放初始值
+const FavoritesContext = createContext({
+  favorites: [],
+  totalFavorites: 0,
+  addFavorite: (favoriteMeetup) => {},
+  removeFavorite: (favoriteMeetup) => {},
+  itemIsFavorite: (favoriteMeetup) => {},
+});
+
+// 更新我的最愛state的函式 用來管理這個函式裡的state 這邊加上export之後會從外部呼叫
+export function FavoritesContextProvider(props) {
+  const [userFavorites, setUserFavorites] = useState([]);
+
+  // 建立三個處理我的最愛狀態的函式
+  function addFavoriteHandler(favoriteMeetup) {
+    setUserFavorites((prevUserFavorites) => {
+      return prevUserFavorites.concat(favoriteMeetup);
+    });
+  }
+
+  function removeFavoriteHandler(meetupId) {
+    setUserFavorites((prevUserFavorites) => {
+      return prevUserFavorites.filter((prev) => prev.id !== meetupId);
+    });
+  }
+
+  function itemIsFavoriteHandler(meetupId) {
+    return userFavorites.some((meetup) => meetup.id !== meetupId);
+  }
+
+  // 新增一個 context object 透過value把值傳過去
+  const context = {
+    // 把userFavorite的snapshot放在這裡，當state改變context物件也會改變
+    // 也會透過value={context}傳新的值到相關元件
+    favorites: userFavorites,
+    totalFavorites: userFavorites.length,
+    // 當其他元件要使用上方三個函式時，用pointer指向下面的key然後就會執行後面的函式，即上面的內容
+    addFavorite: addFavoriteHandler,
+    removeFavorite: removeFavoriteHandler,
+    itemIsFavorite: itemIsFavoriteHandler,
+  };
+
+  // Provider是內建的元件 必須包在所有會跟他互動的元件(e.g. App) value會傳值
+  return (
+    <FavoritesContext.Provider value={context}>
+      {props.children}
+    </FavoritesContext.Provider>
+  );
+}
+// 輸出Favoritescontext
+export default FavoritesContext;
+```
+
+- index.js 引用，讓全域都可以使用 context
+
+```jsx
+// index.js
+import { BrowserRouter } from 'react-router-dom';
+import { FavoriteContextProvider } from './store/favorite-context';
+
+RouterDOM.render(
+  <FavoriteContextProvider>
+    <BrowserRouter>
+      <APP />
+    </BrowserRouter>
+  </FavoriteContextProvider>
+);
+```
+
+## 23-2 在元件引用 useContext
+
+- MeetupItem.js
+
+```jsx
+// 點加入我的最愛就會把item加入陣列，更新按鈕文字
+...
+import FavoritesContext from './../../store/favorite-context'
+function MeetUpItem(props) {
+  function toggleFavoritesStatusHandler() {
+    const favoritesCtx = useContext(FavoritesContext)
+    const itemIsFavorite = favoriteCtx.itemIsFavorite(prop.id)
+
+    function toggleFavoriteStatusHandler() {
+      if(itemIsFavorite) {
+        favoritesCtx.removeFavorite(prop.id)
+      } else {
+        // 更新陣列資料，就會透過favorite-context讓全域物件下相關資料都更新
+        favoritesCtx.addFavorite({
+          id: props.id,
+          title: props.title,
+          address: props.address,
+          image: props.image,
+          description: prop.description
+        })
+      }
+    }
+    return (
+      <li className={classes.item}>
+        <Container>
+        ...
+         <div>
+           <button onClick={toggleFavoriteStatusHandler}>{itemIsFavorite ? 'Remove' : 'Add'}</button>
+         </div>
+        </Container>
+      </li>
+    );
+  }
+}
+```
+
+- FavoritesPage
+
+```jsx
+...
+import { useContext } from 'react'
+import FavoritesContext from './../store/favorite-context'
+
+// 顯示我的最愛item
+function FavoritesPage(){
+  const favoritesCtx = useContext(FavoritesContext)
+
+  let content
+  if (favoritesCtx.totalFavorites.length === 0){
+    content = <p>No Favorites yet</p>
+  } else {
+    content = <MeetupList meetups={favoritesCtx.favorites}>
+  }
+  return <section>
+  <h1>My Favorites</h1>
+  // array
+  {content}
+  </section>
+}
+
+export default FavoritesPage
+```
+
+- 導覽列放上我的最愛總數
+
+```jsx
+// MainNavigation.js
+...
+import { useContext } from 'react'
+import FavoritesContext from './../../store/favorite-context'
+
+import { Link } from 'react-router-dom'
+function MainNavigation() {
+  const favoriteCtx = useContext(FavoritesContext)
+  return (
+  <header>
+   ...
+         <li>
+           <Link to='/favorites'>My favorites
+           <span>{favoriteCtx.totalFavorites.length}</span>
+           </Link>
+         </li>
+    ...
+  </header>
+  )
+}
+export default MainNavigation
+
+```
 
 最後想補充一下...  
 其實我覺得 Vue 也不錯啊（x)
 
-有好吃的語法糖：用@監聽事件，：動態 class，watch 深層監聽物件屬性，computed 動態更新，v-model 雙向綁定表單...各種好吃的糖)
+有好吃的語法糖：用@監聽事件，@submit.prevent.stop 就可阻止瀏覽器提交表單跟冒泡：動態 class，watch 深層監聽物件屬性，computed 動態更新，v-model 雙向綁定表單...各種好吃的糖)
 
 <img src="./smile.jpeg" alt="smile-meme" width="350px">
 

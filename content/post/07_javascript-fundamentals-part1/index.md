@@ -39,7 +39,7 @@ tags:
   console.log(a, b, cat) // 1 2 3
 ```
 
--- 可以設定預設值
+-- 物件可以定義初始值(預設值)，當呼叫函式沒有這個屬性時會套用
 
 ```JS
 // 物件範例
@@ -52,7 +52,7 @@ console.log(menu, starters)
 // [] [ 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad' ]
 ```
 
--- 可以不用 temp 暫存變數，就可以把變數值做交換
+-- 不用另外宣告 temp 暫存變數，就可以互換變數值，很方便
 
 ```JS
 // 陣列範例
