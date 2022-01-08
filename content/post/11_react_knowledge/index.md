@@ -8,7 +8,7 @@ tags:
   - react
 ---
 
-本文是基於下方這堂 Udemy 課程的筆記，歡迎大家去親自體驗看看。  
+本文是基於下方這堂 Udemy 課程的筆記，對 React 有興趣的話可以購買看看唷  
 [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/course/react-the-complete-guide-incl-redux/ 'React - The Complete Guide (incl Hooks, React Router, Redux')
 
 讓我們娓娓道來 React 的各種知識吧！
@@ -102,7 +102,7 @@ npm start
 
 ### 啟用 emmet snippet 縮寫
 
-- 開始使用 rcc 或 rfc 來幫助你加速開發吧
+- 設定檔寫入
 
 ```js
 {
@@ -110,6 +110,38 @@ npm start
     "javascript": "javascriptreact"
   },
 }
+```
+
+- 使用 rcc 或 rfc（趨勢) 來幫助你加速開發吧
+
+```jsx
+// rcc class component
+import React, { Component } from 'react';
+
+class 元件名 extends Component {
+  render() {
+    return (
+      <div>
+
+      </div>
+    );
+  }
+}
+
+export default 元件名;
+
+// rfc function component
+import React from 'react';
+
+const 元件名 = () => {
+  return (
+    <div>
+
+    </div>
+  );
+}
+
+export default 元件名;
 ```
 
 參考文章：[Enable Emmet support for JSX in Visual Studio Code | React](https://eshwaren.medium.com/enable-emmet-support-for-jsx-in-visual-studio-code-react-f1f5dfe8809c 'Enable Emmet support for JSX in Visual Studio Code | React')
@@ -131,13 +163,11 @@ export default App;
 
 ## 7. 了解 React 運作方式跟元件
 
-- 在 2020 React17 更新後不用在每個客製化元件最上方 import react
+- 在 2020 React17 更新後不用在每個客製化元件最上方 `import React from 'react'`，Babel 遇到 JSX 就會幫我們處理，且跟過往的 JSX 程式碼相容
 
-```jsx
-import React from 'react';
-```
+- 但記得 index.js entry point 這邊的 `import React from 'react'`不能拿掉
 
-- 因為 Babel 遇到 JSX 就會幫我們處理
+- 對於 JSX 轉換細節有興趣的人可以參考這篇文章[Introducing the New JSX Transform](https://zh-hant.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html 'Introducing the New JSX Transform')
 
 ```jsx
 // Inserted by a compiler (don't import it yourself!)
@@ -148,20 +178,13 @@ function App() {
 }
 ```
 
-參考文章：[Introducing the New JSX Transform](https://zh-hant.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html 'Introducing the New JSX Transform')
+- SPA 是針對 server 回傳的單頁 HTML 做變動，也就是`<body>` 中 id='root'區塊
 
-- 只有 index.js 這邊的 import 不能拿掉，compile 會失敗
+- 而 `<App />`是一個 JavaScript function 回傳 JSX code，我們不會在瀏覽器 element 區塊看到`<App />`裡面的 JSX 內容(因瀏覽器不懂 JSX 的內容) 而是會 render 出 Babel 轉譯`<App />`後的內容
 
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-```
-
-- SPA 是針對 server 回傳的單頁 HTML 做變動，也就是`<body>` 中 id='root'區塊
-
-- `<App />`是一個 JavaScript function 回傳 JSX code，我們不會在瀏覽器 element 區塊看到`<App />`裡面的 JSX 內容(因瀏覽器不懂 JSX 的內容) 而是會 render 出 Babel 轉譯`<App />`後的內容
-
-```jsx
 ReactDom.render(<App />, document.getElementById('root'));
 ```
 
@@ -178,9 +201,10 @@ function APP() {
 export default App;
 ```
 
-## 9. 引用元件方法(增加複用性)
+## 9. 使用元件增加複用性
 
 - 下方是一個元件範例，一般會放在 src/components 下，檔案命名建議大寫開頭
+- 元件保持精簡，一個元件專心做一件事，降低耦合
 
 ```jsx
 // 客製化元件大寫命名，跟內建HTML元素做區隔
@@ -215,9 +239,9 @@ function APP() {
 export default App;
 ```
 
-## 9. 父層透過 props 傳資料到子層元件
+## 10. 父層透過 props 傳資料到子層元件
 
-- `{}`放入表達式 ，用同樣邏輯渲染出動態資料
+- `{}`放入表達式 ，用同樣邏輯渲染出不同的資料
 
 ```jsx
 // App.js
@@ -251,13 +275,12 @@ function Todo(props) {
 export default Todo;
 ```
 
-## 10. 設置與監聽事件
+## 11. 設置與監聽事件
 
 - 需理解 React 裡面的 JSX 不等於 HTML，所以不能用 HTML inline JavaScript
 - 事件的值應該是一個表達式所以用 `onClick={}`
 - 可以寫成匿名函式 `onClick={function(){}}`或箭頭函式 `onClick={()⇒{}}`
-- 但建議指向另一個 function，寫在上方 return 外層，保持 HTML 精簡
-- 且可用同樣邏輯觸發，但有不同輸出
+- 但建議指向另一個 function，保持 HTML 精簡(寫在 return 前的區塊)
 
 ```jsx
 // 元件 Todo.js 下方是一個 delete 事件
@@ -281,19 +304,15 @@ function Todo(props) {
 export default Todo;
 ```
 
-## 11. 引入多個元件
+## 12. 引入多個元件
 
-- 以提示窗為例，需要一個 backdrop 覆蓋 modal 後面的背景
+- 以提示窗為例，需要一個 `backdrop` 覆蓋 modal 後面的背景，跟一個 `modal`
 
 ```jsx
 function Backdrop(props) {
   return <div className='backdrop' />;
 }
-```
 
-- 跟一個 modal
-
-```jsx
 function Modal(props) {
   return (
     <div>
@@ -329,23 +348,35 @@ function APP() {
 export default App;
 ```
 
-- 元件要好維護，元件本身的程式碼就不能太多
+## 13. useState 紀錄網頁 State，跟使用者互動
 
-## 12. useState(hook)讓網頁紀錄狀態，跟使用者互動
+- 我們註冊不同的 State，React 會在 State 改變時 render 不同東西
 
-### 同層元件監聽與觸發事件：開啟 modal
+```jsx
+// useState 是一個 function，因為是第三方函式庫不用寫路徑
+import { useState } from ‘react’
+function SomeFunction(){
 
-- `import { useState } from ‘react’`
-- useState 是一個 function，因為是第三方函式庫不用路徑
-- 我們註冊不同的 state，React 會改變狀態，render 不同東西
-- useState 要在元件 function 第一層，不能巢狀到
-- useState 會回傳陣列，內有 2 個元素，可以定義初始值參數
+// useState 會回傳陣列，內有 2 個元素，可以定義初始值參數
+// useState 要放在元件 function 內第一層，不能巢狀到
+const [variable, setVariable] = useState(initialValue)
+
+return (
+    <div>
+      ...
+    </div>
+  );
+}
+export default SomeFunction
+```
+
+**無法透過重新賦值 Variable 的值來更新畫面**
+
 - 更改值會需要呼叫第二個參數更新初始值(以下方範例來說是 setModalIsOpen)
+- 呼叫的時候 React 會重新執行 State 所屬的元件，並重新更新資料跟畫面
+- 我們會用 setModalIsOpen 來更新值，用 modalIsOpen 判斷條件渲染 JSX 的程式碼
 
-**我們不會直接 re-assign 一個 modalIsOpen 的值**
-
-- 呼叫的時候 React 會重新執行 state 所屬的元件，並重新更新資料跟畫面
-- 我們會用 setModalIsOpen 來更新值，modalIsOpen 條件渲染 JSX 的程式碼
+### 同層元件監聽與觸發事件：以開啟 modal 為例
 
 ```jsx
 // Todo.js 元件
@@ -370,10 +401,10 @@ function Todo(props) {
 }
 ```
 
-### 父層監聽子層觸發事件：關閉 modal
+### 父層監聽子層觸發事件：以關閉 modal 為例
 
 - 子元件觸發事件，方法寫在父層
-- onClick 監聽是觸發同層 function，裡面包裹 props 傳下來的父層方法 expression value(Passing Function As Props)
+- onClick 監聽是觸發同層 function，裡面包裹 props 傳下來的父層方法(Passing Function As Props)
 - 範例為點 Cancel 跟 Delete 按鈕會關閉 modal
 
 ```jsx
@@ -435,7 +466,7 @@ export default Modal;
 ＊onCancel 是離開一個 dialog 元素會觸發的事件(e.g. 點遮罩或右上角 x，或取消按鈕)  
 ＊onConfirm 是點確認
 
-## 13. 加上路由
+## 14. 加上路由
 
 - 需要安裝套件（不包含在 CRA)
 
@@ -502,7 +533,7 @@ function App() {
 export default App;
 ```
 
-## 14. 用導覽列來練習 Link
+## 15. 用導覽列來練習 Link
 
 - 導覽列一般會設置在 src 下方資料夾 layout，因為是整體佈局的元件
 - `a href`屬性可以用，但我們不想用伺服器傳 HTML，失去 SPA 優勢
@@ -511,7 +542,7 @@ export default App;
 - 且只會解析 url，修改網址列跟 load 相對應的元件(React/JavaScript)
 
 ```jsx
-// MainNavigation.js 
+// MainNavigation.js
 
 import { Link } from 'react-router-dom'
 function MainNavigation() {
@@ -568,7 +599,7 @@ function App() {
 export default App;
 ```
 
-## 15. CSS modules 來為元件加上樣式
+## 16. CSS modules 來為元件加上樣式
 
 - CRA 本身有內建 CSS modules
 - 需要在檔名使用 module.css
@@ -605,7 +636,7 @@ export default App
 
 ```
 
-## 16. 使用 map 迴圈渲染資料
+## 17. 使用 map 迴圈渲染資料
 
 ### React 能渲染出 JSX 元素裡的陣列
 
@@ -650,12 +681,12 @@ export default AllMeetupsPage;
 
 ### 迴圈的元素設置 唯一值的 key
 
-- 傳統演算法比對兩個節點差異時間複雜度 O 的 3 次方
+- 傳統演算法比對兩個節點差異，時間複雜度為 O 的 3 次方
 - 為了渲染的效能，React 使用 heuristic 演算法比較內容變動的元素，但也可能因為沒有比對好(部分演算法假設跟現實不符)造成渲染出錯誤的元素
 - 透過設置 key 告訴 React 你改動的元素，而非讓 React 自己比較元素內容差異
 - 避免使用 index(元素完全位移), Math.random(key 值非固定)等方式來建立 key
 
-## 17. 客製化元件的其他使用方式，目的在於讓元件專注在一件事
+## 18. 客製化元件的其他使用方式，目的在於讓元件專注在一件事
 
 ### 元件作為容器 Wrapper/Container 使用
 
@@ -734,7 +765,7 @@ function App() {
 export default App;
 ```
 
-## 18. 加上表單
+## 19. 加上表單
 
 - Page 新增一頁 裡面放表單元件
 
@@ -751,7 +782,7 @@ export default NewMeetupPage;
 ```
 
 - 新增表單元件
-- for 屬性要寫 htmlFor
+- for 屬性在React要寫成 htmlFor
 
 ```jsx
 // NewMeetupForm.js
@@ -791,13 +822,13 @@ function NewMeetupForm() {
 export default NewMeetupFrom;
 ```
 
-## 19. 使用 useRef 獲取表單元素值
+## 20. 使用 useRef 獲取表單元素值
 
-- 偵測表單內容有兩種做法
-- 使用 useState 監聽每個 input onChange 事件，更新資料
-- 使用 useRef 直接操作 DOM 元素
+- 偵測表單內容有兩種做法  
+1. 使用 useState 監聽每個 input onChange 事件，更新資料  
+2. 使用 useRef 直接操作 DOM 元素  
 - ref 還適合用在管理 focus、文字選擇、播放影音、整合第三方 DOM 函式庫、觸發動畫
-- 非必要時不濫用 ref 操作 DOM 元素，多數元素保持用 state 管理
+- 非必要時不濫用 ref 操作 DOM 元素，多數元素保持用 State 管理
 - ref 建議以 callback 方式使用
 
 ```jsx
@@ -893,18 +924,18 @@ function NewMeetupPage() {
 export default NewMeetupPage;
 ```
 
-## 20. API 串接
+## 21. API 串接
 
 ### 為什麼需要 API
 
 - 前端的程式碼在 devtool 可以看到，透過 API 資料跟 server 要資料以確保安全
 - 不然懂一點程式的人透過前端程式碼呼叫 server，可以盜取使用者個資，也可以把你 server 清空
-- 可以用 firebase realtime database 測試前端丟出去的 JSON 資料
+- 可以用 Firebase Realtime Database 測試前端丟出去的 JSON 資料
 
 ```jsx
 function NewMeetupPage() {
   function addMeetupHandler(meetupData) {
-    // firebase realtime 資料庫的API後方加上/xxx.json等於一個大表
+    // Firebase realtime 資料庫的API後方加上/xxx.json等於一個大表
     fetch('firebaseAPI網址/xxx.json',
     {
 
@@ -927,7 +958,7 @@ function NewMeetupPage() {
 export default NewMeetupPage;
 ```
 
-## 21. 使用 useHistory 跳轉頁面
+## 22. 使用 useHistory 跳轉頁面
 
 - history.goBack() 回上一頁
 - history.push('/') 到首頁，新增一個網址資料到陣列尾端
@@ -938,7 +969,7 @@ import { useHistory } from 'react-router-dom';
 
 function NewMeetupPage() {
   function addMeetupHandler(meetupData) {
-    // firebase realtime 資料庫的API後方加上/xxx.json等於一個大表
+    // Firebase realtime 資料庫的API後方加上/xxx.json等於一個大表
     fetch('firebaseAPI網址/xxx.json', {
       method: 'POST',
       // body是JSON格式
@@ -954,9 +985,10 @@ function NewMeetupPage() {
 }
 ```
 
-## 22. 使用 useEffect
+## 23. 使用 useEffect
 
-- useEffect 可以用來限制元件不要每次渲染都執行所有的程式碼，第一個參數為函式，第二個是陣列，只有[]內容有變化才會執行
+- useEffect 可以用來限制元件不要每次渲染都執行所有的程式碼
+- 第一個參數為函式，第二個是陣列，只有[]內容有變化才會執行
 - 若沒加第二個參數等於每次都會執行，有用跟沒用一樣
 - 若為空陣列，由於沒有相依任何變數，所以偵測不到變化，只會執行第一次
 - 若裡面有變數，則變數有變化就會再執行一次
@@ -975,7 +1007,7 @@ function AllMeetupsPage() {
     fetch('firebaseUrl/meetups.json')
       .then((response) => {
         // 獲取body 使用.json方法 把json檔案變成JS object
-        // 因為.json也會return promise所以要用then接 課程這邊專心在獲取資料說明 沒有寫到error處理
+        // 因為.json return promise所以用then接 課程這邊專心在獲取資料 沒有寫到error處理
         return response.json();
       })
       .then((data) => {
@@ -1008,10 +1040,9 @@ function AllMeetupsPage() {
       </section>
     );
   }
-  // 這段不會等上面回傳資料
-  // 不能用async function AllMeetupPage await fetch來處理
+  // 這段不會等上面回傳資料，但不能用async function AllMeetupPage await fetch來處理
   // 元件函式應是同步函式，不應該return promise而是JSX
-  // 使用state條件渲染 loading spinner
+  // 可使用State條件渲染 loading
   return (
     <section>
       <h1>AllMeetupsPage</h1>
@@ -1026,12 +1057,12 @@ export default AllMeetupsPage;
 
 - 若沒使用 useEffect，當 useState 更新狀態會再跑一次元件，再 fetch 一次就會無限迴圈
 
-## 23-1 useContext 管理全域 state (這個應該是最複雜的)
+## 24-1 useContext 管理全域 State (這個應該是最複雜的)
 
 - 上面介紹過 useState 在單個元件的更新資料方法
-- 如果需要管理全域的 state，可以用 props 傳遞 State 更新其他元件資料，但大專案會不好維護跟管理
+- 如果需要管理全域的 State，可以用 props 傳遞 State 更新其他元件資料，但大專案會不好維護跟管理
 - 也可以使用 redux，但 React 函式庫本身就有內建 context 管理 State 的 function
-- 管理狀態的 context 一般會建立在 src/store 下(e.g. favorites-context.js)
+- 管理 State 的 context 一般會建立在 src/store 下(e.g. favorites-context.js)
 
 ```jsx
 import { createContext, useState } from 'react';
@@ -1045,11 +1076,11 @@ const FavoritesContext = createContext({
   itemIsFavorite: (favoriteMeetup) => {},
 });
 
-// 更新我的最愛state的函式 用來管理這個函式裡的state 這邊加上export之後會從外部呼叫
+// 更新我的最愛State的函式 用來管理這個函式裡的State 這邊加上export之後會從外部呼叫
 export function FavoritesContextProvider(props) {
   const [userFavorites, setUserFavorites] = useState([]);
 
-  // 建立三個處理我的最愛狀態的函式
+  // 建立三個處理我的最愛State的函式
   function addFavoriteHandler(favoriteMeetup) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.concat(favoriteMeetup);
@@ -1068,11 +1099,11 @@ export function FavoritesContextProvider(props) {
 
   // 新增一個 context object 透過value把值傳過去
   const context = {
-    // 把userFavorite的snapshot放在這裡，當state改變context物件也會改變
+    // 把userFavorite的snapshot放在這裡，當State改變context物件也會改變
     // 也會透過value={context}傳新的值到相關元件
     favorites: userFavorites,
     totalFavorites: userFavorites.length,
-    // 當其他元件要使用上方三個函式時，用pointer指向下面的key然後就會執行後面的函式，即上面的內容
+    // 當其他元件要使用上方三個函式時，用pointer指向下面的key然後就會執行後面的函式，即上面的function
     addFavorite: addFavoriteHandler,
     removeFavorite: removeFavoriteHandler,
     itemIsFavorite: itemIsFavoriteHandler,
@@ -1105,9 +1136,9 @@ RouterDOM.render(
 );
 ```
 
-## 23-2 在元件引用 useContext
+## 24-2 在元件引用 useContext
 
-- MeetupItem.js
+- 引用到MeetupItem.js
 
 ```jsx
 // 點加入我的最愛就會把item加入陣列，更新按鈕文字
@@ -1146,7 +1177,7 @@ function MeetUpItem(props) {
 }
 ```
 
-- FavoritesPage
+- 引用到FavoritesPage
 
 ```jsx
 ...
@@ -1173,7 +1204,7 @@ function FavoritesPage(){
 export default FavoritesPage
 ```
 
-- 導覽列放上我的最愛總數
+- 引用到導覽列(放上我的最愛總數)
 
 ```jsx
 // MainNavigation.js
