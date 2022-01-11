@@ -1,6 +1,6 @@
 ---
-title: 初學React的你需要知道的一些知識｜bacnotes備份筆記
-description: 這是一篇自學React的分享，React算是三大框架中工作數量最高的，為什麼大家都愛用React開發？身為前端工程師的你就算不會寫React，看完這篇後也可以裝逼跟大大們聊上幾句。
+title: 自學React的你需要知道的一些知識｜bacnotes備份筆記
+description: 這是一篇自學React的分享，React算是三大框架中工作數量最高的，為什麼大家都愛用React開發？JSX是什麼？State是什麼？Hook是什麼？看完這篇筆記後就可以跟React大大們聊上幾句。
 date: 2022-01-06T00:00:00+08:00
 slug: react-knowledge-101
 image: photo-1633356122544-f134324a6cee.jpeg
@@ -349,7 +349,7 @@ export default App;
 ```
 
 ## 13. useState 紀錄網頁 State，跟使用者互動
-
+- useState是React一個Hook，Hook是一個內建function，useState是用來操作狀態的hook
 - 我們註冊不同的 State，React 會在 State 改變時 render 不同東西
 
 ```jsx
@@ -376,6 +376,10 @@ export default SomeFunction
 - 呼叫的時候 React 會重新執行 State 所屬的元件，並重新更新資料跟畫面
 - 我們會用 setModalIsOpen 來更新值，用 modalIsOpen 判斷條件渲染 JSX 的程式碼
 
+＊Hook有很多種，官方文件有列出所有的Hook在這裡[Hook API](https://zh-hant.reactjs.org/docs/hooks-reference.html "Hook API")
+- useEffect可以fetch 資料、訂閱、或操作 DOM
+- useRef可以抓取Dom元素，獲取表單的value(但更新 current 值不會重新渲染畫面)    
+- useContext可以管理全域狀態等，下方會繼續介紹    
 ### 同層元件監聽與觸發事件：以開啟 modal 為例
 
 ```jsx

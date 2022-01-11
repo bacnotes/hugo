@@ -443,7 +443,6 @@ restaurant.orderPizza('mushrooms')
 
 ```JS
 const restaurant = {
-const restaurant = {
   starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
   mainMenu: ['Pizza', 'Pasta', 'Risotto'],
   orderDelivery: function ({

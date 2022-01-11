@@ -34,7 +34,7 @@ params:
     AuthorName: bacnotes
     featuredImageField: image
     rssFullContent: true
-    favicon:
+    favicon: favicon.ico
     footer:
         since: 2021
         customText:

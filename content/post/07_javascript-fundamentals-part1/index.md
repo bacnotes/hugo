@@ -1,6 +1,6 @@
 ---
 title: JavaScript基礎知識(1)｜The Complete JavaScript Course｜bacnotes備份筆記
-description: JavaScript是一個可以開發前後端的程式語言，使用的時候總是會不小心踩到一些坑嗎？透過The Complete JavaScript Course 這堂課，讓我對於JavaScript有了更深的理解，這篇會介紹關於JavaScript的基礎知識(前半篇)。
+description: JavaScript是一個可以開發前後端的程式語言，使用的時候總是會不小心踩到一些坑嗎？透過The Complete JavaScript Course 這堂課，讓我對於JavaScript有更深的理解，這篇會介紹關於JavaScript ES6新增語法、資料型別、let const var宣告比較、作用域、運算子與顯性隱性轉型與流程判斷。
 date: 2021-12-29T00:00:00+08:00
 slug: javascript-fundamentals-part1
 image: javascript.jpeg
@@ -29,27 +29,46 @@ tags:
 
 ## ES6 新增了哪些語法
 
-- 解構賦值
+- 解構賦值  
   -- 可以用精簡的語法來命名變數，可彈性修改變數名稱
 
 ```JS
-  // 物件範例
   const variable = { a: 1, b: 2, c: 3}
   const {a, b, c: cat} = variable //若想針對c做新變數命名為cat
   console.log(a, b, cat) // 1 2 3
 ```
 
--- 物件可以定義初始值(預設值)，當呼叫函式沒有這個屬性時會套用
+-- 可以用來定義預設值，由於我們從其他地方取用資料時可能會有預料外狀況，當沒有資料時有預設值套用比較保險
 
 ```JS
-// 物件範例
 const restaurant = {
 starterMenu: ['Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad'],
 }
-// menu是新加入的變數
+// 解構賦值時加入預設值[] 避免undefined
 const { menu = [], starterMenu: starters = [] } = restaurant
 console.log(menu, starters)
 // [] [ 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad' ]
+
+// 函數使用預設參數
+function check (a, b = 1, c = 2, d) {
+  console.log(a, b, c, d)
+}
+check(1,3)
+// 1 3 2 undefined
+
+// 物件方法使用預設參數
+const restaurant = {
+  orderDelivery: function ({
+    starterIndex = 1, // 預設值
+    mainIndex = 0,    // 預設值
+    time = '00:00',   // 預設值
+    address, // 沒訂預設值
+  }) {
+    console.log(
+      `${starterIndex}, ${mainIndex}, ${time}, ${address}` );
+  },
+};
+restaurant.orderDelivery({}) // 1, 0, 00:00, undefined
 ```
 
 -- 不用另外宣告 temp 暫存變數，就可以互換變數值，很方便
@@ -67,7 +86,7 @@ const obj = {a: 11, b: 22}
 console.log(a, b) // 11 22
 ```
 
--- 可以簡單處理巢狀變數
+-- 取出巢狀變數很簡單
 
 ```JS
   // 陣列範例
@@ -88,10 +107,10 @@ console.log(a, b) // 11 22
 ```
 
 - Promise 語法  
-  解決了 callback hell（難以維護的巢狀結構程式碼）  
-  ES7 有 async/await 更好讀
+  -- 解決了 callback hell（難以維護的巢狀結構程式碼）  
+  -- ES7 有 async/await 更好讀
 - 展開運算子  
-  可以展開物件、做淺拷貝、合併陣列、把可迭代的物件（string、array、array-like、Set、Map）跟非迭代物件 objects 變成陣列，且不用新增變數
+  -- 可以展開物件、做淺拷貝、合併陣列、把可迭代的物件（string、array、array-like、Set、Map）跟非迭代物件 objects 變成陣列，且不用新增變數
 
 ```JS
   const arr = [1, 2, 3]
@@ -103,13 +122,15 @@ console.log(a, b) // 11 22
 ```
 
 - 其餘運算子  
-  可以將陣列後方剩下的值存成一個陣列，解構賦值時好用（不會存取 skip 的''key 跟有出現過的 key）
+  -- 可以將陣列後方剩下的值存成一個陣列，解構賦值時好用（不會存取 skip,, 的 key 跟有出現過的 key）
 
-```javascript
-  const [x, ...y] = [13, 25, 33, 2];
-  console.log(x); // 13
-  console.log(y); // [25, 33, 2]
+```js
+// 陣列範例
+const [x, , ...y] = [13, 25, 33, 2];
+console.log(x); // 13
+console.log(y); // [33, 2]
 
+// 物件範例
   const restaurant = {
     openingHours: {
       thu: 12,
@@ -122,14 +143,13 @@ console.log(a, b) // 11 22
 ```
 
 - 箭頭函式  
-  除了可以打較少的程式碼，提高程式碼可讀性外  
-  過往 this 值依照執行環境所有不同，不好判斷  
-  而箭頭函式的 this 則是綁定定義他（而非呼叫他）的物件，看他身處在的 function scope 的 this 指向誰
+  -- 可以打較少的程式碼，提高程式碼可讀性  
+  -- 過往 this 值依照執行環境所有不同，不好判斷  
+  -- 而箭頭函式的 this 則是綁定定義他（而非呼叫他）的物件，看他身處在的 function scope 的 this 指向誰
 - 模板字串  
-  過往可以透過單引號或雙引號跟加號拼接字串，巢狀的時候需要雙引號包裹單引號(反過來則不行)  
-  遇到拼接內容是 HTML 結構，換行需要加\n，使用上麻煩閱讀上也不容易  
-  想寫縮寫或所有格（e.g. I'm cool, bac's）的英文內容可能遇到需要用跳脫字元"I\'m"
-  而字串模板解決了上述不方便使用的問題
+  -- 過往可以透過單引號或雙引號跟加號拼接字串，巢狀的時候需要雙引號包裹單引號(反過來則不行)  
+  -- 遇到拼接內容是 HTML 結構，換行需要加`\n`，使用上麻煩閱讀上也不容易  
+  -- 想寫縮寫或所有格（e.g. I'm cool, bac's）的英文內容可能遇到需要用跳脫字元"I\'m"，而字串模板解決了上述不方便使用的問題
 
 ```JS
   const yourName = 'bacnotes';
@@ -137,6 +157,13 @@ console.log(a, b) // 11 22
   const string = `Hi I'm ${yourName}`
   And I love ${codeName}!!`;
 ```
+
+- Enhanced Object Literals  
+  屬性名跟本地變量名相同可以省略後面的冒號跟值
+- 引入 class 類別  
+  作為 JavaScript 現有原型程式(prototype-based)繼承的語法糖
+- 引入模組 Import and Export modules  
+  方便管理程式碼之間的相依性，非同步載入（過往 require 是同步語法）
 
 ## JavaScript 在網頁渲染時執行位置
 
@@ -508,3 +535,4 @@ switch (time) {
 [JavaScript 基礎知識(2)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識(2)｜The Complete JavaScript Course')
 
 ＊文章內容有錯誤的地方，都歡迎討論與指正
+＊以上是 JavaScript 的基礎介紹，未來還會撰寫其他進階的文章。

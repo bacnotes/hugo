@@ -141,7 +141,8 @@ document.getAttribute('width'); // 回傳指定屬性值 e.g. 18rem 不存在會
 
 ## 設置監聽事件
 
-- 第一個參數為事件，第二個為執行{}內容，第三個是否捕捉冒泡事件(預設 false)
+- 第一個參數為事件，第二個為執行{}內容，第三個是否捕捉冒泡事件
+- 第三個參數沒有設定時預設為 false 監聽冒泡事件，設定為 true 監聽捕捉事件
 
 ```JavaScript
 element.addEventListener(event, function, useCapture)

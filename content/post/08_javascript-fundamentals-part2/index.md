@@ -1,6 +1,6 @@
 ---
 title: JavaScript基礎知識(2)｜The Complete JavaScript Course｜bacnotes備份筆記
-description: function函式, object物件, array陣列, loop迴圈 對於這些抽象的概念不理解嗎？透過The Complete JavaScript Course 這堂課，讓我對於JavaScript有了更深的認識，這篇會介紹關於JavaScript的基礎知識（後半篇）。
+description: function函式, object物件, array陣列, loop迴圈 對於這些抽象的概念不理解嗎？這篇會介紹關於JavaScript的嚴格模式、宣告函式的三種寫法、陣列與物件的基本操作以及迭代內部元素的迴圈寫法。
 date: 2021-12-31T00:00:00+08:00
 slug: javascript-fundamentals-part2
 image: javascript.jpeg
@@ -434,4 +434,4 @@ while (dice !== 6) {
 // Math.random() 回傳一個偽隨機小數(pseudo-random) 介於0到1之間(包含0，不包含1)
 ```
 
-＊文章內容有錯誤的地方，都歡迎討論與指正
+＊以上是JavaScript的基礎介紹，未來還會撰寫其他進階的文章。
