@@ -1,6 +1,6 @@
 ---
 title: JavaScript 進階function知識 ｜The Complete JavaScript Course｜bacnotes備份筆記
-description: 這篇針對function做比較進階的介紹，有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼，這篇通通都會講解到唷。
+description: 有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼？這篇會針對function做比較進階的介紹。
 date: 2022-01-12T00:00:00+08:00
 slug: javascript-advanced-part1
 image: javascript-removebg-preview.png
@@ -8,7 +8,7 @@ tags:
   - JavaScript
 ---
 
-我們之前在[JavaScript 底層運作原理 101](https://bacnotes.github.io/p/javascript-behind-the-scenes/ 'JavaScript底層運作原理101')，介紹過 primitives 跟 objects 使用記憶體的方式，也有在[JavaScript 基礎知識複習(2)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址。
+我們之前在[JavaScript 底層運作原理 101](https://bacnotes.github.io/p/javascript-behind-the-scenes/ 'JavaScript底層運作原理101')，介紹過 primitives 跟 objects 使用記憶體的方式，也有在[JavaScript 基礎知識複習(2)](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址。
 
 在這篇文章中，我們會繼續介紹傳址跟傳值在函式傳遞參數(arguments)時，primitives 跟 objects 兩者表現會有什麼不同
 
@@ -348,7 +348,7 @@ console.log(state2); // 123
 
 <img src="./1585743166295.jpeg" width=400>
 
-- 這部分會需要知道什麼是作用域跟執行文本，不熟的話可以看一下這篇 [JavaScript 底層運作原理 101 ｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-behind-the-scenes/ 'JavaScript底層運作原理101｜The Complete JavaScript Course')再回來
+- 這部分會需要知道什麼是作用域跟執行文本，不熟的話可以看一下這篇 [JavaScript 底層運作原理 101](https://bacnotes.github.io/p/javascript-behind-the-scenes/ 'JavaScript底層運作原理101｜The Complete JavaScript Course')再回來
 - 我們以下方函式來講解閉包的運作
 - step1. 創造全域執行文本
   (全域變數環境：secureBooking=fn, booker=fn)

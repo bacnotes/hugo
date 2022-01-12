@@ -9,8 +9,8 @@ tags:
 ---
 
 前情提要，完全沒有接觸過 JavaScript 語言的朋友們，可以先補足下方知識點再繼續閱讀唷  
-[JavaScript 基礎知識複習(1)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part1/ 'JavaScript基礎知識複習(1)｜The Complete JavaScript Course')  
-[JavaScript 基礎知識複習(2)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')
+[JavaScript 基礎知識複習(1)](https://bacnotes.github.io/p/javascript-fundamentals-part1/ 'JavaScript基礎知識複習(1)｜The Complete JavaScript Course')  
+[JavaScript 基礎知識複習(2)](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')
 
 ## Document Object Model(DOM) 是什麼
 

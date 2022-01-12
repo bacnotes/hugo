@@ -3,7 +3,7 @@ title: JavaScript基礎知識複習(1)｜The Complete JavaScript Course｜bacnot
 description: JavaScript是一個可以開發前後端的程式語言，使用的時候總是會不小心踩到一些坑嗎？這篇會介紹關於JavaScript ES6新增語法、資料型別、let const var宣告比較、作用域、運算子與顯性隱性轉型與流程判斷。
 date: 2021-12-29T00:00:00+08:00
 slug: javascript-fundamentals-part1
-image: javascript.jpeg
+image: javascript.png
 tags:
   - JavaScript
 ---
@@ -532,7 +532,7 @@ switch (time) {
 - 關於[Polyfills and transpilers](https://javascript.info/polyfills 'Polyfills and transpilers')
 
 恭喜你看完這一篇 JavaScript 基礎知識複習(1)，休息一下再往下一篇前進吧！  
-[JavaScript 基礎知識複習(2)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')
+[JavaScript 基礎知識複習(2)](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')
 
 ＊文章內容有錯誤的地方，都歡迎討論與指正
 ＊以上是 JavaScript 的基礎介紹，未來還會撰寫其他進階的文章。
