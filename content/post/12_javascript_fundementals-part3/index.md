@@ -1,5 +1,5 @@
 ---
-title: JavaScript基礎知識(3)｜The Complete JavaScript Course｜bacnotes備份筆記
+title: JavaScript基礎知識複習(3)｜The Complete JavaScript Course｜bacnotes備份筆記
 description: 這篇會介紹邏輯運算子+指派運算子，for迴圈語法糖(for of、for in)、Enhanced Object Literals、Optional Chaining、Sets、Maps等知識，若對於這些方法還不是很熟悉，可以用這篇筆記幫助自己複習一下。
 date: 2022-01-10T00:00:00+08:00
 slug: javascript-fundamentals-part3
@@ -12,7 +12,7 @@ tags:
 
 還記得 `&&` `||` `??` 這三個邏輯運算子嗎？其實他們可以跟指派運算子一起使用  
 如果沒有接觸過的可以先看看第一篇的介紹再來往下看唷  
-[JavaScript 基礎知識(1)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part1/ 'JavaScript基礎知識(1)｜The Complete JavaScript Course')
+[JavaScript 基礎知識複習(1)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part1/ 'JavaScript基礎知識複習(1)｜The Complete JavaScript Course')
 
 - 下方是兩個餐廳資料物件，彼此的屬性略有不同
 

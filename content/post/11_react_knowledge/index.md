@@ -1,11 +1,11 @@
 ---
 title: 自學React的你需要知道的一些知識｜bacnotes備份筆記
-description: 這是一篇自學React的分享，React算是三大框架中工作數量最高的，為什麼大家都愛用React開發？JSX是什麼？State是什麼？Hook是什麼？看完這篇筆記後就可以跟React大大們聊上幾句。
+description: 這是一篇自學React的分享，React算是三大框架中工作數量最高的，為什麼大家都愛用React開發？JSX跟狀態(State)是什麼？為什麼我重新賦值畫面沒有更新？看完這篇筆記後幫助你更了解如何用React開發。
 date: 2022-01-06T00:00:00+08:00
 slug: react-knowledge-101
 image: photo-1633356122544-f134324a6cee.jpeg
 tags:
-  - react
+  - React
 ---
 
 本文是基於下方這堂 Udemy 課程的筆記，對 React 有興趣的話可以購買看看唷  
@@ -351,7 +351,7 @@ export default App;
 ## 13. useState 紀錄網頁 State，跟使用者互動
 - useState是React一個Hook，Hook是一個內建function，useState是用來操作狀態的hook
 - 我們註冊不同的 State，React 會在 State 改變時 render 不同東西
-
+- const [state, setState] = useState(initialState setState(newState);
 ```jsx
 // useState 是一個 function，因為是第三方函式庫不用寫路徑
 import { useState } from ‘react’
@@ -369,11 +369,12 @@ return (
 }
 export default SomeFunction
 ```
+### 為什麼我重新賦值的變數畫面沒有更新？
+**無法透過重新賦值 變數 的值來更新畫面**
 
-**無法透過重新賦值 Variable 的值來更新畫面**
-
-- 更改值會需要呼叫第二個參數更新初始值(以下方範例來說是 setModalIsOpen)
-- 呼叫的時候 React 會重新執行 State 所屬的元件，並重新更新資料跟畫面
+- 更改值會需要呼叫陣列的第二個參數(一個callback function)更新初始值(以下方範例來說是 setModalIsOpen)
+- 呼叫useState的時候 React 才會重新執行 State 所屬的元件，並重新更新資料跟畫面
+＊不這麼做的話畫面是不會重新渲染的（也就是跑一次下方的return的JSX)。
 - 我們會用 setModalIsOpen 來更新值，用 modalIsOpen 判斷條件渲染 JSX 的程式碼
 
 ＊Hook有很多種，官方文件有列出所有的Hook在這裡[Hook API](https://zh-hant.reactjs.org/docs/hooks-reference.html "Hook API")

@@ -1,6 +1,6 @@
 ---
-title: JavaScript基礎知識(1)｜The Complete JavaScript Course｜bacnotes備份筆記
-description: JavaScript是一個可以開發前後端的程式語言，使用的時候總是會不小心踩到一些坑嗎？透過The Complete JavaScript Course 這堂課，讓我對於JavaScript有更深的理解，這篇會介紹關於JavaScript ES6新增語法、資料型別、let const var宣告比較、作用域、運算子與顯性隱性轉型與流程判斷。
+title: JavaScript基礎知識複習(1)｜The Complete JavaScript Course｜bacnotes備份筆記
+description: JavaScript是一個可以開發前後端的程式語言，使用的時候總是會不小心踩到一些坑嗎？這篇會介紹關於JavaScript ES6新增語法、資料型別、let const var宣告比較、作用域、運算子與顯性隱性轉型與流程判斷。
 date: 2021-12-29T00:00:00+08:00
 slug: javascript-fundamentals-part1
 image: javascript.jpeg
@@ -15,9 +15,9 @@ tags:
 
 <img src="./1640770701360.png" alt="yes-no-meme" width="500"/>
 
-由於整堂課有 69 小時，自己擷取的重點不一定符合所有階段的學習者  
-建議還是來親自體驗一下這堂課  
-下方也會加入一些自己過往學習的資料或筆記
+由於整堂課有 69 小時，自己擷取的重點不一定符合所有階段的學習者，可能比較精簡    
+如果有看不懂的地方可以在下方留言，或建議還是來親自體驗一下這堂課  
+下方也會加入一些自己過往學習JavaScript的筆記
 
 ## 什麼是 ES6（ECMAScript6）？
 
@@ -71,7 +71,7 @@ const restaurant = {
 restaurant.orderDelivery({}) // 1, 0, 00:00, undefined
 ```
 
--- 不用另外宣告 temp 暫存變數，就可以互換變數值，很方便
+-- 使用解構賦值不用另外宣告 temp 暫存變數，就可以互換變數值，很方便
 
 ```JS
 // 陣列範例
@@ -86,7 +86,7 @@ const obj = {a: 11, b: 22}
 console.log(a, b) // 11 22
 ```
 
--- 取出巢狀變數很簡單
+-- 用解構賦值取出巢狀變數變得很簡單
 
 ```JS
   // 陣列範例
@@ -531,8 +531,8 @@ switch (time) {
   e.g. function construction v.s ES6 Class
 - 關於[Polyfills and transpilers](https://javascript.info/polyfills 'Polyfills and transpilers')
 
-恭喜你看完這一篇 JavaScript 基礎知識(1)，休息一下再往下一篇前進吧！  
-[JavaScript 基礎知識(2)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識(2)｜The Complete JavaScript Course')
+恭喜你看完這一篇 JavaScript 基礎知識複習(1)，休息一下再往下一篇前進吧！  
+[JavaScript 基礎知識複習(2)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')
 
 ＊文章內容有錯誤的地方，都歡迎討論與指正
 ＊以上是 JavaScript 的基礎介紹，未來還會撰寫其他進階的文章。

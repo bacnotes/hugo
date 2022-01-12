@@ -1,5 +1,5 @@
 ---
-title: JavaScript背後運作原理101｜The Complete JavaScript Course｜bacnotes備份筆記
+title: JavaScript底層運作原理101｜The Complete JavaScript Course｜bacnotes備份筆記
 description: Event Loop是什麼?單執行緒又是什麼？除了告訴你JavaScript的語言特性外，也會介紹關於JavaScript一些背後的運作原理。
 date: 2022-01-03T00:00:00+08:00
 slug: javascript-behind-the-scenes
@@ -51,13 +51,13 @@ typeof arr //object
 
 ### with first-class functions 一級函式
 
-- 可以把 function 當變數使用
-- 可以 function return function，一種 FP 常使用的方式(把函式當作參數傳入)
+- 一級函式是一種特性，部分程式語言沒有，而 JavaScript 有
+- 一級函式表示在這個語言函式可以被當作一個變數(variable)，賦值給其他變數或做為參數傳遞(functions are values)
 
 ### non-blocking event loop concurrent model
 
 - 由於單執行緒但又得處理同時發生的多種任務，容易阻塞
-- JavsScript 引擎會使用 event loop，一個背景執行的 task，任務執行完的結果會放到 call stack
+- JavaScript 引擎會使用 event loop，一個背景執行的 task，任務執行完的結果會放到 call stack
 
 ## JavaScript 引擎 v.s. 執行環境 runtime v.s.執行文本 context
 
@@ -100,31 +100,25 @@ step2~3. optimization: 邊執行邊最佳化(在特別的thread執行，無法ac
 
 ＊為了跟執行環境 runtime 做名詞區隔，使用不同中文名稱指稱
 
-- 有創造階段跟執行階段
 - 執行文本包含  
-  -- variable environment 變數環境(let const var 宣告, 函式, 參數 arguments obj)  
-  -- scope chain 作用域鏈，讓個別函式可以 ref 到函式外的變數，會存在個別執行文本  
-  -- this，每個執行文本都有自己的 this，在創造階段時誕生(執行階段前)
+  -- variable environment 變數環境:包含 let const var 宣告, 函式, 參數 arguments obj  
+  -- scope chain 作用域鏈:讓個別函式可以 ref 到函式外的變數，會存在個別執行文本  
+  -- this:每個執行文本都有自己的 this，在創造階段時誕生(執行階段前)
+- 有創造階段跟執行階段
 - 箭頭函式沒有自己的 this 或參數，但可以使用父層的 this 或參數
 
-```r
-step1. 創造全域執行文本(top-level/not inside the function)
-- 只有非function的會被執行，因為function要被呼叫才會執行
-- 只會有一個global execution context
-step2. 執行全域執行文本(inside global EC)
-step3. execution of functions & waiting for callbacks
-- 依序呼叫個別函式，個別函式的文本會被創造
-- call stack的內容就是由這些個別函式跟文本所組成
-```
+- 執行順序  
+   step1. 創造全域執行文本(top-level/not inside the function)  
+  ＊ 只有非 function 的會被執行，因為 function 要被呼叫才會執行  
+  ＊ 只會有一個 global execution context  
+  step2. 執行全域執行文本(inside global EC)  
+  step3. 執行函式等待 callback 回傳結果  
+  ＊ 依序呼叫個別函式，個別函式的文本會被創造  
+  ＊ call stack 的內容就是由這些個別函式跟文本所組成
 
 <img src="./EC.png" alt="execution-context" width="800px">
 
 ## scope 作用域 & scope chain 作用域鏈
-
-- scoping 如何設計變數的位置跟獲取程式的變數
-- lexical scoping 使用 function 跟 block 等封閉環境，控制變數存取
-- scope 宣告變數的環境，有 global 全域, function 函式跟 block 區塊三種作用域
-- scope of a variable 可以獲取變數的範圍
 
 ### global scope 全域
 
@@ -135,12 +129,13 @@ step3. execution of functions & waiting for callbacks
 
 - 也被稱作 local scope
 - 只能在函式內存取，嘗試存取會出現 error
+- ES6 開始嚴格模式下也是 block scope
 
 ### block scope(ES6 開始出現) 區塊作用域
 
 - let 跟 const 被限制只能在 block 範圍內存取
 - var 還是可以被 function scope 存取
-- 嚴格模式下 function scope 也是 block scope
+- ES6 開始嚴格模式下 function scope 也是 block scope(寫兩次因為很重要)
 
 ### scope chain
 
@@ -155,45 +150,94 @@ step3. execution of functions & waiting for callbacks
 
 ### callstack v.s. scope chain
 
+- 使用下方函式舉例
+- step1. 創造全域執行文本  
+  (全域變數環境：a='Jonas', first=fn, third=fn)
+- step2. 執行全域執行文本，創造出個別執行文本  
+  first()作用域：可以獲取本地作用域跟父層的變數環境  
+  (變數環境：b='Hello', second=fn, a='Jonas', first=fn, third=fn)  
+  second()作用域：可以獲取本地作用域跟父層的變數環境  
+  (變數環境：c, b='Hello', second=fn, a='Jonas', first=fn, third=fn)  
+  third()作用域：可以獲取本地作用域跟父層的變數環境  
+  (變數環境：d='Hey', a='Jonas', first=fn, third=fn)
+- step3. 執行個別文本(執行函式)，等待 callback 回傳結果
+
+```js
+const a = 'Jonas';
+first();
+
+function first() {
+  const b = 'Hello';
+  second();
+
+  function second() {
+    const c = 'H1';
+    third();
+  }
+}
+
+function third() {
+  const d = 'Hey!';
+  console.log(d + c + b + a);
+  // ReferenceError
+}
+```
+
 <img src="./callstack-and-scope.png" alt="callstack-and-scope" width="800px">
 
-＊下方輸出結果// 視為單獨出現這行的狀況
+＊下方是另一個範例，輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）
 
 ```JS
 'use strict';
 const firstName = 'Jonas'
 function calcAge(birthYear) {
   const age = 2037 - birthYear
+
   function printAge() {
-    // find age跟output outer
+    // 執行時裡面沒有age，variable lookup往父層找
     const output = `You are ${age}, born in ${birthYear}`;
     console.log(output);
 
     if (birthYear >= 1981 && birthYear <= 1996) {
       var millenial = true;
-      // creating new variable with same name as outer scope's variable
-      const firstName = 'Steven'
-      // reassigning outer scope's variable
-      output = 'New output'
-      const str = `you are a millenial, ${firstName}`;
-      console.log(str); // you are a millenial, Jonas
-    }
 
-    function add(a, b) {
-      return a + b;
+      // 創造跟外面一樣變數名的新變數
+      const firstName = 'Steven'
+      
+      const str = `you are a millenial, ${firstName}`;
+      console.log(str);
+      // 執行時裡面沒有firstName，往父層找 you are a millenial, Jonas
+
+      function add(a, b) {
+        return a + b;
+      }
+      // 內部重新賦值output 下方會列印出新的值的output
+      output = 'New output'
     }
-    console.log(str); // str is not defined
-    console.log(millenial); // 獲取同function的變數 true
-    console.log(add(3,5)) //嚴格模式下ReferenceError，非嚴格模式下8
+    console.log(str); // 無法獲取內部變數 str is not defined
+
+    console.log(millenial); // var不是block scope是function scope因此可以獲取同function的變數 true
+
+    console.log(add(3,5)) //add function 嚴格模式下也是block scope 會ReferenceError，非嚴格模式下會是8
+
+    console.log(output) //'New output'
   }
 
   printAge()
   return age
 }
-calcAge(1991)
+calcAge(1991) // You are 46, born 1991
 console.log(age) // ReferenceError 無法獲取內部變數age
 printAge(); // ReferenceError 無法獲取內部變數 printAge()
 ```
+
+### 總結
+
+- 要了解變數存活的區域，哪裡可以獲取這些值
+- 如何設計變數的位置跟獲取程式的變數
+- lexical scoping 是使用 function 跟 block 等封閉環境，控制變數存取
+- scope 宣告變數的環境，有 global 全域, function 函式跟 block 區塊三種作用域
+- 所有 scope 都可以獲取父層的 scope，因為這是一條 scope chain
 
 ## Hoisting 提升
 
@@ -238,7 +282,7 @@ printAge(); // ReferenceError 無法獲取內部變數 printAge()
 
 <img src="./TDZ.png" alt="TDZ" width="800px">
 
-＊下方輸出結果// 視為單獨出現這行的狀況
+＊下方輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）
 
 ```JS
 // Variables
@@ -306,7 +350,7 @@ console.log(z === window.z); // false
 - this 不會是函式自己，也不會是變數環境
 - new, call, apply, bind 會於其他篇介紹
 
-＊下方輸出結果// 視為單獨出現這行的狀況
+＊下方輸出結果用//表示，且視為單獨出現這行的狀況（彼此之間不影響）
 
 ```JS
 // this Keyword in Practice
@@ -480,13 +524,18 @@ restaurant.orderDelivery({
 
 <img src="./primative.png" alt="primatives-objects" width="800px">
 
-- let age = 30 給一個 call stack 的記憶體地址跟 30 的值
-- let oldAge = age 傳 age 的 call stack 地址給 oldAge
-- primitives 的值是 immutable，age = 31 給一個新的記憶體的地址跟值
+### primitives
+
+- let age = 30 給一個 call stack 的記憶體地址跟 30 的值(0001)
+- let oldAge = age 傳 age 的 call stack 地址(0001)給 oldAge
+- primitives 的值是 immutable（不可變更），當我們寫 age = 31 會再給一個新的記憶體的地址跟值給 age(0002)，而非修改原本的 30 的那塊記憶體(0001)的內容
+
+### objects
+
 - const me = {name: 'Jonas'}，給一個 call stack 記憶體的地址跟 Heap 的地址
-- 因為物件檔案可能太大，所以存在 Heap
-- const friend = me，傳 me 記憶體的地址給 friend
-- friend.name = 'mirenda' 會改到 me 的值，因為值參照同樣的 Heap 地址
+- 因為物件檔案可能太大，所以記憶體實際上是存在 Heap
+- const friend = me，會傳 me 記憶體的地址給 friend
+- friend.name = 'mirenda' 物件跟上面的 primitives 不同，會改到 me 的值(D30F)，值參照同樣的 Heap 地址，並沒有另外再給一個新的記憶體，可以參考下方圖表的箭頭（只有一個)
 
 <img src="./address.png" alt="address" width="800px">
 

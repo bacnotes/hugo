@@ -1,5 +1,5 @@
 ---
-title: JavaScript基礎知識(2)｜The Complete JavaScript Course｜bacnotes備份筆記
+title: JavaScript基礎知識複習(2)｜The Complete JavaScript Course｜bacnotes備份筆記
 description: function函式, object物件, array陣列, loop迴圈 對於這些抽象的概念不理解嗎？這篇會介紹關於JavaScript的嚴格模式、宣告函式的三種寫法、陣列與物件的基本操作以及迭代內部元素的迴圈寫法。
 date: 2021-12-31T00:00:00+08:00
 slug: javascript-fundamentals-part2
@@ -8,9 +8,10 @@ tags:
   - JavaScript
 ---
 
+恭喜你來到第二篇JavaScript基礎知識複習(2)  
 如果還沒看過
-[JavaScript 基礎知識(1)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part1/ 'JavaScript基礎知識(1)｜The Complete JavaScript Course')  
-可以看完上一篇，再回來繼續閱讀
+[JavaScript 基礎知識複習(1)｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-fundamentals-part1/ 'JavaScript基礎知識複習(1)｜The Complete JavaScript Course')  
+可以看完上一篇，再回來繼續閱讀唷！
 
 ## 使用嚴格模式提高程式碼品質
 
@@ -113,6 +114,9 @@ arrayA[2] = 234;
 - const 不是不能修改值嗎？ 單獨修改元素值是可以的
 - 如果是 arrayA = ['a', 'b', 'c'] 就不行，因為就表示重新賦值整個陣列
 - 補充 immutable（不可變更）跟 mutable（可變更）：只有賦值時是傳值的 primitives 是 immutable，而賦值時是傳址的陣列、物件內部值是 mutable
+
+想更了解傳值跟傳址在記憶體裡的運作方式，可以參考這一篇  
+[JavaScript底層運作原理101](https://bacnotes.github.io/p/javascript-behind-the-scenes/ "JavaScript底層運作原理101")
 
 ### array 方法
 
@@ -434,4 +438,5 @@ while (dice !== 6) {
 // Math.random() 回傳一個偽隨機小數(pseudo-random) 介於0到1之間(包含0，不包含1)
 ```
 
-＊以上是JavaScript的基礎介紹，未來還會撰寫其他進階的文章。
+＊以上是JavaScript的基礎介紹，未來還會撰寫其他進階的文章。  
+[JavaScript 你所不知道的function(進階篇) ｜The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-advanced-part1/ "JavaScript 你所不知道的function(進階篇) ｜The Complete JavaScript Course")
