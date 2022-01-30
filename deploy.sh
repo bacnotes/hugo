@@ -1,4 +1,4 @@
-# ./deploy.sh
+# ./deploy.sh hugo manually
 # navigate into the build output directory
 hugo
 cd public

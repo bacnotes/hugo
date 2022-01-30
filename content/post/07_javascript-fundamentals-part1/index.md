@@ -453,7 +453,7 @@ console.log(guestsCorrect) // 10
 
 ```javascript
 // 比較運算子來設定條件，可以搭配&& || !邏輯運算子設定更細緻的判斷
-const acountName = prompt('your accountName: 8 ~ 20 characters');
+const accountName = prompt('your accountName: 8 ~ 20 characters');
 if (accountName > 8 && accountName < 20) {
   console.log('correct account length');
 } else {

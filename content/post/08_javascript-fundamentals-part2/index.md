@@ -96,7 +96,7 @@ console.log(retireAge('bacnotes', 2036)); // bacnotes retires in 64 years
 const arrayA = [1, 2, 3];
 const arrayB = new Array(123, 123, 123);
 ```
-
+＊JavaScript的內建物件都不建議new作初始定義的。不過有一些特例是一定要的，例如Date、Error等等。
 ### 陣列取值，序號從 0 開始
 
 ```javascript

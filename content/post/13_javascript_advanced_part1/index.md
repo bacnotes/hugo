@@ -1,6 +1,6 @@
 ---
-title: JavaScript 進階function知識 ｜The Complete JavaScript Course｜bacnotes備份筆記
-description: 有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼？這篇會針對function做比較進階的介紹。
+title: JavaScript 進階函式知識 ｜The Complete JavaScript Course｜bacnotes備份筆記
+description: 有想過函式傳遞參數(arguments)時，參數是primitives跟物件其實有差嗎？如何使用bind call apply綁定this？立即執行函式(IIFE)跟閉包(closure)運作機制是什麼？這篇會針對函式(function)做比較進階的介紹。
 date: 2022-01-12T00:00:00+08:00
 slug: javascript-advanced-part1
 image: javascript-removebg-preview.png
@@ -8,7 +8,8 @@ tags:
   - JavaScript
 ---
 
-我們之前在[JavaScript 底層運作原理 101](https://bacnotes.github.io/p/javascript-behind-the-scenes/ 'JavaScript底層運作原理101')，介紹過 primitives 跟 objects 使用記憶體的方式，也有在[JavaScript 基礎知識複習(2)](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址。
+我們之前在[JavaScript 底層運作原理 101](https://bacnotes.github.io/p/javascript-behind-the-scenes/ 'JavaScript底層運作原理101')，介紹過 primitives 跟 objects 使用記憶體的方式  
+也有在[JavaScript 基礎知識複習(2)](https://bacnotes.github.io/p/javascript-fundamentals-part2/ 'JavaScript基礎知識複習(2)｜The Complete JavaScript Course')，補充中提到 primitives 賦值時是傳值，而陣列、物件賦值時是傳址
 
 在這篇文章中，我們會繼續介紹傳址跟傳值在函式傳遞參數(arguments)時，primitives 跟 objects 兩者表現會有什麼不同
 
@@ -20,11 +21,10 @@ const jonas = {
   passport: 24739479284,
 };
 
-// flightNum只是一個flight字串值的copy 兩者使用不同記憶體
-// passenger則是直接把記憶體傳過去 使用同一份記憶體
 const checkIn = function (flightNum, passenger) {
+  // flightNum 只是一個flight字串值的copy 兩者使用不同記憶體
   flightNum = 'LH999';
-  // 修改記憶體中的值
+  // passenger.name 則是直接把記憶體傳過去 使用同一份記憶體
   passenger.name = 'Mr. ' + passenger.name;
 
   if (passenger.passport === 24739479284) {
@@ -33,12 +33,12 @@ const checkIn = function (flightNum, passenger) {
     console.log('Wrong passport!');
   }
 };
-// flight是一個primitives 傳值進去function
-// jonas是一個object 傳址進去function
-checkIn(flight, jonas);
+// flight是一個primitives 傳值進function
+// jonas是一個object 傳址進function
+checkIn(flight, jonas); // Checked in
 
-console.log(flight); // LH234 沒有變
-console.log(jonas); // Mr.Jonas Schmedtmann 變了
+console.log(flight); // flight變數(primitives): LH234 沒有變
+console.log(jonas); // person.name(物件屬性)：Mr.Jonas Schmedtmann 變了
 ```
 
 - 當兩個函式操作同一個物件且沒有做淺拷貝，直接傳址
@@ -52,6 +52,7 @@ const jonas = {
 const flightNum = flight;
 const passenger = jonas;
 const checkIn = function (flightNum, passenger) {
+  
   flightNum = 'LH999';
   // 修改記憶體中的值
   passenger.name = 'Mr. ' + passenger.name;
@@ -82,16 +83,16 @@ checkIn(flight, jonas); // Wrong passport! (因為改到passport號碼)
 
 ### callback function 回呼函式
 
-回呼函式 callback function 是把函式當作另一個函式的參數，透過另一個函式來呼叫它
+回呼函式 callback function 是把函式當作另一個函式的參數，透過另一個函式來呼叫它  
 只是通常提到的場景是在處理非同步的時候
 
 ```js
-// 一個把所有英文字空白去掉，把字拼再一起的函式
+// 把所有英文字空白去掉，把字拼在一起的函式
 const oneWord = function (str) {
   return str.replace(/ /g, '').toLowerCase();
 };
 
-// 一個把第一個英文字都轉大寫字的函式
+// 把第一個英文字都轉大寫字的函式
 const upperFirstWord = function (str) {
   const [first, ...others] = str.split(' ');
   return [first.toUpperCase(), ...others].join(' ');
@@ -120,9 +121,9 @@ transformer('JavaScript is the best!', oneWord);
 
 ### Function return function
 
-- 可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼
-  ＊柯里化：把接受多個參數的函數變換成接受一個單一參數（最初函數的第一個參數）的函數，並且返回接受餘下的參數而且返回結果的新函數的技術
-- 因為 Function return function 會創造閉包，閉包是一種資料結構，包含函式以及記住函式被建立時當下環境，因此下方 greeting 的參數 Hey 會被記住
+- 可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼  
+＊柯里化：把接受多個參數的函數變換成接受一個單一參數（最初函數的第一個參數）的函數，並且返回接受餘下的參數而且返回結果的新函數的技術
+- 因為 Function return function 會創造閉包，閉包是函式本身及函式被建立時的執行文本(execution context)，因此下方 greeting 的參數 Hey 會被記住
 
 ```js
 const greet = function (greeting) {
@@ -324,12 +325,18 @@ const addVAT = addTax(0.23);
 (function () {
   statements;
 })();
+
+// 也可以寫箭頭函式
+(()=> statements)()
+
+// 但不會存取在一個變數裡const abc = function () {statements}
 ```
 
 - 在之前的文章有介紹過，const let 也會創造出 block 作用域，外部無法獲取內部參數
 - 但 var 會被獲取到
 
 ```js
+// block區域
 {
   const state = 123;
   var state2 = 123;
@@ -361,7 +368,7 @@ console.log(state2); // 123
   執行 booker()
   (變數環境：empty, secureBooking=fn, booker=fn)   
   由於所有函式都可以獲取被創造當下的執行文本(execution context)的變數環境(variable environment)  
-  因為 booker 是全域下的變數，所以可取得全域的secureBooking=fn, booker=fn，而secureBooking()的變數環境裡面有passengerCount=0
+  因為 booker 是全域下的變數，所以可取得全域的secureBooking=fn, booker=fn的變數環境，而secureBooking()的變數環境裡面有passengerCount=0
 
 ```js
 const secureBooking = function () {
@@ -373,14 +380,15 @@ const secureBooking = function () {
   };
 };
 const booker = secureBooking();
+booker(); // 1 passenger
 ```
 step 1 & 2 創造＆執行全域執行文本，創造出個別執行文本
 
-<img src="./callstack_scope.png" width=600>
+<img src="./callstack_scope.png" width=800>
 
 step 3 執行個別文本    
 
-<img src="./closure.png" width=600>
+<img src="./closure.png" width=800>
 
 
 ### 總結

@@ -6,12 +6,11 @@ title: bacnotes 備份筆記｜相信科技讓社會更美好，所以開始寫�
 enableRobotsTXT: true
 
 sitemap:
-  changefreq: weekly
+  changefreq: monthly
   filename: sitemap.xml
-  priority: 0.5
 
 # Change it to your Disqus shortname before using
-disqusShortname: https-bacnotes-github-io
+disqusShortname: 
 
 # GA Tracking ID
 googleAnalytics: G-Y4R93LRYFV
@@ -60,8 +59,8 @@ params:
             default: Licensed under CC BY-NC-SA 4.0
 
     comments:
-        enabled: true
-        provider: disqus
+        enabled: false
+        provider: 
 
         disqusjs:
             shortname:

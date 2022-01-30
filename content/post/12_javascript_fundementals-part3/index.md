@@ -11,19 +11,19 @@ tags:
 ## 邏輯運算子 + 指派運算子 `&&=` `||=` `??=`
 
 還記得 `&&` `||` `??` 這三個邏輯運算子嗎？其實他們可以跟指派運算子一起使用  
-如果沒有接觸過的可以先看看第一篇[JavaScript 基礎知識複習(1)](https://bacnotes.github.io/p/javascript-fundamentals-part1/ 'JavaScript基礎知識複習(1)｜The Complete JavaScript Course')的介紹再來往下看唷  
+如果沒有接觸過的可以先看看第一篇[JavaScript 基礎知識複習(1)](https://bacnotes.github.io/p/javascript-fundamentals-part1/ "JavaScript基礎知識複習(1)｜The Complete JavaScript Course")的介紹再來往下看唷
 
 - 下方是兩個餐廳資料物件，彼此的屬性略有不同
 
 ```js
 const restaurant1 = {
-  name: 'Carpi',
+  name: "Carpi",
   numGuests: 20,
 };
 
 const restaurant2 = {
-  name: 'La Piazza',
-  owner: 'Giovanni Rossi',
+  name: "La Piazza",
+  owner: "Giovanni Rossi",
 };
 ```
 
@@ -63,7 +63,7 @@ restaurant1.numGuests &&= 300;
 console.log(restaurant1); // {name: 'Carpi', numGuests: 300}
 
 // 更新第二家餐廳的owner
-restaurant2.owner &&= 'Mars';
+restaurant2.owner &&= "Mars";
 console.log(restaurant2); // {name: 'La Piazza', owner: 'Mars', numGuests: 10}
 ```
 
@@ -78,7 +78,7 @@ console.log(restaurant2); // {name: 'La Piazza', owner: 'Mars', numGuests: 10}
 - 迭代元素
 
 ```js
-const menu = ['Focaccia', 'Bruschetta', 'Garlic Bread'];
+const menu = ["Focaccia", "Bruschetta", "Garlic Bread"];
 
 for (const item of menu) {
   console.log(item);
@@ -88,9 +88,9 @@ for (const item of menu) {
 // Garlic Bread
 ```
 
-### for in 迴圈迭代物件屬性跟對應值
+### for in 迴圈迭代物件屬性
 
-- for in 迭代出屬性(key)
+- for in 迭代屬性
 
 ```js
 const openingHours = {
@@ -110,9 +110,13 @@ for (const day in openingHours) {
 // tue
 ```
 
-## 使用 Object.keys()、Object.values() 迭代物件屬性跟值
+- for..in 不應該用來迭代一個索引順序很重要的陣列。 陣列索引只是以整數命名的可列舉屬性，其他方面等同於一般物件屬性。 無法擔保 for...in 以特定順序傳回索引，並且它將傳回全部可列舉屬性，包括非整數名的，以及繼承而來的可列舉屬性。
 
-### Object.keys 迭代物件屬性成一個陣列
+## 使用 Object.keys()、Object.values() 迭代物件屬性名或值
+
+### Object.keys 迭代物件屬性名成一個陣列
+
+- Object.keys(obj)
 
 ```js
 const openingHours = {
@@ -138,7 +142,11 @@ for (const day of Object.keys(openingHours)){
 // tue
 ```
 
-### Object.values(openingHours)迭代物件 value
+- 跟 for in 迴圈迭代順序相同但 for in 還會列舉出 prototype 的屬性
+
+### Object.values 迭代物件值成一個陣列
+
+- Object.values(obj)
 
 ```js
 const openingHours = {
@@ -155,12 +163,12 @@ console.log(Object.values(openingHours));
 // [{open: 10, close: 16}, {open: 12, close: 18}]
 ```
 
-## 同時迭代陣列或物件的 key & value：.entries()
+## 同時迭代陣列或物件的屬性跟值：陣列.entries() Object.entries(Obj)
 
 ### 陣列 array.prototype.entries()
 
 ```js
-const menu = ['Focaccia', 'Bruschetta', 'Garlic Bread'];
+const menu = ["Focaccia", "Bruschetta", "Garlic Bread"];
 for (const item of menu.entries()) {
   console.log(item);
 }
@@ -186,9 +194,9 @@ for (const [index, item] of menu.entries()) {
 // 3: Garlic Bread
 ```
 
-### 物件 Object.entries()
+### 物件 Object.entries(obj)
 
-- Object.entries(obj) 跟 for in 迴圈類似但 for in 還會列舉出 prototype 的屬性
+- 跟 for in 迴圈迭代順序相同但 for in 還會列舉出 prototype 的屬性
 
 ```js
 const openingHours = {
@@ -201,7 +209,7 @@ const openingHours = {
     close: 18,
   },
 };
-// key value
+// 屬性key 值value
 for (const [key, { open, close }] of Object.entries(openingHours)) {
   console.log(`On ${key}, we open at${open} and close at ${close}`);
 }
@@ -226,7 +234,7 @@ const openingHours = {
     close: 18
   }
 }
-// 以往物件賦值，需要屬性跟值都寫上去
+// 以往物件賦值，需要屬性key跟值value都寫上去
 const restaurant = {
   name: name,
   openingHours:openingHours,
@@ -259,7 +267,7 @@ order(a, b) {
 ### 表達式作為物件的屬性名
 
 ```js
-const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri'];
+const weekdays = ["mon", "tue", "wed", "thu", "fri"];
 const openingHours = {
   [weekdays[2]]: {
     open: 12,
@@ -334,14 +342,14 @@ for (const weekday of weekdays){
 ```js
 const restaurant = {
   order(starterIndex, mainIndex) {
-    return 'Order!';
+    return "Order!";
   },
   orderDelivery({ starterIndex = 1, mainIndex }) {
-    return 'OrderDelivery!';
+    return "OrderDelivery!";
   },
 };
-console.log(restaurant.order?.(0, 1) ?? 'Method not existed'); // Order!
-console.log(restaurant.orderRisotto?.(0, 1) ?? 'Method not exist'); // 'Method not exist'
+console.log(restaurant.order?.(0, 1) ?? "Method not existed"); // Order!
+console.log(restaurant.orderRisotto?.(0, 1) ?? "Method not exist"); // 'Method not exist'
 ```
 
 ### 陣列加上 Optional Chaining
@@ -361,29 +369,29 @@ console.log(users[0]?.name ?? 'User array empty')
 
 ## Set
 
-- 是元素的集合，元素可以是任何資料格式
+- 長得像陣列，是元素的集合，元素可以是任何資料格式
 - Set 中所有的元素都是唯一的 (unique values)，不會有重複的值，當你存入重複的元素(值)會被忽略
 - Set 內部會用 === 來判斷是否有重複值，唯一的例外是 NaN 會被判斷作是重複的值(雖然 NaN !== NaN)
 - 元素數量計算使用.size
 
 ```js
-const someSet = newSet([a, b, c]);
+const someSet = new Set([a, b, c]);
 console.log(someSet.size); // 3
 ```
 
 - .has('元素')檢查是否有包含元素
 
 ```js
-const someSet = newSet([a, b, c]);
-console.log(someSet.has('a')); // true
+const someSet = new Set([a, b, c]);
+console.log(someSet.has("a")); // true
 ```
 
 - 增加與刪除元素 .add() .delete() .clear()
 
 ```js
-someSet.add('d');
+someSet.add("d");
 console.log(someSet); // [a, b, c, d]
-someSet.delete('a');
+someSet.delete("a");
 console.log(someSet); // [b, c, d]
 someSet.clear();
 console.log(someSet); // []
@@ -393,14 +401,14 @@ console.log(someSet); // []
 - 可以迭代
 
 ```js
-const someSet = newSet([a, b, c]);
+const someSet = new Set([a, b, c]);
 for (const item of someSet) console.log(item); // a b c
 ```
 
 - 查詢資料中不重複元素的數量
 
 ```js
-const classmate = ['a', 'c', 'd', 'c', 'b'];
+const classmate = ["a", "c", "d", "c", "b"];
 const classmateSet = new Set(classmate);
 console.log(classmateSet.size);
 ```
@@ -408,38 +416,56 @@ console.log(classmateSet.size);
 - 把 Set 變不重複元素的陣列
 
 ```js
-const classmate = ['a', 'c', 'd', 'c', 'b'];
+const classmate = ["a", "c", "d", "c", "b"];
 const classmateSet = [...new Set(classmate)];
 console.log(classmateSet); // [ 'a', 'c', 'd', 'b' ]
 ```
 
 ## Map
 
-- key value pair 的組合，可以記住 key 的原始加入 Map 的順序
+- 長得像物件，key value pair 的組合，可以記住 key 的原始加入 Map 的順序
 - 可以迭代，迭代順序為加入 Map 的順序
 - 在 Map 判斷 NaN 跟 NaN 相等（雖然 NaN !== NaN），剩下的值使用=== 判斷是否相等
 
 ### 新建構一個 Map
 
 ```js
-let restaurant = new Map(); //裡面是空的 跟物件有prototype不同
+const restaurant = new Map(); //裡面是空的 跟物件有prototype不同
 ```
 
-- 新增 kddey 使用.set(key, value)
+- 新增 key 使用.set(key, value)
 - key 值的不限於字串，可以是任何資料型態（number、array、object、function、symbol)
 
 ```js
-console.log(restaurant.set(1, 'Firenze, Italy'));
+console.log(restaurant.set(1, "Firenze, Italy"));
 // Map(1) { 1 => 'Firenze, Italy' }
 
-console.log(restaurant.set(2, 'Tokyo, Japan'));
+console.log(restaurant.set(2, "Tokyo, Japan"));
 // Map(2) { 1 => 'Firenze, Italy', 2 => 'Tokyo, Japan' }
+```
+
+- set 的時候不只會更新 Map 內部資料，也會回傳一個新的 Map，所以我們可以連續.set 連續新增很多資料
+
+```js
+restaurant
+  .set("categories", ["Italian", "Pizzeria"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "we are open");
+
+console.log(restaurant);
+// Map(4) {
+//  'categories' => [ 'Italian', 'Pizzeria' ],
+//  'open' => 11,
+//  'close' => 23,
+//  true => 'we are open'
+// }
 ```
 
 ### 使用 get 獲取 key 的對應值
 
 ```js
-restaurant.set(1, 'Test');
+restaurant.set(1, "Test");
 console.log(restaurant.get(1));
 // 'Test'
 ```
@@ -448,15 +474,15 @@ console.log(restaurant.get(1));
 
 ```js
 // 新增以下key
-restaurant.set('open', 11);
-restaurant.set('close', 21);
-restaurant.set(true, 'we are open');
-restaurant.set(false, 'we are closed');
+restaurant.set("open", 11);
+restaurant.set("close", 21);
+restaurant.set(true, "we are open");
+restaurant.set(false, "we are closed");
 // 判斷營業時間
 const time = 21;
 console.log(
   restaurant.get(
-    time > restaurant.get('open') && time < restaurant.get('close')
+    time > restaurant.get("open") && time < restaurant.get("close")
   )
 );
 // we are closed
@@ -494,12 +520,12 @@ restaurant.clear();
 - 注意：物件如果不是 ref 的方式給值，無法讀取到對應 value
 
 ```js
-restaurant.set([1, 2], 'Test');
+restaurant.set([1, 2], "Test");
 console.log(restaurant.get([1, 2]));
 // undefined
 
 const arr = [1, 2];
-restaurant.set(arr, 'Test');
+restaurant.set(arr, "Test");
 console.log(restaurant.get(arr));
 // 'Test'
 ```
@@ -507,65 +533,97 @@ console.log(restaurant.get(arr));
 ### 可以綁定 DOM 元素
 
 ```js
-restaurant.set(document.querySelector('h1'), 'Heading');
-console.log(restaurant.get('h1'));
+restaurant.set(document.querySelector("h1"), "Heading");
+console.log(restaurant.get("h1"));
 //Map(1) {h1.bold-title.is-1 => 'Heading'}
 ```
 
 ### 物件轉 Map
 
+- Object.entries(obj) 組成巢狀陣列，new Map 轉成 Map
+
 ```js
+const openingHours = {
+  mon: {
+    open: 10,
+    close: 16,
+  },
+  tue: {
+    open: 12,
+    close: 18,
+  },
+};
 console.log(Object.entries(openingHours));
+//[
+//  [ 'mon', { open: 10, close: 16 } ],
+//  [ 'tue', { open: 12, close: 18 } ]
+//]
+//
 const hoursMap = new Map(Object.entries(openingHours));
 console.log(hoursMap);
-```
-
-### Map 轉 array
-
-```js
-console.log([...question]);
-// [Array(2), Array(2), Array(2), Array(2), Array(2), Array(2), Array(2)]
-
-// 迭代key
-console.log([...question.keys()]);
-// ['question', 1, 2, 3, 'correct', true, false]
-
-// 迭代value
-console.log([...question.values()]);
-//  ['What is the best programming language in the world?', 'C', 'Java', 'JavaScript', 3, 'Correct 🎉', 'Try again!']
+//Map(2) {
+//  'mon' => { open: 10, close: 16 },
+//  'tue' => { open: 12, close: 18 }
+//}
 ```
 
 ### 迭代 Map key value
 
-- 在巢狀陣列的資料格式下迭代（跟 Object.entries(物件)的結構一樣）
-  // [['屬性', {value}], ['屬性', {value}], ['屬性', {value}]]
+- 建議迭代結構為巢狀陣列(同 Object.entries(obj)或[...array.entries()]輸出的結構)
+  // [['key', {value}], ['key', {value}], ['key', {value}]]
+
+- 使用展開運算子搭配.keys()或.values()，並將迭代出的元素放入一個新陣列
+- 直接使用.keys()或.values()會出現[Map Iterator] { 'question', 1, 2, 3, 'correct', true, false }
 
 ```js
 const question = new Map([
-  ['question', 'What is the best programming language in the world?'],
-  [1, 'C'],
-  [2, 'Java'],
-  [3, 'JavaScript'],
-  ['correct', 3],
-  [true, 'Correct 🎉'],
-  [false, 'Try again!'],
+  ["question", "What is the best programming language in the world?"],
+  [1, "C"],
+  [2, "Java"],
+  [3, "JavaScript"],
+  ["correct", 3],
+  [true, "Correct 🎉"],
+  [false, "Try again!"],
 ]);
+```
 
-// 用於問答
-console.log(question.get('question'));
+- 先看看展開運算子外層加上陣列的結果 console.log([...question])
+- 等於 console.log([...question.entries())
+
+```js
+//[
+//  [ 'question', 'What is the best programming language in the world?' ],
+//  [ 1, 'C' ],
+//  [ 2, 'Java' ],
+//  [ 3, 'JavaScript' ],
+//  [ 'correct', 3 ],
+//  [ true, 'Correct 🎉' ],
+//  [ false, 'Try again!' ]
+//]
+
+// 迭代Map key
+console.log([...question.keys()]);
+// ['question', 1, 2, 3, 'correct', true, false]
+
+// 迭代Map value
+console.log([...question.values()]);
+//  ['What is the best programming language in the world?', 'C', 'Java', 'JavaScript', 3, 'Correct 🎉', 'Try again!']
+
+// 問答
+console.log(question.get("question"));
 // What is the best programming language in the world?
 for (const [key, value] of question) {
-  if (typeof key === 'number') console.log(`Anwser ${key}: ${value}`);
+  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
 }
 
 // Anwser 1: C
 // Anwser 2: Java
 // Anwser 3: JavaScript
 
-const answer = Number(prompt('Your Anwser'));
+const answer = Number(prompt("Your Anwser"));
 console.log(answer);
-// 問答用布林判斷
-question.get(question.get('correct') === answer);
+// 問答用布林判斷 若答案3 下方判斷是為true 顯示'Correct 🎉'
+question.get(question.get("correct") === answer);
 ```
 
 ## 如何決定資料結構
@@ -594,3 +652,158 @@ question.get(question.get('correct') === answer);
 - 需要使用不同資料型態的 key（不限於 string 和 symbol 作為 key)
 - 方便迭代跟計算大小 size
 - 比較少需要單獨對部分資料做操作(物件比較方便用.跟[]取值)
+
+### 課程小練習
+
+```js
+// challenge 1
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
+
+// 分組
+const [players1, players2] = game.players;
+console.log(players1);
+console.log(players2);
+
+// 組裡面有兩種角色 守門員gk跟 其他球員
+const [gk, ...fieldPlayers] = players1;
+console.log(gk, fieldPlayers);
+
+// 把所有隊伍人的放進去一個陣列
+const allPlayers = [...players1, ...players2];
+console.log(allPlayers);
+
+// 新增三個候補
+const players1Final = [...players1, "Thiago", "Coutinho", "Perisic"];
+console.log(players1Final);
+
+// 解構賦值取出變數 x的變數名改為draw
+const {
+  odds: { team1, x: draw, team2 },
+} = game;
+console.log(team1, draw, team2);
+
+// 丟一堆名字進去，使用其餘運算子合併成陣列，length計算長度
+function printGoals(...players) {
+  console.log(`${players.length} goals were scored`);
+}
+printGoals("Davies", "Muller", "Lewandowski", "Kimmich");
+
+// 勝率比大小 上面已經有寫出team1勝率跟team2勝率
+team1 > team2 && console.log("Team 1 is more likely to win");
+team1 < team2 && console.log("Team 2 is more likely to win");
+
+// challenge 2
+// 依序列印出game.scored array 裡面的球員  Goal 1: Lewandowski
+for (const [index, item] of game.scored.entries())
+  console.log(`Goal ${index + 1}: ${item}`);
+
+// 需要算出team1 x team2平均數 累加value / 長度
+const odds = Object.values(game.odds); // [ 1.33, 3.25, 6.5 ]
+let sum = 0;
+for (const item of odds) {
+  sum += item;
+}
+console.log(sum / odds.length);
+
+// 列印出
+// Odd of victory Bayern Munich: 1.33
+// Odd of draw: 3.25
+// Odd of victory Borrussia Dortmund: 6.5
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  // Object.entries(game.odds) // [ [ 'team1', 1.33 ], [ 'x', 3.25 ], [ 'team2', 6.5 ] ]
+  const teamStr = team === "x" ? "draw" : `victory ${game[team]}`;
+  // 每次loop出來的team是字串，所以可以用這個[]方式取值
+  console.log(team, odd);
+}
+
+//  分數統計
+//  scorers = {
+//    Gnarby: 1,
+//    Hummels: 1,
+//    Lewandowski: 2
+//  }
+
+const scorers = {};
+for (const item of game.scored) {
+  // 屬性存在 賦值+1 不存在時賦值=1
+  scorers[item] ? scorers[item]++ : (scorers[item] = 1);
+}
+console.log(scorers);
+
+// challenge 3
+const gameEvents = new Map([
+  [17, "⚽️ GOAL"],
+  [36, "🔁 Substitution"],
+  [47, "⚽️ GOAL"],
+  [61, "🔁 Substitution"],
+  [64, "🔶 Yellow card"],
+  [69, "🔴 Red card"],
+  [70, "🔁 Substitution"],
+  [72, "🔁 Substitution"],
+  [76, "⚽️ GOAL"],
+  [80, "⚽️ GOAL"],
+  [92, "🔶 Yellow card"],
+]);
+
+// 創造不重複事件陣列：迭代巢狀陣列的value變成一個陣列 不重複使用new Set(array)
+const events = new Set(gameEvents.values());
+console.log(events);
+
+// 移除map中64分鐘的資料
+gameEvents.delete(64);
+console.log(gameEvents);
+
+// 列印出發生事件avg時間長度"An event happened, on average, every 9 minutes" 一局90分鐘
+const time = [...gameEvents.keys()].pop();
+console.log(time); // 92 有超過90分鐘因此另外計算
+console.log(
+  `An event happened, on average, every ${time / gameEvents.size} minutes`
+);
+
+// 加上前後半場標示[FIRST HALF] 17: ⚽️ GOAL
+
+for (const [key, value] of gameEvents) {
+  const half = key <= 45 ? "First" : "Second";
+  console.log(`[${half} HALF]${key}: ${value}`);
+}
+```

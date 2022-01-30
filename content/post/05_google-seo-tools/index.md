@@ -106,9 +106,8 @@ Sitemap: https://bacnotes.github.io/sitemap.xml
 sitemap:
   changefreq: weekly
   filename: sitemap.xml
-  priority: 0.5
 ```
-
+＊Google 支援所有格式的標準 Sitemap 通訊協定，但目前不支援在 Sitemap 中使用 <priority> 屬性
 ## 到 Google Search Console 提交 sitemap
 
 使用 hugo 指令生成靜態網頁的時候會自動產出 sitemap 檔案  

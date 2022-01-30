@@ -39,14 +39,14 @@ typeof arr //object
 
 - 一次只能執行一件事
 
-### garbage collected 有記憶體回收寄至
+### garbage collected 有記憶體回收機制
 
 - 有機制會自動移除記憶體中老舊或沒有使用的變數
 
 ### multi-paradigm 可以同時使用多種風格來寫程式
 
 - 可以用 Procedural Programming 程序化程式設計
-- 可以用 Function Programming 函式化程式設計
+- 可以用 Function Programming 函式程式設計
 - 可以用 Object-Oriented Programming 物件導向程式設計
 
 ### with first-class functions 一級函式

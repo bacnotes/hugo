@@ -35,7 +35,7 @@ A JavaScript library for building user interfaces.
 ### 對開發者好處
 
 - 使用 Declarative programming 宣告式程式設計  
-  描述目標而非流程，比起過往 DOM 操作要一個個選元素，一個口令一個動作的命令式程式設計 imperative programming，可以讓撰寫的程式碼精簡不少
+  描述目標而非流程，比起過往 DOM 操作要一個個選元素，一個口令一個動作的指令式程式設計 imperative programming，可以讓撰寫的程式碼精簡不少
 - 以元件為中心  
   把視覺呈現、資料等元素放在單一檔案中，複用性高，可以減少重複代碼
 - JSX 語法  
@@ -189,7 +189,7 @@ ReactDom.render(<App />, document.getElementById('root'));
 ```
 
 ## 8. 元件添加 CSS 樣式使用 className 而非 class
-
+- 因為class是JavaScript的保留字，而JSX是JavaScript的延伸語法，所以不使用class
 ```jsx
 function APP() {
   return (
@@ -694,7 +694,7 @@ export default AllMeetupsPage;
 ## 18. 客製化元件的其他使用方式，目的在於讓元件專注在一件事
 
 ### 元件作為容器 Wrapper/Container 使用
-
+- 設定Container包裹children內容
 ```jsx
 import classes from './Container.module.css';
 // 引入props.children children是每個元件都可以獲取的預設屬性，值是tag包覆的內容
@@ -704,11 +704,10 @@ function Container(props) {
 
 export default Container;
 ```
+- div外用Container包裹
 
 ```jsx
 import Container from '../ui/Container';
-// 會加上一層Container的內容 上方的div
-
 function MeetUpItem(props) {
   return (
     <Container>
@@ -910,10 +909,9 @@ function NewMeetupForm() {
 }
 export default NewMeetupFrom;
 ```
-
+- 表單資料丟到父層
 ```jsx
 // pages/NewMeetup.js
-// 表單資料丟到父層
 function NewMeetupPage() {
                      // 表單資料meetupData
   function addMeetupHandler(meetupData) {
