@@ -636,7 +636,6 @@ question.get(question.get("correct") === answer);
 
 1. list (可用陣列或 set)
 2. key value pairs (可用 obj 或 map)
-   也有 weekset 跟 weekmap
 
 ### 何時適合 Set 而不是陣列呢
 

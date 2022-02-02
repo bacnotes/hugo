@@ -1,8 +1,7 @@
 ---
 title: React的CSS樣式管理方法 ｜The Complete JavaScript Course｜bacnotes備份筆記
 description: 說到React的樣式管理就不能不提到Styled Component跟CSS modules，使用Inline Style有什麼壞處呢？讓我們來講解關於React樣式管理的知識吧!
-date: 2022-01-13T00:00:00+08:00
-draft: true
+date: 2022-01-26T00:00:00+08:00
 slug: react-styling
 image:
 tags:
@@ -13,10 +12,10 @@ tags:
 
 方法很多種，以下列出來一一介紹
 
-- inline style 直接給他寫上去(最不建議)
+- inline style 直接給他寫上去(最難維護)
 - CSS 
 - Styled Component(CSS in JS)
-- CSS modules（個人prefer)
+- CSS modules
 ## inline style 撰寫樣式
 
 ```jsx
@@ -28,7 +27,7 @@ const Input = props => {
   };
   if(enteredValue.trim().length === 0){
     setIsValid(false)
-    return
+    return  
   }
   return(
   <input style ={{ borderColor: isValid ? 'red' : 'Black', background: !isValid ?isValid ? 'red' : 'Black'}} onChange={goalInputChangeHandler}>
