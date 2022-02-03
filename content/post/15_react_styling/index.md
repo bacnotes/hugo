@@ -1,6 +1,6 @@
 ---
-title: React的CSS樣式管理方法 ｜The Complete JavaScript Course｜bacnotes備份筆記
-description: 我只想使用Inline Style跟純CSS檔案寫React不行嗎？為什麼需要使用Styled Component跟CSS modules呢。這篇會說明React樣式管理為什麼會使用這兩種方法來管理樣式。
+title: React的CSS樣式管理方法｜React - The Complete Guide｜bacnotes備份筆記
+description: 我只想使用Inline Style跟純CSS檔案寫React不行嗎？為什麼需要使用Styled Component跟CSS modules呢。這篇會分析不同樣式撰寫方法的優缺點。
 date: 2022-02-02T00:00:00+08:00
 slug: react-styling
 image: pexels-vlada-karpovich-7025515.jpg
@@ -191,7 +191,7 @@ const Button = styled.button`
 - 把副檔名.css 檔案改成.module.css，引用路徑也要改
 - className = {styles.樣式選擇器名}
 - 瀏覽器看到 class 名為：元件名\_class 名\_\_hash，因此不會撞名
-- class 名若有橫線連接-，寫法需要改成`${style['form-control']}`
+- class 名若有橫線`-`連接，寫法需要改成`${style['form-control']}`
 
 ```jsx
 // import後面的變數名自由命名，會當作物件(整包樣式屬性)傳入，這邊以styles為範例
