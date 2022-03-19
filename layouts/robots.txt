@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bacnotes.github.io/sitemap.xml
