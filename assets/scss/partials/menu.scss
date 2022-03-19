@@ -133,7 +133,7 @@
     flex-direction: column;
     overflow-y: auto;
     flex-grow: 1;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     background-color: var(--card-background);
 
     box-shadow: var(--shadow-l1);
@@ -147,7 +147,7 @@
 
     &,
     .menu-bottom-section {
-        gap: 30px;
+        gap: 20px;
         @include respond(xl) {
             gap: 25px;
         }
