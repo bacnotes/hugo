@@ -5,15 +5,15 @@ date: 2022-02-06T00:00:00+08:00
 slug: react-class-component
 image: pexels-max-fischer-5212336.jpg
 tags:
-  - React
+    - React
 ---
 
 ## Class Component 是什麼
 
-- 16.8 版本以前處理 State 跟 Side Effect 會需要使用 Class Component，後來有 Hook 就可以只寫 Function Component（寫起來相對單純)
-- 使用 JavaScript 的 Class，定義要 render 的 JSX，React 會在適當時機點渲染
-- 可以跟 Function Component 一起使用
-- render 方法不會讀取 props，而是透過引入 react 的 Component 拿到 Props
+* 16.8 版本以前處理 State 跟 Side Effect 會需要使用 Class Component，後來有 Hook 就可以只寫 Function Component（寫起來相對單純)
+* 使用 JavaScript 的 Class，定義要 render 的 JSX，React 會在適當時機點渲染
+* 可以跟 Function Component 一起使用
+* render 方法不會讀取 props，而是透過引入 react 的 Component 拿到 Props
 
 ```jsx
 // class component
@@ -35,11 +35,11 @@ const User = (props) => {
 
 ## 使用 class Component 管理狀態
 
-- 一樣需要定義狀態跟初始化 state
-- 使用 constructor 定義 this.state，= 後面要是一個物件
-- functional component 的 state 定義則是任意資料，useState(null)
-- 一樣不能用 this.state.變數 = 值直接修改資料，必須用 setState(物件)
-- 改寫一段 Function Component Code
+* 一樣需要定義狀態跟初始化 state
+* 使用 constructor 定義 this.state，= 後面要是一個物件
+* functional component 的 state 定義則是任意資料，useState(null)
+* 一樣不能用 this.state. 變數 = 值直接修改資料，必須用 setState(物件)
+* 改寫一段 Function Component Code
 
 ```jsx
 import { Component } from "react";
@@ -125,20 +125,20 @@ export default Users;
 
 componentDidMount()
 
-- 在 evaluate 且渲染完後，只會在 mount 元件時呼叫一次，更新資料 re-render 不會，類似 useEffect(()=>{},[])
+* 在 evaluate 且渲染完後，只會在 mount 元件時呼叫一次，更新資料 re-render 不會，類似 useEffect(()=>{}, [])
 
 componentDidUpdate()
 
-- 當元件更新狀態或 Props 會呼叫，類似 useEffect(()=>{},[參數])
+* 當元件更新狀態或 Props 會呼叫，類似 useEffect(()=>{}, [參數])
 
 componentWillUnmount()
 
-- 當元件被銷毀，從真實 DOM 拿掉，類似 cleanup useEffect(()=>{},[])
+* 當元件被銷毀，從真實 DOM 拿掉，類似 cleanup useEffect(()=>{}, [])
 
 ### 以一個搜尋元件來當範例，會依照不同字詞出現不同使用者清單
 
-- 一樣需要 import Component，初始化 state
-- 有兩個狀態需要管理，搜尋字詞跟使用者清單
+* 一樣需要 import Component，初始化 state
+* 有兩個狀態需要管理，搜尋字詞跟使用者清單
 
 ```jsx
 import { Fragment, useState, useEffect, Component } from "react";
@@ -221,7 +221,7 @@ class UserFinder extends Component {
 export default UserFinder;
 ```
 
-- 點按鈕隱藏 User，呈現銷毀元件的生命週期 console.log
+* 點按鈕隱藏 User，呈現銷毀元件的生命週期 console.log
 
 ```jsx
 import { Component } from "react";
@@ -245,7 +245,7 @@ export default User;
 
 ## 使用 class Component 處理 context
 
-- 一樣在 store 先建立初始值，用 Provider 包起來監聽
+* 一樣在 store 先建立初始值，用 Provider 包起來監聽
 
 ```jsx
 // src/store
@@ -284,11 +284,11 @@ function App() {
 export default App;
 ```
 
-- DUMMY_USER 改從 store 取得
+* DUMMY_USER 改從 store 取得
 
 ### useContext 改成使用 context consumer
 
-- 這個方法在 Class Component 跟 Function Component 都可以使用
+* 這個方法在 Class Component 跟 Function Component 都可以使用
 
 ```jsx
 import { Fragment, useState, useEffect, Component } from 'react';
@@ -318,9 +318,9 @@ class UserFinder extends Component {
 export default UserFinder;
 ```
 
-- 在 class Component 一個元件只能對應一個 context，不同於 useContext 可以一個元件對應多個不同 context
-- 使用 static 定義一個靜態的方法
-- 原本 this.state 的資料改成 this.context
+* 在 class Component 一個元件只能對應一個 context，不同於 useContext 可以一個元件對應多個不同 context
+* 使用 static 定義一個靜態的方法
+* 原本 this.state 的資料改成 this.context
 
 ```jsx
 import { Fragment, useState, useEffect, Component } from "react";
@@ -401,16 +401,16 @@ export default UserFinder;
 
 ## 什麼是錯誤邊界 Error Boundaries
 
-- 錯誤邊界是一個 React component，捕捉了任何在它的 child component tree 裡發生的 JavaScript 的錯誤，記錄那些錯誤，然後顯示在一個 fallback 的使用介面，而非讓整個 component tree 崩壞
-- 錯誤邊界會在 render 的時候、在生命週期函式內、以及底下一整個 component tree 裡的 constructor 內捕捉錯誤
-- 當子層 Component 出現錯誤，e.g. server 抓不到資料，無法跟 JavaScript 一樣直接 try catch 捕捉
-- 這個元件無法被使用在 Function Component
+* 錯誤邊界是一個 React component，捕捉了任何在它的 child component tree 裡發生的 JavaScript 的錯誤，記錄那些錯誤，然後顯示在一個 fallback 的使用介面，而非讓整個 component tree 崩壞
+* 錯誤邊界會在 render 的時候、在生命週期函式內、以及底下一整個 component tree 裡的 constructor 內捕捉錯誤
+* 當子層 Component 出現錯誤，e.g. server 抓不到資料，無法跟 JavaScript 一樣直接 try catch 捕捉
+* 這個元件無法被使用在 Function Component
 
 ### 建立一個 Error Boundary
 
-- 放在 src/components 下
-- 透過 componentDidCatch 方法，讓這個 Component 成為一個 Error Boundary
-- 當子層 Component 出現錯誤就會觸發 componentDidCatch，避免整個 APP crash
+* 放在 src/components 下
+* 透過 componentDidCatch 方法，讓這個 Component 成為一個 Error Boundary
+* 當子層 Component 出現錯誤就會觸發 componentDidCatch，避免整個 APP crash
 
 ```jsx
 import { Component } from "react";

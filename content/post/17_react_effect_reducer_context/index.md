@@ -1,18 +1,18 @@
 ---
 title: React 必須了解的3大Hooks：useEffect、useReducer、useContext｜bacnotes備份筆記
-description: 介紹3大React Hook，過往React撰寫以Class component為主，在v16.8.0發佈了Hook(JavaScript函式)，讓管理複雜結構的Component變得更簡單。
+description: 介紹3大React Hook，過往React撰寫以Class component為主，在v16.8.0發佈了Hook，讓管理複雜結構的Component變得更簡單。
 date: 2022-02-03T00:00:00+08:00
 slug: react-effect-reducer-context
 image: pexels-rodolpho-zanardo-1309095.jpg
 tags:
-  - React
+   - React
 ---
 
 ## 什麼是 Hook?
 
-- Hook 是 JavaScript 函式，react 提供的內建 Hook 為 use 開頭的函式(e.g. useEffect、useReducer、useContext)
-- 只能用在 React 的 Function Component 跟 custom Hook，class Component 無法，當然自己寫的 function 也無法
-- 使用時需要寫在元件內第一層，不能巢狀到，也不要在迴圈、條件判斷下使用
+* Hook 是 JavaScript 函式，react 提供的內建 Hook 為 use 開頭的函式(e.g. useEffect、useReducer、useContext)
+* 只能用在 React 的 Function Component 跟 custom Hook，class Component 無法，當然自己寫的 function 也無法
+* 使用時需要寫在元件內第一層，不能巢狀到，也不要在迴圈、條件判斷下使用
 
 ## 什麼是 Effect(Side Effect)?
 
@@ -32,15 +32,15 @@ Side Effect 可能造成的結果
 
 ## 使用 useEffect 來管理 Effect(Side Effect)
 
-- useEffect(()=> {...}, [dependencies])
-- 用來限制元件 re-render 執行的程式碼
-- 若沒有相依某個參數，掛載元件跟更新資料都會執行，寫跟沒寫一樣
-- 若有相依某個參數，re-render 時參數有改變的話可以重新觸發 useEffect 裡面的函式
-- []相依空陣列，第一次渲染完會觸發，因空陣列資料不變，所以後續都不會觸發
-- [state]相依狀態，第一次渲染完會觸發，且每次狀態改變都會跑一次
-- [props]相依 props，第一次渲染完會觸發，props 更新都會跑一次
-- 發生時間點為畫面渲染完，控制好觸發時機點，避免不必要的觸發
-- 相依空陣列範例
+* useEffect(()=> {...}, [dependencies])
+* 用來限制元件 re-render 執行的程式碼
+* 若沒有相依某個參數，掛載元件跟更新資料都會執行，寫跟沒寫一樣
+* 若有相依某個參數，re-render 時參數有改變的話可以重新觸發 useEffect 裡面的函式
+* []相依空陣列，第一次渲染完會觸發，因空陣列資料不變，所以後續都不會觸發
+* [state]相依狀態，第一次渲染完會觸發，且每次狀態改變都會跑一次
+* [props]相依 props，第一次渲染完會觸發，props 更新都會跑一次
+* 發生時間點為畫面渲染完，控制好觸發時機點，避免不必要的觸發
+* 相依空陣列範例
 
 ```jsx
 // 渲染登入頁面時，確認localStorage登入驗證資訊，只執行一次
@@ -81,7 +81,7 @@ function App() {
 }
 ```
 
-- 相依 enteredEmail、enteredPassword 表單狀態
+* 相依 enteredEmail、enteredPassword 表單狀態
 
 ```jsx
 const Login = (props) => {
@@ -102,17 +102,17 @@ const Login = (props) => {
 
 ### 不需加入相依的參數
 
-- 更新狀態的函式 setXXX
-- 元件外的變數或函式
+* 更新狀態的函式 setXXX
+* 元件外的變數或函式
 
 ### 應該加入的相依參數
 
-- "things" could change because your component (or some parent component) re-rendered
+* "things" could change because your component (or some parent component) re-rendered
 
 ### 用 setTimeout 優化觸發時間點，搭配 cleanup 清除功能
 
-- 若不要每個 key 下去的動作都觸發驗證功能，可以用 setTimeout 一段時間再觸發 effect(非最佳解，後面還有其他做法)
-- useEffect 裡面的 return 函式，只會在 unmount，元件要被從 DOM 卸載時觸發
+* 若不要每個 key 下去的動作都觸發驗證功能，可以用 setTimeout 一段時間再觸發 effect(非最佳解，後面還有其他做法)
+* useEffect 裡面的 return 函式，只會在 unmount，元件要被從 DOM 卸載時觸發
 
 ```jsx
 const Login = (props) => {
@@ -149,13 +149,13 @@ const Login = (props) => {
 
 ### 官方說明不需要搭配 cleanup 的 Effect
 
-- fetch data、手動操作 DOM、輸出 log 紀錄（不用追蹤後續）
-- get 方法讓個別頁面獲取不同資料(把 dummyData 換成實際 server 資料)
+* fetch data、手動操作 DOM、輸出 log 紀錄（不用追蹤後續）
+* get 方法讓個別頁面獲取不同資料(把 dummyData 換成實際 server 資料)
 
 ### 需搭配 cleanup 的 Effect
 
-- 訂閱監聽事件，監聽事件
-- 避免 memory leak
+* 訂閱監聽事件，監聽事件
+* 避免 memory leak
 
 ```jsx
 import React, { useState, useEffect } from "react";
@@ -183,14 +183,14 @@ function FriendStatus(props) {
 
 ## useReducer 管理複雜狀態邏輯
 
-- 當寫 useState 開始覺得不好管理狀態，或需要處理複雜邏輯的時候可以考慮使用 useReducer
-- const [state, dispatchFn] = useReducer(reducerFn, initState, initFn)
-- dispatchFn 觸發 action，action 觸發 reducerFn
-- reducer 會收到上一個狀態跟 action 參數，並且回傳新的 state
-- reducerFn (prevState, action) => newState
-- initFn 可以用來設定 initState，如果比較複雜的話，需要外部資料等等
+* 當寫 useState 開始覺得不好管理狀態，或需要處理複雜邏輯的時候可以考慮使用 useReducer
+* const [state, dispatchFn] = useReducer(reducerFn, initState, initFn)
+* dispatchFn 觸發 action，action 觸發 reducerFn
+* reducer 會收到上一個狀態跟 action 參數，並且回傳新的 state
+* reducerFn (prevState, action) => newState
+* initFn 可以用來設定 initState，如果比較複雜的話，需要外部資料等等
 
-- 使用 useReducer 管理 email 跟 password input 狀態(effect 相依參數改成驗證狀態，減少不必要觸發)
+* 使用 useReducer 管理 email 跟 password input 狀態(effect 相依參數改成驗證狀態，減少不必要觸發)
 
 ```jsx
 // reducerFn寫在元件外面，相關參數會透過dispatch傳入
@@ -297,7 +297,7 @@ const Login = (props) => {
   };
 ```
 
-- 上述的解構賦值很常用在取相依參數，也可以用取屬性的方式
+* 上述的解構賦值很常用在取相依參數，也可以用取屬性的方式
 
 ```jsx
 const { someProperty } = someObject;
@@ -310,12 +310,12 @@ useEffect(() => {
 }, [someObject.someProperty]);
 ```
 
-- 記得避免直接寫整個物件，因為物件傳值，彼此就算長一樣地址也不會相同
+* 記得避免直接寫整個物件，因為物件傳值，彼此就算長一樣地址也不會相同
 
 ## useContext 管理全域 State
 
-- 好處：不用透過長長的 prop chain 直接傳遞資料
-- 流程：先透過 React.createContext 創造一個變數，透過 AuthContext 輸出，其他元件用 useContext 引用相對應的 context 檔案獲取物件值
+* 好處：不用透過長長的 prop chain 直接傳遞資料
+* 流程：先透過 React.createContext 創造一個變數，透過 AuthContext 輸出，其他元件用 useContext 引用相對應的 context 檔案獲取物件值
 
 ```jsx
 // src/store
@@ -328,8 +328,8 @@ const AuthContext = createContext({
 export default AuthContext;
 ```
 
-- `<AuthContext.Provider>...</AuthContext.Provider>`透過 Provider 屬性可以獲取 AuthContext
-- 而包裹在`<AuthContext.Provider>`之間的元件都可以獲取這個 AuthContext
+* `<AuthContext.Provider>...</AuthContext.Provider>`透過 Provider 屬性可以獲取 AuthContext
+* 而包裹在`<AuthContext.Provider>`之間的元件都可以獲取這個 AuthContext
 
 ```jsx
 // App.js
@@ -359,7 +359,7 @@ return (
   export default App;
 ```
 
-- 在 Navbar 來獲取變數
+* 在 Navbar 來獲取變數
 
 ```jsx
 import React, { useContext } from "react";
@@ -396,7 +396,7 @@ const Navigation = () => {
 export default Navigation;
 ```
 
-- 重構：把登入登出 Auth 相關的函式都放在 context 管理
+* 重構：把登入登出 Auth 相關的函式都放在 context 管理
 
 ```jsx
 import React, { useState, useEffect } from "react";
@@ -444,7 +444,7 @@ export const AuthContextProvider = (props) => {
 export default AuthContext;
 ```
 
-- 把`<AuthContextProvider>`包裹全域監聽放到 index.js
+* 把`<AuthContextProvider>`包裹全域監聽放到 index.js
 
 ```jsx
 import React from "react";
@@ -462,7 +462,7 @@ ReactDOM.render(
 );
 ```
 
-- App.js 跟 Navbar 只要引用 Context 的資料
+* App.js 跟 Navbar 只要引用 Context 的資料
 
 ```jsx
 //App.js
@@ -520,7 +520,7 @@ export default Navigation;
 
 ### useContext 的限制
 
-- 不適合頻繁更動的資料（每秒好幾次)，使用 redux
-- 鄰近父子元件還是建議透過 props 傳遞資料，而非用 useContext 取代
+* 不適合頻繁更動的資料（每秒好幾次)，使用 redux
+* 鄰近父子元件還是建議透過 props 傳遞資料，而非用 useContext 取代
 
-如果還想多了解 React 的朋友，可以繼續閱讀這篇[自學 React 的你需要知道的一些知識｜ React - The Complete Guide](https://bacnotes.github.io/p/react-knowledge/ "自學React的你需要知道的一些知識｜React - The Complete Guide")
+延伸閱讀：[自學 React 的你需要知道的一些知識｜ React - The Complete Guide](https://bacnotes.github.io/p/react-knowledge/ "自學React的你需要知道的一些知識｜React - The Complete Guide")

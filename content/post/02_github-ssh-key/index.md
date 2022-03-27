@@ -6,14 +6,14 @@ author: bacnotes
 slug: github-ssh-key
 image: maria-ziegler-jJnZg7vBfMs-unsplash.jpeg
 tags:
-  - GitHub
-  - SSH key
+    - GitHub
+    - SSH key
 ---
 
-<img src="./cat_white.png" alt="white-cat-meme" width="400"/>
+![white-cat-meme](cat_white.png)
 
-Um...在部署前卡到了 Github 多組帳號權限的問題  
-如果你的電腦只有使用 1 組 GitHub 帳號，可以點下方連結直接到下一篇  
+Um...在部署前卡到了 Github 多組帳號權限的問題
+如果你的電腦只有使用 1 組 GitHub 帳號，可以點下方連結直接到下一篇
 [只要 3 秒，使用 GitHub 一鍵部署你的 Hugo 部落格](https://bacnotes.github.io/p/github-deploy-hugo '[只要3秒，使用GitHub一鍵部署你的Hugo部落格')
 
 ## 為什麼要用一台電腦使用多組 GitHub 帳號
@@ -38,9 +38,9 @@ git push -u origin main
 
 要 commit 的時候，被最初註冊的 userA 帳號 deny
 
-Um...啊！  
+Um...啊！
 
-<img src="./cat.jpg" alt="cat-meme" width="400"/>  
+![cat-in-universe](cat.jpg)
 
 之前的帳號有設定一組對應的 SSH key 讓 GitHub 驗證身份，應該是 SSH key 的問題吧？
 有 2 組帳號，生 2 組 key 應該就沒問題了吧！欸不對，我的 terminal 在 git push 的時候，怎麼知道哪組帳號對應哪個 SSH key…
@@ -53,8 +53,8 @@ aaa 為範例，可自由代入你的帳號
 
 1. 產生 SSH key `ssh-keygen -t rsa -C "aaa@example.com"`
 2. 決定要儲存的檔名(路徑)
-   在 Enter file in which to save the key (/Users/XXX/.ssh/id_rsa):  
-   後方填入 `/Users/aaa/.ssh/id_rsa_aaa`  
+   在 Enter file in which to save the key (/Users/XXX/.ssh/id_rsa):
+   後方填入 `/Users/aaa/.ssh/id_rsa_aaa`
    \*如果沒有新的命名，就會覆蓋原本的 id_rsa
 3. Enter passphrase(看個人，可以直接 enter 不設定密碼)
 4. Enter same passphrase again(如果有設定要再輸入一次，沒有就直接 enter)
@@ -73,7 +73,7 @@ IdentityFile ~/.ssh/id_rsa_aaa
 8. 嘗試連線看看對應 host 是否有生效`ssh -T git@gh.aaa`
    > Hi aaa! You've successfully authenticated, but GitHub does not provide shell access.
 
-看到上方訊息表示有成功連線囉！  
+看到上方訊息表示有成功連線囉！
 第 2 個帳號照著上方步驟寫在同個 config 檔案即可
 
 ```
@@ -91,7 +91,7 @@ IdentityFile ~/.ssh/id_rsa_bbb
 ```
 
 注意：經過上面的設定檔後，repo 的位置會從預定的
-git@github.com:ooo/ooo.git 變成 git@gh.aaa:ooo/ooo.git  
+git@github.com:ooo/ooo.git 變成 git@gh.aaa:ooo/ooo.git
 後續在新增 repo 連結時需注意，不然可能吃不到 config 設定檔唷
 
 參考文章:

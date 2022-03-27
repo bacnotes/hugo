@@ -5,22 +5,22 @@ date: 2022-02-02T00:00:00+08:00
 slug: react-styling
 image: pexels-vlada-karpovich-7025515.jpg
 tags:
-  - React
+    - React
 ---
 
 ## 元件該怎麼添加 CSS 樣式?
 
 主要方法有四種：
 
-- Inline style 直接給他寫上去(最難維護)
-- CSS(全域套用容易撞名)
-- Styled Component(CSS in JS)
-- CSS modules(CSS JS 分離)
+* Inline style 直接給他寫上去(最難維護)
+* CSS(全域套用容易撞名)
+* Styled Component(CSS in JS)
+* CSS modules(CSS JS 分離)
 
 ## inline style 撰寫動態樣式
 
-- useState 來更新有效無效狀態
-- 沒效套用紅色，有效套用黑色
+* useState 來更新有效無效狀態
+* 沒效套用紅色，有效套用黑色
 
 ```jsx
 const Input = props => {
@@ -41,28 +41,29 @@ const Input = props => {
 
 ### 為什麼不用 inline style 撰寫動態樣式?
 
-- 分散在 html 程式的樣式不好管理
-- inline style 會覆蓋掉其他 CSS 樣式(權重僅次!important)，找改動點更費時
+* 分散在 html 程式的樣式不好管理
+* inline style 會覆蓋掉其他 CSS 樣式(權重僅次!important)，找改動點更費時
 
 ## CSS 撰寫動態樣式
 
-- 把剛剛的樣式貼到 CSS file
+* 把剛剛的樣式貼到 CSS file
 
 ```CSS
 .form-control {
-  outline: none;
-  background: pink;
-  border-corlor: red;
-  ...等等其他固定的樣式;
+    outline: none;
+    background: pink;
+    border-corlor: red;
+    ...等等其他固定的樣式;
 }
+
 .invalid {
-  border-color: red;
-  background: red;
+    border-color: red;
+    background: red;
 }
 ```
 
-- 拿掉 inline style ，動態添加 className
-- [上一篇"](https://bacnotes.github.io/p/react-knowledge-101/ "上一篇")有提到 class 是 JavaScript 的保留字，所以不使用 class
+* 拿掉 inline style ，動態添加 className
+* [上一篇"](https://bacnotes.github.io/p/react-knowledge-101/ "上一篇")有提到 class 是 JavaScript 的保留字，所以不使用 class
 
 ```jsx
  // 固定樣式form-control搭配動態樣式isValid
@@ -71,17 +72,17 @@ const Input = props => {
 
 ### 為什麼不用 CSS 撰寫動態樣式
 
-- 因為樣式會套用在全域環境，即生效在所有元件上，而大型專案上在 className 命名的時候很難避免撞名，樣式容易發生衝突
-- 使用 Styled Component 套件來創造 scoped CSS
+* 因為樣式會套用在全域環境，即生效在所有元件上，而大型專案上在 className 命名的時候很難避免撞名，樣式容易發生衝突
+* 使用 Styled Component 套件來創造 scoped CSS
 
 ## Styled Component 撰寫動態樣式
 
 ### 安裝套件跟撰寫方式
 
-- cd 到專案資料夾` npm install --save styled-components`
-- const Input = styled.html 元素`CSS樣式` (attacked template literal)
-- styled package 有所有 html 元素的方法，透過``可以撰寫多行 CSS 樣式，指定到對應 html 元素當中
-- 動態產生獨特 hash
+* cd 到專案資料夾` npm install --save styled-components`
+* const Input = styled.html 元素`CSS樣式` (attacked template literal)
+* styled package 有所有 html 元素的方法，透過反引號``可以撰寫多行 CSS 樣式，指定到對應 html 元素當中
+* 動態產生獨特 hash
 
 ```jsx
 import styled from "styled-components";
@@ -102,7 +103,7 @@ const Input = styled.input`
 
 ### 使用 props 動態管理樣式
 
-- 可以拿掉一些不必要的 CSS 樣式(form-control.invalid input 這種聯集的選擇器)
+* 可以拿掉一些不必要的 CSS 樣式(form-control.invalid input 聯集的選擇器)
 
 ```jsx
 import styled from 'styled-components';
@@ -181,17 +182,17 @@ const Button = styled.button`
 
 ### style component 的優缺點
 
-- 優點：不用想 className 名字了
-- 缺點：隨機的 hash 不容易 debug，但透過安裝 babel-plugin-styled-components 可以在瀏覽器看到元件名稱
-- 適合喜歡 CSS 跟 JS 邏輯寫在一起的人
+* 優點：不用想 className 名字了
+* 缺點：隨機的 hash 不容易 debug，但透過安裝 babel-plugin-styled-components 可以在瀏覽器看到元件名稱
+* 適合喜歡 CSS 跟 JS 邏輯寫在一起的人
 
 ## CSS modules
 
-- 不用安裝套件，CRA 本身支援 CSS modules
-- 把副檔名.css 檔案改成.module.css，引用路徑也要改
-- className = {styles.樣式選擇器名}
-- 瀏覽器看到 class 名為：元件名\_class 名\_\_hash，因此不會撞名
-- class 名若有橫線`-`連接，寫法需要改成`${style['form-control']}`
+* 不用安裝套件，CRA 本身支援 CSS modules
+* 把副檔名.css 檔案改成.module.css，引用路徑也要改
+* className = {styles. 樣式選擇器名}
+* 瀏覽器看到 class 名為：元件名\_class 名\_\_hash，因此不會撞名
+* class 名若有橫線`-`連接，寫法需要改成`${style['form-control']}`
 
 ```jsx
 // import後面的變數名自由命名，會當作物件(整包樣式屬性)傳入，這邊以styles為範例
@@ -210,40 +211,40 @@ export default Button;
 
 ### CSS modules 使用 media queries
 
-- 一樣寫在 CSS 檔案就好
+* 一樣寫在 CSS 檔案就好
 
 ```CSS
 .button {
-  width: 100%;
-  font: inherit;
-  padding: 0.5rem 1.5rem;
-  border: 1px solid #8b005d;
-  color: white;
-  background: #8b005d;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
-  cursor: pointer;
+    width: 100%;
+    font: inherit;
+    padding: 0.5rem 1.5rem;
+    border: 1px solid #8b005d;
+    color: white;
+    background: #8b005d;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+    cursor: pointer;
 }
 
 .button:focus {
-  outline: none;
+    outline: none;
 }
 
 .button:hover,
 .button:active {
-  background: #ac0e77;
-  border-color: #ac0e77;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+    background: #ac0e77;
+    border-color: #ac0e77;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
 }
 
 @media (min-width: 768px) {
-  .button {
-    width: auto;
-  }
+    .button {
+        width: auto;
+    }
 }
 ```
 
 ### CSS modules 的優缺點
 
-- 優點：命名時不用擔心撞名，hash 維持獨特性
-- 缺點：需要改副檔名，一開始沒導入後面手動要改比較累一點
-- 適合喜歡 CSS 跟 JS 分離的人
+* 優點：命名時不用擔心撞名，hash 維持獨特性
+* 缺點：需要改副檔名，一開始沒導入後面手動要改比較累一點
+* 適合喜歡 CSS 跟 JS 分離的人

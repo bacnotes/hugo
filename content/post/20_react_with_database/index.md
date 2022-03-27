@@ -1,27 +1,27 @@
 ---
 title: React 如何與遠端資料庫互動｜bacnotes備份筆記
-description: React存取資料庫有什麼需要特別注意的地方嗎？其實跟一般fetch沒有太大的不同，但需要注意每次呼叫函式如何不因重新渲染元件，導致函式記憶體地址改變而開始無限迴圈，使用useCallback跟useEffect搭配fetch更安全，如果不熟悉這個操作的話可以看看這篇介紹唷。
+description: React存取資料庫有什麼需要特別注意的地方嗎？其實跟一般fetch沒有太大的不同，但需要注意每次呼叫函式如何不因重新渲染元件，導致函式記憶體地址改變而開始無限迴圈，使用useCallback跟useEffect搭配fetch更安全。
 date: 2022-02-07T00:00:00+08:00
 slug: react-with-database
 image: pexels-panumas-nikhomkhai-1148820.jpg
 tags:
-  - React
+    - React
 ---
 
 ## React 如何與資料庫互動
 
-- React 會透過 Backend APP 來存取資料庫
-- 由於前端的程式碼透過 devtool 很容易被看光光，直接由前端 APP 存取資料庫等於曝光了資料庫的讀寫入口
-- 因此前後端分離，前端透過 API 串接後端資料，除了考量到程式之間的關注點分離外，安全性也比較高
+* React 會透過 Backend APP 來存取資料庫
+* 由於前端的程式碼透過 devtool 很容易被看光光，直接由前端 APP 存取資料庫等於曝光了資料庫的讀寫入口
+* 因此前後端分離，前端透過 API 串接後端資料，除了考量到程式之間的關注點分離外，安全性也比較高
 
 ## 使用 fetch API 接收資料
 
-- fetch API 是瀏覽器內建的 API，可以發送 Http 請求或接收 Http 回應
-- 搭配 Response.json()方法
+* fetch API 是瀏覽器內建的 API，可以發送 Http 請求或接收 Http 回應
+* 搭配 Response.json()方法
 
 ```js
 response.json().then((data) => {
-  // do something with your data
+    // do something with your data
 });
 ```
 
@@ -70,11 +70,11 @@ export default App;
 
 ### 改寫為 async await 加上錯誤處理
 
-- 搭配 try catch 加上 Loading
-- Fetch API doesn't 不會把錯誤狀態代碼 404 視為錯誤，只要有成功回傳就會 200
-- 所以我們可以自己加一段判斷在 try 裡面
-- 當 Response 有問題拋出錯誤 if (!response.ok && response.status !== 200)
-- error 記得也要用 useState 控制
+* 搭配 try catch 加上 Loading
+* Fetch API doesn't 不會把錯誤狀態代碼 404 視為錯誤，只要有成功回傳就會 200
+* 所以我們可以自己加一段判斷在 try 裡面
+* 當 Response 有問題拋出錯誤 if (!response.ok && response.status !== 200)
+* error 記得也要用 useState 控制
 
 ```jsx
 function App() {
@@ -127,7 +127,7 @@ function App() {
 }
 ```
 
-- 重構一下程式碼，把 render 的 JSX 變單純一點
+* 重構一下程式碼，把 render 的 JSX 變單純一點
 
 ```jsx
 function App() {
@@ -187,9 +187,9 @@ function App() {
 
 ### 使用 useEffect 管理 fetch 方法
 
-- 如果 fetch 方法只需要在渲染元件時執行一次，放在 useEffect 中不讓 re-render 重跑 fetch 即可
-- 但若 fetch 方法會跟其他元件一起使用(e.g.點按鈕也會重拉資料），則需放到 useEffect 外，用 useCallback 包裹存成變數(記住記憶體位置)，把再變數放到 useEffect 的 dependencies 中
-- 不然點下去按鈕，重新渲染 APP 元件時，函式記憶體位置也會改變，等於 useEffect 的相依參數有更新[fetchMoviesHandler]，再次執行 useEffect，陷入無限無圈
+* 如果 fetch 方法只需要在渲染元件時執行一次，放在 useEffect 中不讓 re-render 重跑 fetch 即可
+* 但若 fetch 方法會跟其他元件一起使用(e.g. 點按鈕也會重拉資料)，則需放到 useEffect 外，用 useCallback 包裹存成變數(記住記憶體位置)，把再變數放到 useEffect 的 dependencies 中
+* 不然點下去按鈕，重新渲染 APP 元件時，函式記憶體位置也會改變，等於 useEffect 的相依參數有更新[fetchMoviesHandler]，再次執行 useEffect，陷入無限無圈
 
 ```jsx
 function App() {
@@ -259,9 +259,9 @@ export default App;
 
 ## 使用 firebase 作為 backend APP
 
-- 才能夠看到實際來回傳遞資料互動
-- 發送請求使用 addMovieHandler(movie)
-- 接收請求使用 fetchMoviesHandler
+* 才能夠看到實際來回傳遞資料互動
+* 發送請求使用 addMovieHandler(movie)
+* 接收請求使用 fetchMoviesHandler
 
 ```jsx
 function App() {
@@ -361,24 +361,24 @@ export default App;
 
 ​​- 瀏覽器會根據 HTTP Status code 判斷目前跟伺服器溝通狀態為何
 
-- 2xx 成功
-- 3xx 重新導向
-- 4xx 客戶端錯誤
-- 5xx 伺服器錯誤
+* 2xx 成功
+* 3xx 重新導向
+* 4xx 客戶端錯誤
+* 5xx 伺服器錯誤
   詳細可以看 POY 大整理的[HTTP 狀態碼一覽表](https://blog.poychang.net/http-status-code/ "HTTP 狀態碼一覽表")
 
 ## 補充：REST APIs vs GraphQL APIs
 
 ### 相同處
 
-- 傳輸 json 格式資料或其他格式資料
-- 沒有限制前後端的語言或框架
-- 都是無狀態
+* 傳輸 json 格式資料或其他格式資料
+* 沒有限制前後端的語言或框架
+* 都是無狀態
 
 ### 差異
 
-- 多個 Endpoint v.s. 單個 Endpoint
-- 多個方法 Get/Post/Patch/Put/Delete v.s. 單個方法 Post
-- Post/user{name: 'Max'} v.s. Post/graphql{query: 'query'}
+* 多個 Endpoint v.s. 單個 Endpoint
+* 多個方法 Get/Post/Patch/Put/Delete v.s. 單個方法 Post
+* Post/user{name: 'Max'} v.s. Post/graphql{query: 'query'}
   (Http Verb/Path{Body}) (Http Verb/Path{Body})
-- 資料範圍限制較少 v.s. 容易限制資料範圍
+* 資料範圍限制較少 v.s. 容易限制資料範圍

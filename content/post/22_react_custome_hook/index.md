@@ -1,29 +1,28 @@
 ---
 title: React 使用Custom Hook複用程式碼邏輯｜bacnotes備份筆記
-description: 當需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。
+description: 需要複用邏輯時，一般會把重複的程式碼放到一個js檔案 export輸出，在另一個地方透過import引用。Custom Hook也是一樣的道理，只是函式變數需要取名為use開頭，跟其他元件做區隔。Custom Hook可以跨元件共享程式碼邏輯，對於精簡程式碼很有幫助。
 date: 2022-02-14T00:00:00+08:00
 slug: react-custom-hook
 image: pexels-photo-4792079.jpeg
 tags:
-  - React
+    - React
 ---
 
 ## 什麼是 Custom Hook?
 
-- 我們知道 Hook 是 React 內建的 JavaScript 函式
-- 所以 Custom Hook 就是我們自創的 JavaScript 函式，用來複用程式碼邏輯
-- Hook 邏輯可以共享，但元件獲取到的變數狀態彼此都是獨立的，不用擔心會互相影響
+* Hook 是 React 內建的 JavaScript 函式，而 Custom Hook 就是我們自創的 JavaScript 函式，用來複用程式碼邏輯
+* Custom Hook 邏輯共享，但元件獲取到的變數狀態彼此都是獨立的，不用擔心會互相影響
 
 ## 如何打造 Custom Hook?
 
-- 在 src 下面創一個 hooks 資料夾，創一個 use 開頭的 js 檔案 e.g. use-counter.js（檔名不一定要 use 開頭，取名 use 開頭好辨識這是一個 Hook）
-- 但 hook 元件裡面的變數一定要 use 開頭
+* 在 src 下面創一個 hooks 資料夾，創一個 use 開頭的 js 檔案 e.g. use-counter.js（檔名不一定要 use 開頭，取名 use 開頭是為了方便辨識這是一個 Hook）
+* hook 元件裡面的變數一定要 use 開頭
 
 ## Hook 使用範例
 
 ### 計數器範例
 
-- 條件判斷執行邏輯，預設+1，如果參數為 false 則改為-1
+* 條件判斷執行邏輯，預設+1，如果參數為 false 則改為-1
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -49,9 +48,9 @@ const useCounter = (forwards = true) => {
 export default useCounter;
 ```
 
-- 在不同元件裡面 counter 狀態不會互相影響，彼此獨立運作，const [counter, setCounter] = useState(0);
+* 在不同元件裡面 counter 狀態不會互相影響，彼此獨立運作，const [counter, setCounter] = useState(0); 
 
-- 計數器+元件引用計數器 Hook
+* 計數器+元件引用計數器 Hook
 
 ```jsx
 import Card from "./Card";
@@ -66,7 +65,7 @@ const ForwardCounter = () => {
 export default ForwardCounter;
 ```
 
-- 計數器-元件引用計數器 Hook
+* 計數器-元件引用計數器 Hook
 
 ```jsx
 import { useState, useEffect } from "react";
@@ -81,9 +80,9 @@ const BackwardCounter = () => {
 
 ### http Hook 範例
 
-- http 發送請求時，可以使用 hook 針對不同 url 發送 get/post 等請求
-- requestConfig 用物件包裹發送請求參數(url, method, headers, body 等屬性)，彈性設計參數，可用於各種請求
-- useCallback 記住 async 記憶體位置，後續放在 dependency 才不會 loop
+* http 發送請求時，可以使用 hook 針對不同 url 發送 get/post 等請求
+* requestConfig 用物件包裹發送請求參數(url, method, headers, body 等屬性)，彈性設計參數，可用於各種請求
+* useCallback 記住 async 記憶體位置，後續放在 dependency 才不會 loop
 
 ```jsx
 // hook
@@ -129,8 +128,8 @@ const useHttp = () => {
 export default useHttp;
 ```
 
-- App 元件引用 http Hook
-- load 資料庫的 task 內容
+* App 元件引用 http Hook
+* load 資料庫的 task 內容
 
 ```jsx
 // app
@@ -182,7 +181,7 @@ function App() {
 export default App;
 ```
 
-- 新增 task 使用 http Hook
+* 新增 task 使用 http Hook
 
 ```jsx
 import Section from "../UI/Section";
@@ -225,5 +224,5 @@ const NewTask = (props) => {
   );
 };
 ```
-
-以上，就是本次 Custom Hook 的簡單分享，有興趣的話可以繼續看下一篇介紹Custom Hook在表單上的應用。
+對Custom Hook的應用有興趣的話，可以繼續看Custom Hook在表單上的應用
+![React 如何處理表單元素](http://localhost:1313/p/react_input_form/)
