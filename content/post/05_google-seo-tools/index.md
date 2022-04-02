@@ -5,8 +5,6 @@ date: 2021-12-28T00:00:00+08:00
 slug: google-seo-tools
 image: myriam-jessier-VCtI-0qlVgA-unsplash.jpg
 tags:
-    - Google Analytics
-    - Google Search Console
     - SEO
 ---
 

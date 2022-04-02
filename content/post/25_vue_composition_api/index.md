@@ -1,7 +1,7 @@
 ---
 title: 介紹Vue3與Composition API｜bacnotes備份筆記
 description: Vue3 Composition API解決了Vue2在同功能程式碼分散於不同option API的可讀性問題，且加入Composition function容易讓程式碼複用，精簡程式碼，雖然有點像React Hook，但用起來較不容易踩到無限迴圈的坑(有種防呆版Hook的感覺)。開始使用setup()開啟你另一段Vue開發人生吧！
-date: 2022-02-23T00:00:00+08:00
+date: 2022-02-26T00:00:00+08:00
 slug: vue-composition-api
 image: Dup9I4d.jpeg
 tags:
@@ -23,18 +23,18 @@ Vue3 的生命週期(對應在 Vue2 的生命週期名稱)
 
 * setup(beforeCreate)：初始化 Vue 實例/事件跟生命週期
   -- 尚無法讀取 data, computed, methods, watch/event callbacks
-  -- 適合展示loading畫面，不適合fetch資料，還沒有data可以存
-* setup(created)：創建完實例(虛擬DOM) 
+  -- 適合展示 loading 畫面，不適合 fetch 資料，還沒有 data 可以存
+* setup(created)：創建完實例(虛擬 DOM)
   -- 設置 data, computed, methods, watch/event callbacks
   -- 尚無法讀取$el，適合 fetch 資料
 * onBeforeMount(beforeMount)：尚未掛載模板
   -- 相關 render 函式首次被調用
-* onMounted(mounted)：實例掛載模板(真實DOM)
+* onMounted(mounted)：實例掛載模板(真實 DOM)
   -- el 被新創建的 vm.$el 替換
 * onBeforeUpdate(beforeUpdate)：data 更新但還沒重新渲染畫面
   -- 適合在此更新資料
 * onUpdated(updated)：data 更新且渲染畫面完成
-  -- 可以取得更新的DOM
+  -- 可以取得更新的 DOM
 * onBeforeUnmount(beforeDestroy)：實例被銷毀前
   -- 適合在此時卸載手動添加的監聽/訂閱
 * onUnmounted(destroyed)：實例被銷毀
@@ -47,25 +47,25 @@ Vue3 的生命週期(對應在 Vue2 的生命週期名稱)
 
 * 也可以透過 console.log()觀察順序
 
-```js
-< script >
-    // @ is an alias to /src
-    export default {
-        name: "Home",
-        components: {},
-        // before mounted, before created
-        setup() {
-            console.log("setup");
-        },
-        created() {
-            console.log("created");
-        },
-        mounted() {
-            console.log("mounted");
-        }
-        ...
-    }; <
-/script>
+```vue
+<script>
+// @ is an alias to /src
+export default {
+  name: "Home",
+  components: {},
+  // before mounted, before created
+  setup() {
+    console.log("setup");
+  },
+  created() {
+    console.log("created");
+  },
+  mounted() {
+    console.log("mounted");
+  }
+  ...
+};
+</script>
 ```
 
 ## 在 setup()函式定義 data
@@ -73,19 +73,19 @@ Vue3 的生命週期(對應在 Vue2 的生命週期名稱)
 * setup()可以傳入 props 與 context setup(props, context)，但 script 要記得引入
 * props 如果需要解構，使用 toRefs
 
-```js
-import {
-    toRefs
-} from 'vue'
-props: {
-        title: String
-    },
-    setup(props) {
-        const {
-            title
-        } = toRefs(props)
-        console.log(title.value)
-    }
+```vue
+<script>
+import { toRefs } from "vue";
+export default {
+  props: {
+    title: String,
+  },
+  setup(props) {
+    const { title } = toRefs(props);
+    console.log(title.value);
+  },
+};
+</script>
 ```
 
 * script 執行順序為 setup 函式內容，return 回傳模板所需變數跟方法(data, computed, methods, watch/event)，模板渲染內容
@@ -256,17 +256,9 @@ export default {
 * 監聽深層物件加上第三個參數{deep: true}
 * 希望載入就執行需要加上 immediate: true
 
-```js
-watch(
-    search,
-    (newValue, OldValue) => {
-        console.log("newValue, OldValue");
-        console.log("watch");
-    }, {
-        deep: true,
-        immediate: true
-    }
-);
+```vue
+watch( search, (newValue, OldValue) => { console.log("newValue, OldValue");
+console.log("watch"); }, { deep: true, immediate: true, } );
 ```
 
 ## watchEffect
@@ -274,10 +266,8 @@ watch(
 * watchEffect(() => {}) 執行函式中的變數會自動添加成 dependency
 * 元件初始化就會執行一次，後續 dependency 有變化也會執行
 
-```js
-watchEffect(() => {
-    console.log("watch");
-}, search.value);
+```vue
+watchEffect(() => { console.log("watch"); }, search.value);
 ```
 
 ## watch v.s. watchEffect
@@ -287,21 +277,27 @@ watchEffect(() => {
 * watch 不會立即執行(除非有寫 immediate: true)，watchEffect 在元件初始化時就會執行一次
 * watchEffect 中 dependency 會被重複執行，動態新增加的 dependency 也會被收集
 
-```js
+```vue
+<script>
 const counter = ref(0);
 const enabled = ref(false);
+// watchEffect 立即執行，enabled是false dependency只有enabled
 watchEffect(() => {
-    if (enabled.value) console.log(counter.value);
+  if (enabled.value) {
+    console.log(counter.value);
     counter.value += 1;
-}); //watchEffect 立即執行，enabled是 false 所以dependency只有enabled
+  }
+});
 counter.value += 1; // 無反應
 enabled.value = true; // Effect 觸發，輸出1
-counter.value += 1; //counter為dependency，輸出2
+
+counter.value += 1; // counter為dependency，輸出2
 enabled.value = false; // 函式重新執行 無輸出
 counter.value += 1; // 函式重新執行 無輸出 雖然counter是false 但還是dependency可能會觸發函式
+</script>
 ```
 
-### 什麼時候用watch或watchEffect？
+### 什麼時候用 watch 或 watchEffect？
 
 [這篇](https://www.zhihu.com/question/462378193 "Vue3 中watch 與watchEffect 有什麼區別？")推薦在大部分時候用 watch 顯式的指定依賴以避免不必要的重複觸發，也避免在後續代碼修改或重構時不小心引入新的 dependency。
 watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的場景
@@ -313,11 +309,11 @@ watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的
 
 ```js
 function App() {
-    const [name, setName] = useState("demo");
-    // error
-    if (condition) {
-        const [val, setVal] = useState("");
-    }
+  const [name, setName] = useState("demo");
+  // error
+  if (condition) {
+    const [val, setVal] = useState("");
+  }
 }
 ```
 

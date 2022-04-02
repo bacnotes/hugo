@@ -225,4 +225,4 @@ const NewTask = (props) => {
 };
 ```
 對Custom Hook的應用有興趣的話，可以繼續看Custom Hook在表單上的應用
-![React 如何處理表單元素](http://localhost:1313/p/react_input_form/)
+[React 如何處理表單元素](https://bacnotes.github.io/p/react_input_form/)

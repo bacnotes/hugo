@@ -1,7 +1,7 @@
 ---
-title: 用TodoMVC 複習 Vue Option API｜bacnotes備份筆記
-description: 聊過了Composition API 這次來聊聊 Option API。由於產品或專案可能有的是 Vue2 寫的，有的已經更新到 Vue3 的Composition API；當未來若有重構需求，勢必得先了解原本的功能邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Option API吧。
-date: 2022-02-26T00:00:00+08:00
+title: 用TodoMVC 複習 Vue2 跟 Option API｜bacnotes備份筆記
+description: Vue是三大主流框架之一，2022/2/7開始Vue Cli預設版本以Vue3為主，由於工作上的專案或產品可能 Vue2 版本撰寫，未來若有重構需求，勢必得先了解Vue2架構的邏輯才能重構好。那麼就來以常見的開源專案TodoMVC來複習一下Vue跟Option API吧。
+date: 2022-02-24T00:00:00+08:00
 slug: vue-todomvc
 image: Dup9I4d.jpeg
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ![](QC8R8Gd.png)
 
-* Vue 是打造使用者介面的 JavaScript 漸進式框架(可依開發需求擴增功能 e.g. vue-router vuex)，目前三大框架主流之一
+* Vue 是打造使用者介面的 JavaScript 漸進式框架(可依開發需求擴增功能 e.g. vue-router vuex)
 * 以元件為中心的宣告式程式設計，無需直接操作 DOM，資料驅動畫面，透過雙向綁定讓資料有變化畫面也會響應，提高開發效率
 * 實現關注點分離，把視覺呈現、資料等元素，放在單一檔案中，但又在技術上切分得很乾淨；template 專注在 HTML 結構，script 處理 JavaScript 邏輯，Style 則是撰寫樣式的部分，每一模組各自有獨立關注焦點
 * 過往 DOM 操作，元素需要一個個用 CSS 選擇器選出來，而 Vue 只在單頁面創造一個容器`<div id="root"></div>`；其他變數跟事件綁定則是使用語法糖直接寫在 HTML 上
@@ -659,23 +659,20 @@ new Vue({
 
 * 組合  `v-if`、`v-else`、`v-else-if`  來控制流程
 
-`
-
 ```vue
-// if else
 <template>
   <div v-if="Math.random() > 0.5">Now you see me</div>
   <div v-else>Now you don't</div>
 </template>
 
-```vue // if else-if else
+
 <template>
   <div v-if="type === 'A'">A</div>
   <div v-else-if="type === 'B'">B</div>
   <div v-else-if="type === 'C'">C</div>
   <div v-else>Not A/B/C</div>
 </template>
-````
+```
 
 * 當 todos.length 為 false 只留 No footer 文字
 
@@ -706,18 +703,17 @@ new Vue({
 
 ```vue
 <template>
-  // 清單
   <ul class="todo-list">
-    <li
-      v-for="todo in filteredTodos"
+    <li v-for="todo in filteredTodos"
       :key="todo.id"
       class="todo"
       :class="{ completed: todo.completed }"
-    ></li>
+    >{{ todo.title }}
+    </li>
   </ul>
 
-  // footer
-  <strong>{{ activeTodos }}</strong> items left // 篩選按鈕
+  <strong>{{ activeTodos }}</strong> items left
+
   <ul class="filters">
     <li>
       <a href="#/all" @click="setFilteredOption('all')">All</a>
@@ -726,12 +722,11 @@ new Vue({
       <a href="#/active" @click="setFilteredOption('active')">Active</a>
     </li>
     <li>
-      <a href="#/completed" @click="setFilteredOption('completed')"
-        >Completed</a
-      >
+      <a href="#/completed" @click="setFilteredOption('completed')">Completed</a>
     </li>
   </ul>
 </template>
+
 <script>
 // 過於分散
 // const allTodos = (todos) => todos
