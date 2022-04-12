@@ -195,8 +195,9 @@ And I love ${codeName}!!`;
 - 因此會建議把 script 放在 HTML 內容下方，也就是`</body>`前
 
 ```html
-<body> ... 
-  <script src='./script.js'></script> 
+<body>
+  ...
+  <script src="./script.js"></script>
 </body>
 ```
 
@@ -299,7 +300,6 @@ const isFullAge = age >= 18;
 - [MDN](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Operator_Precedence "MDN")可以查詢，不用背有個概念即可
 - 如果搞不懂順序，用()把確定要先執行的段落包起來，權重最高
 
-
 - 解釋了為何程式可以正確執行類似有許多運算子卻不會誤判執行順序
 
 ```javascript
@@ -320,13 +320,35 @@ console.log(x, y) // 10 10
 
 ## 顯性轉型 Type Conversion
 
-- `String()` 可以將 null 和 undefined 轉換為字串
+### 轉字串
+
 - `toString()` 可以將所有資料都轉換為字串
   但是要排除 null 和 undefined（TypeError: Cannot read property 'toString' ）
+- `String()` 可以將 null 和 undefined 轉換為字串()，因為他會先使用  valueOf  取得 primatives 值，然後再用  toString  轉為字串
 - `toString(value, radix)` 可以轉 2 或 8 或 10 或 16 進位字串
 - `JSON.stringify()`轉成 JSON 字串""
+- undefined、function、symbol、具有循環參考（circular reference）的物件無法轉為 JSON 字串
+
+```js
+// 循環參考物件
+const a = { someProperty: "Jack" };
+const b = { anotherProperty: a };
+a.b = b;
+
+JSON.stringify(a); // Uncaught TypeError: Converting circular structure to JSON
+JSON.stringify(b); // Uncaught TypeError: Converting circular structure to JSON
+```
+
+- 陣列中某個元素的值為非法值則會以 null 取代
+- 物件中的某屬性為非法值，則會排除這個屬性。
+
+### 轉數字
+
 - `parseInt(string, radix)` 字串轉成數字，若第一個字符無法轉換為數字回傳 NaN
 - `Number()` 字串轉成數字，undefined 回傳 NaN，null 回傳 0，true 回傳 1，false 回傳 0
+
+### 轉布林
+
 - `Boolean()` 如果沒傳值，或者是 0、-0、null、false、NaN、undefined、空字串會轉成 Boolean
 
 ## 隱性轉型 Coercion
@@ -337,11 +359,25 @@ console.log(x, y) // 10 10
 - `+`會轉成字串`'23' + '10' // 2310`
 - 綜合 `10 - 3 - 3 + '1' // 41`
 - `== === != !== ` 也會，可以看下方的嚴格的等號 v.s. 寬鬆的等號說明
+- || && 條件
+- `ToNumber`強制轉成數字的邏輯
 
-### if () 跟!
+```
+undefined → NaN
+null → 0
+true → 1，false → 0
+string → 　數字或 NaN
+Object 先以  `valueOf`  取 primatives 值，或`toString`取得 primatives 值，再用 Number() 轉為數字
+`Object.create(null)`  建立的 null 沒有  `valueOf`  或  `toString`  方法，因此在轉 primatives 會 TypeError
+```
+
+- 使用運算子強制轉型+new Date 取得時間戳記不是好方法
+- 改 Date.now()  或  .getTime() 可讀性更好
+
+### if while for 內的() 跟!
 
 - if (變數) 在 if 括弧裡的變數都會強制轉為 Boolean
-- 程式沒寫好可能回傳 null、undefined、NaN 等，若當作條件判斷變成 false 容易造成判斷式錯誤，需要注意。
+- 程式沒寫好可能回傳 null、undefined、NaN 等，若當作條件判斷變成 false 容易造成判斷式錯誤，需要注意
 
 ```
 // 運算前確認型別
@@ -368,9 +404,9 @@ if (typeof a === typeof b) {
 
 ## Truthy & Falsy values
 
-- Falsy 包含： `null、undefined、0、空字串、NaN(不等於自己)、false`
+- Falsy 包含： `null、undefined、0、-0、空字串''、NaN(不等於自己)、false`
 - Big Int `0n` 也是 Falsy
-- `-1`是 true，`{}`是 true
+- `負數-1、非0的有效數字、空物件{}、空陣列[]、無作用函式function () {}`都是 true
 - 以下為 Falsy 值導致的錯誤設計範例（設計流程時需注意 falsy）
 
 ```javascript
@@ -400,6 +436,8 @@ if (height) {
 - 嚴格的等號會檢查資料型別，不會強制轉型
 - 寬鬆的等號容易產生 bug，所以只會使用`===`跟`!==`
 - `"0" == false` // true ("0"轉成數字 0，false 轉成 0)
+- null 與 undefined 在寬鬆相等下會強制轉型為彼此，因此是相等的，但不等於其他值。
+- 若比較的對象是物件，使用 valueOf()（優先）或 toString() 將物件取得基本型別的值，再做比較。
 
 ![type-compare-table](5bdbd.png)
 
@@ -549,3 +587,5 @@ MS發布IE， 從NetScape copyJavaScript叫JScript 擔心侵權改名， 但還�
 
 恭喜你看完這一篇 JavaScript 基礎知識複習(1)，休息一下再往下一篇前進吧！
 [JavaScript 基礎知識複習(2)](https://bacnotes.github.io/p/javascript-fundamentals-part2/ "JavaScript 基礎知識複習(2)｜The Complete JavaScript Course")
+
+參考文章：[你懂 JavaScript 嗎？#8 強制轉型（Coercion）](https://cythilya.github.io/2018/10/15/coercion/)

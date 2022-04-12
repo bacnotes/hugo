@@ -363,3 +363,5 @@ console.log(typeof new String("jonas")); //object
 ```js
 console.log(typeof new String("jonas").slice(1)); // string
 ```
+
+以上為[The Complete JavaScript Course - From Zero to Expert](https://www.udemy.com/course/the-complete-javascript-course/ 'The Complete JavaScript Course - From Zero to Expert')的小筆記，附上連結推推這堂課

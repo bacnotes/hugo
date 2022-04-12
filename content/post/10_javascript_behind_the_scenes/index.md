@@ -562,3 +562,5 @@ console.log('After marriage: ', jessicaCopy.lastName); // 'Davis'
 const arr = [1, 2, 3]
 const arrCopy = [...arr]
 ```
+
+以上為[The Complete JavaScript Course - From Zero to Expert](https://www.udemy.com/course/the-complete-javascript-course/ 'The Complete JavaScript Course - From Zero to Expert')的小筆記，附上連結推推這堂課

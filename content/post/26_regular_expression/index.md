@@ -5,9 +5,8 @@ date: 2022-03-06T00:00:00+08:00
 slug: regular-expression
 image: pexels-photo-7794425.jpeg
 tags:
-   - RegExp
+  - RegExp
 ---
-
 
 ## 建立正規表達式物件
 
@@ -18,9 +17,9 @@ tags:
 
 ```js
 // 匹配完全符合abc的字串
-const regex = /abc/;
+const regex = /abc/
 // 使用建構函式
-const regex = new RegExp("abc");
+const regex = new RegExp('abc')
 ```
 
 ### Flag: 寫在//後面
@@ -32,14 +31,14 @@ const regex = new RegExp("abc");
 - 每次執行完 exec() 都會重設 lastIndex 為匹配字串後面接續的字元的索引位置。
 
 ```js
-var regex = /ab*/g;
-var str = "abbcdefabh";
-var arr;
+var regex = /ab*/g
+var str = 'abbcdefabh'
+var arr
 
 while ((arr = regex.exec(str)) !== null) {
-  var msg = "Found " + arr[0] + ". ";
-  msg += "Next match starts at " + regex.lastIndex;
-  console.log(msg);
+  var msg = 'Found ' + arr[0] + '. '
+  msg += 'Next match starts at ' + regex.lastIndex
+  console.log(msg)
 }
 
 // Found abb. Next match starts at 3
@@ -55,11 +54,11 @@ while ((arr = regex.exec(str)) !== null) {
 // Match "quick brown" followed by "jumps", ignoring characters in between
 // Remember "brown" and "jumps"
 // Ignore case
-const inputValue = "The Quick Brown Fox Jumps Over The Lazy Dog";
-const regex = /quick\s(brown).+?(jumps)/gi;
-const result = regex.exec(inputValue);
+const inputValue = 'The Quick Brown Fox Jumps Over The Lazy Dog'
+const regex = /quick\s(brown).+?(jumps)/gi
+const result = regex.exec(inputValue)
 
-console.log(result);
+console.log(result)
 
 // [
 //  'Quick Brown Fox Jumps',
@@ -72,7 +71,7 @@ console.log(result);
 ```
 
 - 這些字串方法也可以用正規表達式 search、match、replace、split
-  可以參考這篇[字串的處理方法](https://bacnotes.github.io/string-methods/ "字串的處理方法")
+  可以參考這篇[字串的處理方法](https://bacnotes.github.io/string-methods/ '字串的處理方法')
 
 ## 特殊字元
 
@@ -115,42 +114,42 @@ console.log(result);
 信箱
 
 ```js
-const regex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+const regex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 ```
 
 身分證
 
 ```js
-const regex = /^[A-Z]{1}[1-2]{1}[0-9]{8}$/;
+const regex = /^[A-Z]{1}[1-2]{1}[0-9]{8}$/
 ```
 
 郵遞區號
 
 ```js
-const regex = /^[1-9]\d{4}$/;
+const regex = /^[1-9]\d{4}$/
 ```
 
 手機
 
 ```js
-const regex = /^09\d{8}$/;
+const regex = /^09\d{8}$/
 ```
 
 密碼要大小寫英文+數字+長度至少 8
 
 ```js
-const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
 ```
 
 日期
 
 ```js
 // 日
-const regex = /(([0-2][1-9])|10|20|30|31)/;
+const regex = /(([0-2][1-9])|10|20|30|31)/
 // 月
-const regex = /((0[1-9])|(1[0-2]))/;
+const regex = /((0[1-9])|(1[0-2]))/
 // 年
-const regex = /(19|20)\d{2}/;
+const regex = /(19|20)\d{2}/
 ```
 
 正規表達式測試工具 https://www.regextester.com/

@@ -506,7 +506,7 @@ console.log(mike instanceof Student); // true
 console.log(mike instanceof Person); // true 若沒有上面建立連結會是false
 console.log(mike instanceof Object); // true
 
-Student.prototype.constructor = Student; // 加上這行fix mike的constructor指向ㄎ
+Student.prototype.constructor = Student; // 加上這行fix mike的constructor指向
 console.dir(Student.prototype.constructor); // 若沒有上面這行會指向Person
 ```
 
@@ -591,3 +591,5 @@ jay.init("Jay", 2010, "computer science");
 jay.introduce(); // My name is Jay and I study computer science
 jay.calcAge(); // 27
 ```
+
+以上為[The Complete JavaScript Course - From Zero to Expert](https://www.udemy.com/course/the-complete-javascript-course/ 'The Complete JavaScript Course - From Zero to Expert')的小筆記，附上連結推推這堂課

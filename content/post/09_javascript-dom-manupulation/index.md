@@ -120,20 +120,20 @@ document.querySelector('.number').style.width = '10rem'
 ### 新增/切換/刪除/確認 class
 
 ```JavaScript
-document.classList.add('hidden');
-document.classList.toggle('hidden');
-document.classList.remove('hidden');
-document.classList.contains('hidden');
+element.classList.add('hidden');
+element.classList.toggle('hidden');
+element.classList.remove('hidden');
+element.classList.contains('hidden');
 ```
 
 ### 新增/切換/刪除/確認 屬性/回傳屬性值
 
 ```JavaScript
-document.setAttribute('disable');
-document.toggleAttribute('disable');
-document.removeAttribute('disable');
-document.hasAttribute('disable'); // 是否包含指定屬性 return boolean
-document.getAttribute('width'); // 回傳指定屬性值 e.g. 18rem 不存在會回傳null
+element.setAttribute('disable');
+element.toggleAttribute('disable');
+element.removeAttribute('disable');
+element.hasAttribute('disable'); // 是否包含指定屬性 return boolean
+element.getAttribute('width'); // 回傳指定屬性值 e.g. 18rem 不存在會回傳null
 ```
 
 ## 設置監聽事件
@@ -254,3 +254,5 @@ document.getElementsByName()
 - NodeList 為節點的集合，包含 HTML 元素節點和其他節點(e.g. 屬性節點、文字節點等)
 - HTMLCollection 為 HTML 元素集合，只有元素節點，不包含其他節點
 - HTMLCollection 多一個 nameItem()方法，可以回傳集合中 name 屬性和 id 屬性值的元素
+
+以上為[The Complete JavaScript Course - From Zero to Expert](https://www.udemy.com/course/the-complete-javascript-course/ 'The Complete JavaScript Course - From Zero to Expert')的小筆記，附上連結推推這堂課

@@ -463,5 +463,4 @@ while (dice !== 6) {
 // Math.random() 回傳一個偽隨機小數(pseudo-random) 介於0到1之間(包含0，不包含1)
 ```
 
-＊以上是 JavaScript 的基礎複習，如果喜歡的話還可以繼續往下看唷。
-[JavaScript 進階函式知識｜ The Complete JavaScript Course](https://bacnotes.github.io/p/javascript-advanced-part1/ "JavaScript進階函式知識｜The Complete JavaScript Course")
+以上為[The Complete JavaScript Course - From Zero to Expert](https://www.udemy.com/course/the-complete-javascript-course/ 'The Complete JavaScript Course - From Zero to Expert')的小筆記，附上連結推推這堂課
