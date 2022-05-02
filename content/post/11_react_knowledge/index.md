@@ -37,7 +37,7 @@ A JavaScript library for building user interfaces.
 * 使用 Declarative programming 宣告式程式設計
   描述目標而非流程，比起過往 DOM 操作要一個個選元素，一個口令一個動作的指令式程式設計 imperative programming，可以讓撰寫的程式碼精簡不少
 * 以元件為中心
-  把視覺呈現、資料等元素放在單一檔案中，複用性高，可以減少重複代碼
+  把視覺呈現、資料等元素放在單一檔案中，複用性高，可以減少重複程式碼
 * JSX 語法
   JSX 幫助我們同時寫 HTML 跟 JS 邏輯，資料跟事件的綁定可以直接寫在 HTML 上，很方便，像是在 HTML 上實作 JS 邏輯，且容易閱讀
 * 關注點分離

@@ -1,10 +1,10 @@
 ---
-title: 尚硅谷Vue全家桶筆記1｜bacnotes備份筆記
+title: 尚硅谷Vue全家桶筆記1-45｜bacnotes備份筆記
 description: 課程包含vue基礎、vue-cli、vue-router、vuex、element-ui、vue3
 date: 2022-04-20T00:00:00+08:00
 draft: true
 slug: vue-basic-note
-image: pexels-na-urchin-2377173.jpg
+image: pexels-pixabay-60616.jpg
 tags:
   - Vue
 ---
@@ -16,8 +16,8 @@ tags:
 - 數據變成介面
 - 簡單應用核心庫，到引入各種插件開發更大的專案
 - 組件化提高複用率，讓程式碼好維護
-- 聲明式編碼，無需直接操作 DOM，提高開發效率
-- 虛擬 DOM + diff 算法，
+- 宣告式程式設計，無需直接操作 DOM，提高開發效率
+- 虛擬 DOM + diff 算法
 
 ## 開始使用 Vue
 
@@ -468,7 +468,7 @@ li {
 ### 鍵盤事件
 
 - 若 keyup 等按鍵事件沒有指定按鍵，則所有按鍵都會觸發
-- e.key 輸出按鍵名稱，e.keyCode 輸出鍵盤代碼
+- e.key 輸出按鍵名稱，e.keyCode 輸出keycode
 - 常用鍵盤 enter、delete(delete or backspace)、esc、space、up、down、left、right
 - Vue 沒有提供(沒有在上面的)可以用原始的 keyCode 綁定，但要注意轉 kebab-case e.g. `@keyup.caps-lock`
 - tab 自帶把焦點移出當前元素，不能綁定 keyup 只能能 keydown
@@ -764,7 +764,7 @@ vm.$watch('isHot', function(newVal, oldVal) {
 ### 姓名案例
 
 - watch 需要在 data 準備一個 fullName 初始值，監聽的變數也需要寫比較多
-- computed 只需要寫相對簡潔的代碼
+- computed 只需要寫相對簡潔的程式碼
 
 ```html
 <div id="root">
@@ -1768,8 +1768,6 @@ vm.persons.push === Array.prototype.push // false
 ### 函式寫法
 - 傳兩個參數(element, binding對象)
 
-### 物件寫法
-
 ```html
 <div id="root">
   <h2>當前的資料：{{ number }}</h2>
@@ -1787,6 +1785,35 @@ vm.persons.push === Array.prototype.push // false
       big(el, binding) {
         element.innerText = binding.value * 10
       }
+    }
+  })
+</script>
+```
+
+
+### 物件寫法
+
+- 自動聚焦，需要在元素創建並掛在頁面上時才能實現
+
+```html
+
+<div id="root">
+  <h2>當前的資料：{{ number }}</h2>
+  <h2>放大資料：<span v-big="number"></span></h2>
+  <button @click="number++">點我++<button>
+  <input type="text" v-fbind:value="n" autofocus>
+</div>
+
+<script>
+  const vm = new Vue({
+    el: '#root',
+    data: {
+      number: 1
+    },
+    directives: {
+      big(el, binding) {
+        element.innerText = binding.value * 10
+      },
     }
   })
 </script>

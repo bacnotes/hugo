@@ -70,9 +70,9 @@ a.join(" + "); // 'Wind + Rain + Fire'
 ### flat() (IE 沒有支援)
 
 - var newArray = arr.flat([depth]);
-- 函數以遞迴方式將特定深度的子陣列重新串接成為一新的陣列
+- 函式以遞迴方式將特定深度的子陣列重新串接成為一新的陣列
 - 第一個參數為指定巢狀陣列展開的深度，預設為 1
-- 當遭遇空元素時，flat()函數會自動清除陣列中空的元素
+- 當遭遇空元素時，flat()函式會自動清除陣列中空的元素
 
 ```js
 var arr1 = [1, 2, [3, 4]];
@@ -246,7 +246,7 @@ console.log(countedNames)
 - array.find(callback[, thisArg])
 - 回傳第一個滿足所提供之測試函式的元素值
 - 查找不到會回傳 undefined
-- callback 可以收三個參數（當前處理函數、當前處理函數 index、正在操作的陣列）
+- callback 可以收三個參數（當前處理函式、當前處理函式 index、正在操作的陣列）
 
 ```js
 // 查找含有特定屬性的物件
@@ -467,7 +467,7 @@ movements.sort((a, b) => b - a);
 ```
 
 - 若 compareFunction(a, b) 回傳 0，則 a 與 b 皆不會改變彼此的順序，但會與其他全部的元素比較來排序。備註：ECMAscript 標準並不保證這個行為，因此不是所有瀏覽器（如 Mozilla 版本在 2003 以前）都遵守此行為。
-- compareFunction(a, b) 在給予一組特定元素 a 及 b 為此函數之兩引數時必須總是回傳相同的值。若回傳值不一致，排序順序則為 undefined。
+- compareFunction(a, b) 在給予一組特定元素 a 及 b 為此函式之兩引數時必須總是回傳相同的值。若回傳值不一致，排序順序則為 undefined。
 
 ```js
 // 展示的function

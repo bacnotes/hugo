@@ -126,7 +126,7 @@ transformer('JavaScript is the best!', oneWord);
 ### Function return function
 
 * 可以把函式一層層封裝起來，讓外層只傳入一個參數，function programming 常用的程式設計技巧，有助於重複利用程式碼
-＊柯里化：把接受多個參數的函數變換成接受一個單一參數（最初函數的第一個參數）的函數，並且返回接受餘下的參數而且返回結果的新函數的技術
+＊柯里化：把接受多個參數的函式變換成接受一個單一參數（最初函式的第一個參數）的函式，並且返回接受餘下的參數而且返回結果的新函式的技術
 * 因為 Function return function 會創造閉包，閉包是函式本身及函式被建立時的執行文本(execution context)，因此下方 greeting 的參數 Hey 會被記住
 
 ```js

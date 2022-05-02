@@ -64,8 +64,8 @@ tags:
 3.  Object.create（最簡單創造出一個物件連結 prototype 的方法)
 
 ```js
-const num = [1, 2, 3];
-console.log(num.map((el) => el + 2)); //[ 3, 4, 5 ]
+const num = [1, 2, 3]
+console.log(num.map((el) => el + 2)) //[ 3, 4, 5 ]
 ```
 
 ### 使用建構函式跟 new 運算子建立原型連結
@@ -79,51 +79,51 @@ console.log(num.map((el) => el + 2)); //[ 3, 4, 5 ]
 // 使用同原型創造不同實例
 const Person = function (firstName, birthYear) {
   // this 指向實例本身
-  console.log(this); // Person {}
+  console.log(this) // Person {}
   // 設定實例屬性為外部傳進來的參數
-  this.firstName = firstName;
-  this.birthYear = birthYear;
+  this.firstName = firstName
+  this.birthYear = birthYear
   // 方法不會寫在原型裡面，會造成多餘的程式碼，若有一千個物件就有一千個方法程式碼
-};
+}
 
 // 創造一個firstName為Jonas birthYear為1991的Person實例
-const jonas = new Person("Jonas", 1991);
-console.log(jonas); // Person { firstName: 'Jonas', birthYear: 1991 }
+const jonas = new Person('Jonas', 1991)
+console.log(jonas) // Person { firstName: 'Jonas', birthYear: 1991 }
 
 // 創造一個firstName為mirenda birthYear為2003的Person實例
-const mirenda = new Person("mirenda", 2003);
-console.log(mirenda); // Person { firstName: 'mirenda', birthYear: 2003 }
+const mirenda = new Person('mirenda', 2003)
+console.log(mirenda) // Person { firstName: 'mirenda', birthYear: 2003 }
 
 // 使用.prototype.方法名 新增原型共用方法
 // 一樣所有物件可以透過prototype inheritance共用，但只需要管理這段程式碼，不會有多餘的copy
 Person.prototype.calcAge = function () {
-  console.log(2037 - this.birthYear);
-};
+  console.log(2037 - this.birthYear)
+}
 
 // 可以共用原型方法
-jonas.calcAge(); // 46
-mirenda.calcAge(); // 34
+jonas.calcAge() // 46
+mirenda.calcAge() // 34
 
 // 使用.prototype 新增原型屬性
-Person.prototype.species = "Homo Sapiens";
-console.log(jonas.species); // 可以取得共用屬性 Homo Sapiens
-console.log(jonas); // Person { firstName: 'Jonas', birthYear: 1991 } 但不會出現在jonas實例裡面，除非有寫入
+Person.prototype.species = 'Homo Sapiens'
+console.log(jonas.species) // 可以取得共用屬性 Homo Sapiens
+console.log(jonas) // Person { firstName: 'Jonas', birthYear: 1991 } 但不會出現在jonas實例裡面，除非有寫入
 ```
 
 #### 檢查實例所屬原型方法
 
 ```js
-console.log(jonas instanceof Person); // true
-console.log(jonas.__proto__ === Person.prototype); // 若是原型連結的實例為 true
-console.log(Person.prototype.isPrototypeOf(jonas)); // 若是原型連結的實例為 true
+console.log(jonas instanceof Person) // true
+console.log(jonas.__proto__ === Person.prototype) // 若是原型連結的實例為 true
+console.log(Person.prototype.isPrototypeOf(jonas)) // 若是原型連結的實例為 true
 ```
 
 #### 檢查實例是否含有某屬性 hasOwnProperty
 
 ```js
-console.log(jonas.hasOwnProperty("firstName")); // true
-console.log(jonas.species); // Homo Sapiens
-console.log(jonas.hasOwnProperty("species")); // false 因為不是jonas擁有屬性 而是原型
+console.log(jonas.hasOwnProperty('firstName')) // true
+console.log(jonas.species) // Homo Sapiens
+console.log(jonas.hasOwnProperty('species')) // false 因為不是jonas擁有屬性 而是原型
 ```
 
 #### prototype chain 原型鏈
@@ -141,39 +141,39 @@ console.log(jonas.hasOwnProperty("species")); // false 因為不是jonas擁有�
 // 建構函式
 const Person = function (firstName, birthYear) {
   // Instance properties
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
+  this.firstName = firstName
+  this.birthYear = birthYear
+}
 
 // new 建構函式 = 實例
-const jonas = new Person("Jonas", 1991);
-console.log(jonas); // Person { firstName: 'Jonas', birthYear: 1991 }
+const jonas = new Person('Jonas', 1991)
+console.log(jonas) // Person { firstName: 'Jonas', birthYear: 1991 }
 
 // 實例.__proto__ = 物件原型
 // jonas的原型是Person，故可以獲取Person的方法或屬性
-console.log(jonas.__proto__);
+console.log(jonas.__proto__)
 //{species: 'Homo Sapiens', calcAge: ƒ (), constructor: ƒ(firstName, birthYear), [[Prototype]]: Object}
 
 // Person的原型是物件原型 (Object.prototype)
-console.log(jonas.__proto__.__proto__);
+console.log(jonas.__proto__.__proto__)
 // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …} 列出物件方法
 
 // 物件原型的prototype是null(原型鏈chain最上層)
-console.log(jonas.__proto__.__proto__.__proto__);
+console.log(jonas.__proto__.__proto__.__proto__)
 // null
 
 // 以陣列實例來看原型鏈
-const arr = [1, 2, 3];
+const arr = [1, 2, 3]
 // 實例的原型是陣列原型Array.prototype，可獲取陣列的方法
-console.log(arr.__proto__);
+console.log(arr.__proto__)
 // [constructor: ƒ, concat: ƒ, copyWithin: ƒ, fill: ƒ, find: ƒ, …]
 
 // 陣列原型的原型是物件，可獲取物件的方法
-console.log(arr.__proto__.__proto__);
+console.log(arr.__proto__.__proto__)
 // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
 
 // 物件原型(Object.prototype)的prototype是null(原型鏈chain最上層)
-console.log(arr.__proto__.__proto__.__proto__);
+console.log(arr.__proto__.__proto__.__proto__)
 // null
 ```
 
@@ -185,30 +185,30 @@ console.log(arr.__proto__.__proto__.__proto__);
 // class expression
 const Person = class {
   constructor(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+    this.firstName = firstName
+    this.birthYear = birthYear
   }
-};
+}
 
 // class declaration（寫起來比上方程式碼工整，都寫在一個物件中，方法不用寫在外面管理)
 class Person {
   constructor(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+    this.firstName = firstName
+    this.birthYear = birthYear
   }
   // 寫在這邊的方法都會進到prototype
   calcAge() {
-    console.log(2037 - this.birthYear);
+    console.log(2037 - this.birthYear)
   }
 
   greet() {
-    console.log(`Hey ${this.fullName}`);
+    console.log(`Hey ${this.fullName}`)
   }
 }
-const jessica = new Person("Jessica Davis", 1996);
-console.log(jessica); // Person {firstName: 'Jessica Davis', birthYear: 1996}
-jessica.calcAge(); // 41
-console.log(jessica.__proto__ === PersonCl.prototype); // true
+const jessica = new Person('Jessica Davis', 1996)
+console.log(jessica) // Person {firstName: 'Jessica Davis', birthYear: 1996}
+jessica.calcAge() // 41
+console.log(jessica.__proto__ === PersonCl.prototype) // true
 ```
 
 #### 關於 class 的幾個重點
@@ -226,24 +226,24 @@ console.log(jessica.__proto__ === PersonCl.prototype); // true
 
 ```js
 const account = {
-  owner: "Jonas",
+  owner: 'Jonas',
   movements: [200, 530, 120, 300],
 
   get latest() {
     // this.movements.slice(-1)是一個陣列，為了取值用pop
-    return this.movements.slice(-1).pop();
+    return this.movements.slice(-1).pop()
   },
   // 需要至少一個參數
   set latest(mov) {
-    this.movements.push(mov);
+    this.movements.push(mov)
   },
-};
+}
 
 // 像是獲取屬性一樣來使用這個方法
-console.log(account.latest); // 300
+console.log(account.latest) // 300
 // 像是更改屬性一樣來使用這個方法 而非account.latest(50)
-account.latest = 50;
-console.log(account.movements); // [200, 530, 120, 300, 50]
+account.latest = 50
+console.log(account.movements) // [200, 530, 120, 300, 50]
 ```
 
 - 可以使用剛剛的 Person 來寫個 get 跟 set function
@@ -252,38 +252,38 @@ console.log(account.movements); // [200, 530, 120, 300, 50]
 class Person {
   constructor(fullName, birthYear) {
     // 建構時會使用參數fullName 呼叫set fullName方法
-    this.fullName = fullName;
-    this.birthYear = birthYear;
+    this.fullName = fullName
+    this.birthYear = birthYear
   }
   calcAge() {
-    console.log(2037 - this.birthYear);
+    console.log(2037 - this.birthYear)
   }
 
   greet() {
-    console.log(`Hey ${this.fullName}`);
+    console.log(`Hey ${this.fullName}`)
   }
 
   get age() {
-    return 2037 - this.birthYear;
+    return 2037 - this.birthYear
   }
   // set a property that already exists
   // 當使用.fullName就會呼叫這個方法，包含一開始建構實例時
   set fullName(name) {
-    console.log(name);
-    if (name.includes(" "))
+    console.log(name)
+    if (name.includes(' '))
       // set跟 constructor都使用firstName會有衝突 使用另一個變數存
-      this._fullName = name;
-    else alert(`${name} is not a full name`);
+      this._fullName = name
+    else alert(`${name} is not a full name`)
   }
   // jessica.fullName才不會undefined
   get fullName() {
-    return this._fullName;
+    return this._fullName
   }
 }
-const jessica = new Person("Jessica Davis", 1996);
-console.log(jessica.age); // 41
+const jessica = new Person('Jessica Davis', 1996)
+console.log(jessica.age) // 41
 
-const walter = new Person("Walter", 1996);
+const walter = new Person('Walter', 1996)
 // Walter is not a full name
 ```
 
@@ -296,71 +296,71 @@ const walter = new Person("Walter", 1996);
 ```js
 class Person {
   constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
+    this.fullName = fullName
+    this.birthYear = birthYear
   }
   calcAge() {
-    console.log(2037 - this.birthYear);
+    console.log(2037 - this.birthYear)
   }
 
   greet() {
-    console.log(`Hey ${this.fullName}`);
+    console.log(`Hey ${this.fullName}`)
   }
 
   get age() {
-    return 2037 - this.birthYear;
+    return 2037 - this.birthYear
   }
 
   set fullName(name) {
-    console.log(name);
-    if (name.includes(" ")) this._fullName = name;
-    else alert(`${name} is not a full name`);
+    console.log(name)
+    if (name.includes(' ')) this._fullName = name
+    else alert(`${name} is not a full name`)
   }
   get fullName() {
-    return this._fullName;
+    return this._fullName
   }
 }
 
 // 這種寫法方法不會更新在原型，jonas無法繼承
 Person.hey = function () {
-  console.log("hey", this);
-};
+  console.log('hey', this)
+}
 
-Person.hey(); // hey class Person {...省略} (this會是建構函式本身)
-jonas.hey(); // Uncaught TypeError: jonas.hey is not a function
+Person.hey() // hey class Person {...省略} (this會是建構函式本身)
+jonas.hey() // Uncaught TypeError: jonas.hey is not a function
 
 // 使用static關鍵字，可出現跟上方一樣的結果
 class Person {
   constructor(fullName, birthYear) {
-    this.fullName = fullName;
-    this.birthYear = birthYear;
+    this.fullName = fullName
+    this.birthYear = birthYear
   }
 
   // 實例可以獲取的方法 會被加入原型.prototype property
   calcAge() {
-    console.log(2037 - this.birthYear);
+    console.log(2037 - this.birthYear)
   }
 
   greet() {
-    console.log(`Hey ${this.fullName}`);
+    console.log(`Hey ${this.fullName}`)
   }
 
   get age() {
-    return 2037 - this.birthYear;
+    return 2037 - this.birthYear
   }
 
   set fullName(name) {
-    console.log(name);
-    if (name.includes(" ")) this._fullName = name;
-    else alert(`${name} is not a full name`);
+    console.log(name)
+    if (name.includes(' ')) this._fullName = name
+    else alert(`${name} is not a full name`)
   }
   get fullName() {
-    return this._fullName;
+    return this._fullName
   }
 
   // 建構時才能獲取的方法，實例無法獲取
   static hey() {
-    console.log("hey", this);
+    console.log('hey', this)
   }
 }
 ```
@@ -370,36 +370,36 @@ class Person {
 ```js
 class Car {
   constructor(make, speed) {
-    this.make = make;
-    this.speed = speed;
+    this.make = make
+    this.speed = speed
   }
 
   accelerate() {
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
+    this.speed += 10
+    console.log(`${this.make} is going at ${this.speed} km/h`)
   }
 
   brake() {
-    this.speed -= 5;
-    console.log(`${this.make} is going at ${this.speed} km/h`);
+    this.speed -= 5
+    console.log(`${this.make} is going at ${this.speed} km/h`)
   }
 
   get speedUS() {
-    return this.speed / 1.6;
+    return this.speed / 1.6
   }
 
   set speedUS(speed) {
-    this.speed = speed * 1.6;
+    this.speed = speed * 1.6
   }
 }
 
-const ford = new CarCl("Ford", 120);
-console.log(ford.speedUS); // 75
-ford.accelerate(); // Ford is going at 130km/h
-ford.accelerate(); // Ford is going at 140km/h
-ford.brake(); // // Ford is going at 135km/h
-ford.speedUS = 50; // 50
-console.log(ford); //Car{make:"Ford", speed: 80}
+const ford = new CarCl('Ford', 120)
+console.log(ford.speedUS) // 75
+ford.accelerate() // Ford is going at 130km/h
+ford.accelerate() // Ford is going at 140km/h
+ford.brake() // // Ford is going at 135km/h
+ford.speedUS = 50 // 50
+console.log(ford) //Car{make:"Ford", speed: 80}
 ```
 
 ### Object.create() 建立原型連結
@@ -411,39 +411,39 @@ console.log(ford); //Car{make:"Ford", speed: 80}
 const PersonProto = {
   // 可以不需要寫constructor
   calcAge() {
-    console.log(2037 - this.birthYear);
+    console.log(2037 - this.birthYear)
   },
-};
+}
 // 建立原型連結到steven
-const steven = Object.create(PersonProto);
-console.log(steven);
+const steven = Object.create(PersonProto)
+console.log(steven)
 // 手動增加原型內容
-steven.name = "Steven";
-steven.birthYear = 2002;
+steven.name = 'Steven'
+steven.birthYear = 2002
 
-steven.calcAge(); //35
+steven.calcAge() //35
 // {}  > __proto__: calcAge: f calcAge()
 
-console.log(steven.__proto__ === PersonProto); //true
+console.log(steven.__proto__ === PersonProto) //true
 
 // 建立原型連結到sarah
-const sarah = Object.create(PersonProto);
+const sarah = Object.create(PersonProto)
 
 const PersonProto = {
   // 不需要寫constructor
 
   // 建立一個方法來新增屬性，相較上面一個個新增
   init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+    this.firstName = firstName
+    this.birthYear = birthYear
   },
   calcAge() {
-    console.log(2037 - this.birthYear);
+    console.log(2037 - this.birthYear)
   },
-};
+}
 // 誰呼叫this就是誰
-sarah.init("Sarah", 1979);
-sarah.calcAge(); // 58
+sarah.init('Sarah', 1979)
+sarah.calcAge() // 58
 ```
 
 ## class 間的繼承: 父類別 parent class & 子類別 child class
@@ -457,14 +457,14 @@ sarah.calcAge(); // 58
 ```js
 // 人類原型
 const Person = function (firstName, birthYear) {
-  this.firstName = firstName;
-  this.birthYear = birthYear;
-};
+  this.firstName = firstName
+  this.birthYear = birthYear
+}
 
 // 人類原型建立方法
 Person.prototype.calcAge = function () {
-  console.log(2037 - this.birthYear);
-};
+  console.log(2037 - this.birthYear)
+}
 
 // 學生原型
 const Student = function (firstName, birthYear, course) {
@@ -472,42 +472,42 @@ const Student = function (firstName, birthYear, course) {
   // 如果用一般函式呼叫(沒有用new) Person(firstName, birthYear) 會Uncaught Error: cannot set firstName of undefined
   // a regular function call, the this keyword is set to undefined
   // 如果需要呼叫函式並設置this在這個函式，使用call
-  Person.call(this, firstName, birthYear);
-  this.course = course;
-};
+  Person.call(this, firstName, birthYear)
+  this.course = course
+}
 
 // 使用Object.create建立原型連結
 // 新增任何子類別原型的方法前，需要先建立連結，下方會回傳空物件，若順序錯誤空物件會覆蓋掉新增的方法
-Student.prototype = Object.create(Person.prototype);
+Student.prototype = Object.create(Person.prototype)
 
 // 學生原型建立方法
 Student.prototype.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
+  console.log(`My name is ${this.firstName} and I study ${this.course}`)
+}
 
 // 建立一個學生
-const mike = new Student("Mike", 2020, "Computer Science");
-mike.introduce();
+const mike = new Student('Mike', 2020, 'Computer Science')
+mike.introduce()
 
 // 成功呼叫到父類別方法，跟scope chain一樣當子層找不到會往父層找
 // 若子層有定義自己的calcAge()，會呼叫子層的方法
-mike.calcAge(); // 17
+mike.calcAge() // 17
 ```
 
 - 子類別實例跟子類別跟父類別關係
 
 ```js
 // 學生原型 可以看到introduce方法
-console.log(mike.__proto__); // Person { introduce: [Function (anonymous)] }
+console.log(mike.__proto__) // Person { introduce: [Function (anonymous)] }
 // 人類原型 可以看到calcAge方法
-console.log(mike.__proto__.__proto__); // { calcAge: [Function (anonymous)] }
+console.log(mike.__proto__.__proto__) // { calcAge: [Function (anonymous)] }
 
-console.log(mike instanceof Student); // true
-console.log(mike instanceof Person); // true 若沒有上面建立連結會是false
-console.log(mike instanceof Object); // true
+console.log(mike instanceof Student) // true
+console.log(mike instanceof Person) // true 若沒有上面建立連結會是false
+console.log(mike instanceof Object) // true
 
-Student.prototype.constructor = Student; // 加上這行fix mike的constructor指向
-console.dir(Student.prototype.constructor); // 若沒有上面這行會指向Person
+Student.prototype.constructor = Student // 加上這行fix mike的constructor指向
+console.dir(Student.prototype.constructor) // 若沒有上面這行會指向Person
 ```
 
 ### 使用 ES6 class 建立父子類別繼承
@@ -519,24 +519,24 @@ console.dir(Student.prototype.constructor); // 若沒有上面這行會指向Per
 // 人類原型
 class Person {
   constructor(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+    this.firstName = firstName
+    this.birthYear = birthYear
   }
   // 人類原型建立方法
   calcAge = function () {
-    console.log(2037 - this.birthYear);
-  };
+    console.log(2037 - this.birthYear)
+  }
 }
 
 // 學生原型 不用寫父層.call 用extends就會指向父層了
 class Student extends Person {
   constructor(firstName, birthYear, course) {
     // super永遠寫在最上面 子層的this
-    super(firstName, birthYear);
-    this.course = course;
+    super(firstName, birthYear)
+    this.course = course
   }
   introduce() {
-    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+    console.log(`My name is ${this.firstName} and I study ${this.course}`)
   }
   // 覆寫父層方法
   // calcAge() {
@@ -546,14 +546,14 @@ class Student extends Person {
 
 // 使用Object.create建立原型連結，讓兩個class建立父子關係
 // 在添加任何學生原型的方法前，需要先建立連結，因為下方會先回傳空物件，若順序錯誤空物件會覆蓋掉新增的方法
-Student.prototype = Object.create(Person.prototype);
+Student.prototype = Object.create(Person.prototype)
 
 // 建立一個學生
-const mike = new Student("Mike", 2020, "Computer Science");
-mike.introduce(); // My name is Mike and I study Computer Science
+const mike = new Student('Mike', 2020, 'Computer Science')
+mike.introduce() // My name is Mike and I study Computer Science
 
 // 成功呼叫到父類別方法，若子層有同樣calcAge()則會呼叫子層方法
-mike.calcAge(); // 17
+mike.calcAge() // 17
 ```
 
 ### 使用 Object.create 建立父子類別繼承
@@ -561,35 +561,135 @@ mike.calcAge(); // 17
 ```js
 const PersonProto = {
   calcAge() {
-    console.log(2037 - this.birthYear);
+    console.log(2037 - this.birthYear)
   },
 
   init(firstName, birthYear) {
-    this.firstName = firstName;
-    this.birthYear = birthYear;
+    this.firstName = firstName
+    this.birthYear = birthYear
   },
-};
+}
 // 使用Object.create建立原型連結
-const StudentProto = Object.create(PersonProto);
+const StudentProto = Object.create(PersonProto)
 
 // 使用Object.create建立原型連結
-const jay = Object.create(StudentProto);
+const jay = Object.create(StudentProto)
 
 // 子層新增相同名稱方法
 StudentProto.init = function (firstName, birthYear, course) {
   // 呼叫函式並設置this在這個函式，使用call 獲取父層init方法
-  PersonProto.init.call(this, firstName, birthYear);
-  this.course = course;
-};
+  PersonProto.init.call(this, firstName, birthYear)
+  this.course = course
+}
 
 // 子層新增不同方法
 StudentProto.introduce = function () {
-  console.log(`My name is ${this.firstName} and I study ${this.course}`);
-};
+  console.log(`My name is ${this.firstName} and I study ${this.course}`)
+}
 
-jay.init("Jay", 2010, "computer science");
-jay.introduce(); // My name is Jay and I study computer science
-jay.calcAge(); // 27
+jay.init('Jay', 2010, 'computer science')
+jay.introduce() // My name is Jay and I study computer science
+jay.calcAge() // 27
 ```
+
+## Encapsulation
+
+- 下底線是讓協作者了解這個是私有的一種表示方式
+
+```js
+///////////////////////////////////////
+// Encapsulation: Protected Properties and Methods
+// Encapsulation: Private Class Fields and Methods
+
+// 1) Public fields
+// 2) Private fields
+// 3) Public methods
+// 4) Private methods
+// (there is also the static version)
+
+class Account {
+  // 1) Public fields (instances)
+  locale = navigator.language
+
+  // 2) Private fields (instances)
+  #movements = []
+  #pin
+
+  constructor(owner, currency, pin) {
+    this.owner = owner
+    this.currency = currency
+    this.#pin = pin
+
+    // Protected property
+    // this._movements = [];
+    // this.locale = navigator.language;
+
+    console.log(`Thanks for opening an account, ${owner}`)
+  }
+
+  // 3) Public methods
+
+  // Public interface
+  getMovements() {
+    return this.#movements
+  }
+
+  deposit(val) {
+    this.#movements.push(val)
+    return this
+  }
+
+  withdraw(val) {
+    this.deposit(-val)
+    return this
+  }
+
+  requestLoan(val) {
+    if (this.#approveLoan(val)) {
+      this.deposit(val)
+      console.log(`Loan approved`)
+      return this
+    }
+  }
+
+  static helper() {
+    console.log('Helper')
+  }
+
+  // 4) Private methods
+  #approveLoan(val) {
+    return true
+  }
+}
+
+const acc1 = new Account('Jonas', 'EUR', 1111)
+
+// acc1._movements.push(250);
+// acc1._movements.push(-140);
+// acc1.approveLoan(1000);
+
+acc1.deposit(250)
+acc1.withdraw(140)
+acc1.requestLoan(1000)
+console.log(acc1.getMovements())
+console.log(acc1)
+Account.helper()
+
+// console.log(acc1.#movements); private
+// console.log(acc1.#pin);
+// console.log(acc1.#approveLoan(100));
+```
+- 可以在方法後面return this讓方法可以chain起來
+
+```js
+
+// Chaining
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
+console.log(acc1.getMovements());
+*/
+```
+
+![](oop_summary.png)
+
 
 以上為[The Complete JavaScript Course - From Zero to Expert](https://www.udemy.com/course/the-complete-javascript-course/ 'The Complete JavaScript Course - From Zero to Expert')的小筆記，附上連結推推這堂課

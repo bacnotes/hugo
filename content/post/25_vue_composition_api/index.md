@@ -299,7 +299,7 @@ counter.value += 1; // 函式重新執行 無輸出 雖然counter是false 但還
 
 ### 什麼時候用 watch 或 watchEffect？
 
-[這篇](https://www.zhihu.com/question/462378193 "Vue3 中watch 與watchEffect 有什麼區別？")推薦在大部分時候用 watch 顯式的指定依賴以避免不必要的重複觸發，也避免在後續代碼修改或重構時不小心引入新的 dependency。
+[這篇](https://www.zhihu.com/question/462378193 "Vue3 中watch 與watchEffect 有什麼區別？")推薦在大部分時候用 watch 顯式的指定依賴以避免不必要的重複觸發，也避免在後續程式碼修改或重構時不小心引入新的 dependency。
 watchEffect 適用於一些邏輯相對簡單，dependency 和邏輯強相關的場景
 
 ## Vue Composition API 和 React 的 Hooks 的差異

@@ -536,11 +536,10 @@ restaurant.orderDelivery({
 
 ![memory-address](address.png)
 
-### 常用淺拷貝方法
+## 常用淺拷貝方法
 
-- Object.assign
-- 用於物件
-
+### Object.assign(空物件, 複製對象)
+- 只能用在物件
 ```JS
 const jessica = {
   firstName: 'Jessica',
@@ -555,7 +554,7 @@ console.log('Before marriage:', jessica.lastName); // 'Williams'
 console.log('After marriage: ', jessicaCopy.lastName); // 'Davis'
 ```
 
-- 展開運算子
+### 展開運算子
 - 除了物件外也可用於 string、array、array-like、Set、Map 等可迭代物件
 
 ```JS

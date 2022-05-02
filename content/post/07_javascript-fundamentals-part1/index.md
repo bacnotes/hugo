@@ -56,7 +56,7 @@ const { menu = [], starterMenu: starters = [] } = restaurant
 console.log(menu, starters)
 // [] [ 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad' ]
 
-// 函數使用預設參數
+// 函式使用預設參數
 function check(a, b = 1, c = 2, d) {
   console.log(a, b, c, d)
 }
@@ -244,7 +244,7 @@ And I love ${codeName}!!`;
 
 ## null v.s. undefined v.s. not defined
 
-- `null` 有宣告/有賦值 但是是一個空值 → 系統提示沒抓到元素 (e.g. array 當中 key 存在但值是空的)
+- `null` 有宣告/有賦值 但會是一個空值 → 系統提示沒抓到元素 (e.g. array 當中 key 存在但值是空的)
 - `undefined` 有宣告/沒賦值 → 系統提示沒有賦值
 - `not defined` 沒宣告/沒賦值 → 系統提示沒有宣告
 

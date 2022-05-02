@@ -71,7 +71,7 @@ export default App;
 ### 改寫為 async await 加上錯誤處理
 
 * 搭配 try catch 加上 Loading
-* Fetch API doesn't 不會把錯誤狀態代碼 404 視為錯誤，只要有成功回傳就會 200
+* Fetch API doesn't 不會把錯誤狀態碼 404 視為錯誤，只要有成功回傳就會 200
 * 所以我們可以自己加一段判斷在 try 裡面
 * 當 Response 有問題拋出錯誤 if (!response.ok && response.status !== 200)
 * error 記得也要用 useState 控制
@@ -357,7 +357,7 @@ function App() {
 export default App;
 ```
 
-### 伺服器回傳狀態代碼
+### 伺服器回傳狀態碼
 
 ​​- 瀏覽器會根據 HTTP Status code 判斷目前跟伺服器溝通狀態為何
 
