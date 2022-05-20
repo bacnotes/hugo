@@ -1,9 +1,7 @@
 ---
 title: 關於地理位置API｜bacnotes備份筆記
 description: 需要在app上面加上地圖功能的時候，該怎麼使用第三方函式庫，有沒有內建API可以用？
-
 date: 2022-04-23T00:00:00+08:00
-draft: true
 slug: map-geolocation
 image: pexels-aksonsat-uanthoeng-1078850.jpg
 tags:
@@ -12,7 +10,8 @@ tags:
 
 ## navigator.geolocation.getCurrentPosition()
 
-- 第一個參數是允許獲取執行的函式，第二個參數是不允許獲取時執行的函式
+- 第一個參數是允許獲取執行的函式
+- 第二個參數是不允許獲取時執行的函式
 
 ```js
 navigator.geolocation.getCurrentPosition(
@@ -29,7 +28,7 @@ navigator.geolocation.getCurrentPosition(
 ## Leaflat
 
 - 第三方地圖函式庫，CDN 或 npm 下載
-- 先以 CDN 為例
+- 以 CDN 為例
 
 ```html
 // 放在head區塊的記得搭配defer 下載執行順序很重要
@@ -52,9 +51,9 @@ navigator.geolocation.getCurrentPosition(
 
 ## 初始化地圖與點擊插入座標
 
-- L.map 內傳入的字串要是 html 元素的 id 查找 html 元素的位置`<div id="map"></div>`
-- L 是 leaflat 的主要的 function 的 entry point，也是 global var，表示其他比較晚下載的 script 也可以呼叫他
-- 需要設置 event handler 處理點擊事件，但我們不知道點擊畫面時對應的 GPS 位置，只有 leaflet 知道，所以需要使用他的方法
+- L.map 內傳入的字串要是 html 元素的 id ，以查找 html 元素的位置`<div id="map"></div>`
+- L 是 Leaflat 的主要的 function 的 entry point，也是全域變數，其他較晚下載的 script 也可以呼叫他
+- 需要設置 event handler 處理點擊事件，但我們不知道點擊畫面時對應的 GPS 位置，只有 Leaflat 知道，所以需要使用他的方法
 - 希望點擊就會出現 marker 且 pop 都會打開
 - bindPopup 可以傳入一個物件，放入不同選項
 
@@ -75,7 +74,7 @@ if (navigator.geolocation) {
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map)
 
-      // leaflat提供的方法跟特殊事件
+      // Leaflat提供的方法跟特殊事件
       map.on('click', function (mapEvent) {
         // console.log(mapEvent)
         const { lat, lng } = mapEvent.latlng

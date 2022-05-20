@@ -368,7 +368,7 @@ class Person {
 - 另一個小練習，get set 時使用另一個變數名(speedUS 而非 speed)就不用擔心撞變數名的問題
 
 ```js
-class Car {
+class CarCl {
   constructor(make, speed) {
     this.make = make
     this.speed = speed
@@ -679,7 +679,8 @@ Account.helper()
 // console.log(acc1.#pin);
 // console.log(acc1.#approveLoan(100));
 ```
-- 可以在方法後面return this讓方法可以chain起來
+
+- 可以在方法後面 return this 讓方法可以 chain 起來
 
 ```js
 
@@ -689,7 +690,96 @@ console.log(acc1.getMovements());
 */
 ```
 
+- 總結整理
+
 ![](oop_summary.png)
 
+### prototype 改寫成 class 練習
+
+- charge 改私有變數，讓外部沒辦法存取
+- chain `accelerate' and 'chargeBattery' methods of this class
+- update the 'brake' method in the 'CarCl'
+
+```js
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    // chain
+    return this;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+}
+// DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+// 改寫下方為 child class
+// const EV = function (make, speed, charge) {
+//   Car.call(this, make, speed);
+//   this.charge = charge;
+// };
+
+// const tesla = new EV('Tesla', 120, 23)
+
+// // Link the prototypes
+// EV.prototype = Object.create(Car.prototype);
+
+// EV.prototype.chargeBattery = function (chargeTo) {
+//   this.charge = chargeTo;
+// };
+
+// EV.prototype.accelerate = function () {
+//   this.speed += 20;
+//   this.charge--;
+//   console.log(
+//     `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
+//   );
+// };
+
+class EVCl extends CarCl = {
+  #charge
+  constructor(make, speed, charge) {
+    super(make, speed)
+    this.charge = charge
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    // chain
+    return this
+  };
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge--;
+    console.log(
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${this.#charge}`
+    );
+    // chain
+    return this
+  }
+}
+
+const rivian = new EVCl('Rivian', 120, 23)
+rivian.accelerate().accelerate().brake().chargeBattery(50).accelerate()
+
+console.log(rivian.speedUS)
+```
 
 以上為[The Complete JavaScript Course - From Zero to Expert](https://www.udemy.com/course/the-complete-javascript-course/ 'The Complete JavaScript Course - From Zero to Expert')的小筆記，附上連結推推這堂課

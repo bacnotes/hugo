@@ -208,23 +208,23 @@ console.log('import module')
 ```js
 const ShoppingCart2 = (function(){
   const cart = []
-	const shippingCost = 10
-	const totalPrice = 238
-	const totalCount = 23
-	const addToCart = function(product, quantity) {
-		cart.push({product, quantity})
-		console.log(`${quantity} ${product} added to cart`)
+  const shippingCost = 10
+  const totalPrice = 238
+  const totalCount = 23
+  const addToCart = function(product, quantity) {
+    cart.push({product, quantity})
+    console.log(`${quantity} ${product} added to cart`)
 	}
 
-	const orderStock = function (product, quality) {
-		console.log(`${quantity} ${product} ordered from supplier`)
+  const orderStock = function (product, quality) {
+    console.log(`${quantity} ${product} ordered from supplier`)
 	}
 	return {
-		addToCart,
-		cart,
-		totalPrice
-		totalCount
-	}
+    addToCart,
+    cart,
+    totalPrice
+    totalCount
+  }
 })()
 
 ShoppingCart2.addToCart('apple', 4)
@@ -290,38 +290,38 @@ stateClone.newProperty = 1 // 第一層新增屬性，舊資料不會被修改�
 
 console.log(stateClone)
 // {
-//     "cart": [
-//         {
-//             "product": "bread",
-//             "quantity": 5
-//         },
-//         {
-//             "product": "pizza",
-//             "quantity": 3
-//         }
-//     ],
-//     "user": {
-//         "loggedIn": false
-//     },
-//     "newProperty": 1
-// }
+//    "cart":[
+//      {
+//       "product": "bread",
+//         "quantity": 5
+//       },
+//       {
+//         "product": "pizza",
+//         "quantity": 3
+//       }
+//    ],
+//    "user": {
+//      "loggedIn": false
+//    },
+//      "newProperty": 1
+//    }
 
 console.log(state)
 
 // {
-//     "cart": [
-//         {
-//             "product": "bread",
-//             "quantity": 5
-//         },
-//         {
-//             "product": "pizza",
-//             "quantity": 3
-//         }
-//     ],
-//     "user": {
-//         "loggedIn": false
+//   "cart": [
+//     {
+//       "product": "bread",
+//       "quantity": 5
+//     },
+//     {
+//       "product": "pizza",
+//       "quantity": 3
 //     }
+//   ],
+//   "user": {
+//     "loggedIn": false
+//   }
 // }
 
 // methods2: 用lodash的cloneDeep方法

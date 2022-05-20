@@ -1,6 +1,6 @@
 ---
 title: 非同步 JavaScript 知識｜bacnotes備份筆記
-description: 執行順序總是跟想像的不同？可能你需要知道一點同步與非同步的知識，哪些非同步的語法需要注意呢？Promise函式怎麼包，async await怎麼寫，這邊都會講解
+description: 執行順序總是跟想像的不同？可能你需要知道一點同步與非同步的知識，哪些非同步的語法需要注意呢？Promise函式怎麼包，async await怎麼寫，在這篇文章中都會提到
 date: 2022-04-24T00:00:00+08:00
 slug: async-javascript
 image: pexels-uzunov-rostislav-10458835.jpg
@@ -10,8 +10,7 @@ tags:
 
 ## 非同步 JavaScript
 
-- code 由上到一行行下執行
-- 想像電腦在 execution thread(部分 execution context)，但這樣的機制容易被卡住
+- code 由上往下一行行執行，但這樣的機制容易在執行較久的處理程序中被卡住
 - 非同步有不阻塞的好處，先執行等待結果回傳(e.g. 計時器，`img.src = 'someImg'`，AJAX、API)
 
 ### AJAX and API

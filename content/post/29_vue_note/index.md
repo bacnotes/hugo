@@ -1,9 +1,9 @@
 ---
-title: 尚硅谷Vue全家桶筆記1-45｜bacnotes備份筆記
+title: 尚硅谷Vue全家桶筆記1-47｜bacnotes備份筆記
 description: 課程包含vue基礎、vue-cli、vue-router、vuex、element-ui、vue3
 date: 2022-04-20T00:00:00+08:00
 draft: true
-slug: vue-basic-note
+slug: vue2-note-1
 image: pexels-pixabay-60616.jpg
 tags:
   - Vue
@@ -15,7 +15,7 @@ tags:
 
 - 數據變成介面
 - 簡單應用核心庫，到引入各種插件開發更大的專案
-- 組件化提高複用率，讓程式碼好維護
+- 元件化提高複用率，讓程式碼好維護
 - 宣告式程式設計，無需直接操作 DOM，提高開發效率
 - 虛擬 DOM + diff 算法
 
@@ -42,7 +42,7 @@ Vue.config.productionTip = false
 
 - 兩個容器一個 vue 實例，會搭配第一個容器
 - 一個容器搭配多個實例，會配到第一個實例
-- 真實開發只會有一個 Vue 實例，搭配組件用
+- 真實開發只會有一個 Vue 實例，搭配元件用
 
 ### 區分表達式跟陳述式
 
@@ -164,7 +164,7 @@ const vm = new Vue({
 console.log(vm)
 ```
 
-- 函式寫法：vm.$mount('#root') 掛載上去，組件需要用函式寫法
+- 函式寫法：vm.$mount('#root') 掛載上去，元件需要用函式寫法
 - Vue 管理的函式，不能寫成箭頭函式，因為箭頭函式沒有自己的 this，會抓到 global 的 window
 
 ```js
@@ -354,7 +354,7 @@ const vm = new Vue({
 - 使用 v-on: xxx 或@xxx 綁定事件
 - 事件的回調需要配置在 methods 物件中，methods 沒有數據代理因為不必要
 - methods 中配置的函式，不要使用箭頭函式，不然 this 會變成 global window 而非 vm
-- methods 中的函式都是 Vue 管理的函式，this 指向 vm 或組件
+- methods 中的函式都是 Vue 管理的函式，this 指向 vm 或元件
 - ＠click="demo"跟@click="demo($event)"一樣，但後者可以傳 event 參數
 
 ```html
@@ -468,7 +468,7 @@ li {
 ### 鍵盤事件
 
 - 若 keyup 等按鍵事件沒有指定按鍵，則所有按鍵都會觸發
-- e.key 輸出按鍵名稱，e.keyCode 輸出keycode
+- e.key 輸出按鍵名稱，e.keyCode 輸出 keycode
 - 常用鍵盤 enter、delete(delete or backspace)、esc、space、up、down、left、right
 - Vue 沒有提供(沒有在上面的)可以用原始的 keyCode 綁定，但要注意轉 kebab-case e.g. `@keyup.caps-lock`
 - tab 自帶把焦點移出當前元素，不能綁定 keyup 只能能 keydown
@@ -758,8 +758,8 @@ vm.$watch('isHot', function(newVal, oldVal) {
 
 - 不用處理非同步的時候寫 computed，computed 能完成的 watch 都可以完成，但寫 computed 比較精簡
 - watch 能處理非同步，computed 不一定可以
-- Vue 管理的函式都寫成普通函式，這樣 this 才會指向 vm 或組件
-- 不被 Vue 管理的函式(計時器、ajax、axios、promise 的 callback)都寫成箭頭函式，this 往父層找的時候會找到 vm 或組件
+- Vue 管理的函式都寫成普通函式，這樣 this 才會指向 vm 或元件
+- 不被 Vue 管理的函式(計時器、ajax、axios、promise 的 callback)都寫成箭頭函式，this 往父層找的時候會找到 vm 或元件
 
 ### 姓名案例
 
@@ -1719,7 +1719,7 @@ vm.persons.push === Array.prototype.push // false
 
 - 沒有值，只有屬性
 - 初次 Vue 渲染後，就變成靜態內容
-- 後續資料變化，在 v-once 裡面不會更新，可用於ㄎ優化性能
+- 後續資料變化，在 v-once 裡面不會更新，可用於優化性能
 
 ```html
 <div id="root">
@@ -1761,12 +1761,18 @@ vm.persons.push === Array.prototype.push // false
 </script>
 ```
 
-## 自定義指令v-directives
-- 指令跟元素成功綁定時調用(一上來)
-- 指令所在的模板被重新解析時
+## 自定義指令 v-directives
+
+- 指令定義不加 v-，使用時要加 v-
+- 指令如果是多個單詞，使用 kebab-case，不用 camelCase，用單引號包裹'v-big-number'
+
+### 局部指令
 
 ### 函式寫法
-- 傳兩個參數(element, binding對象)
+
+- 函式執行時間：指令跟元素成功綁定時/指令所在的模板被重新解析時
+- 傳兩個參數(element, binding 對象)
+- v-big 範例
 
 ```html
 <div id="root">
@@ -1790,10 +1796,37 @@ vm.persons.push === Array.prototype.push // false
 </script>
 ```
 
-
 ### 物件寫法
 
-- 自動聚焦，需要在元素創建並掛在頁面上時才能實現
+- fbind 這個指令無法用函式寫法完成，但也不會報錯
+- 原生 JS 寫法看看問題
+- 掛載前可以改 input 顏色屬性 值
+- 不可對 input 做父元素操作，因為還沒放上去所以無法獲取相對的 DOM 元素
+
+```js
+const btn = document.getElementById('btn')
+btn.onclick = () => {
+  const input = document.createElement('input')
+  // 尚未掛載前可以更改屬性或設置監聽事件
+  input.className = 'demo'
+  input.value = 99
+  input.onclick = () => {
+    alert(1)
+  }
+
+  document.body.appendChild(input)
+  // 掛載DOM後才能對焦，無法寫在前面
+  input.focus()
+}
+```
+
+- 函數式寫 fbind 功能失敗，是因為這個 input 元素還沒掛載到頁面就聚焦
+
+- bind 指令跟元素成功綁定時調用(input 跟 v-fbind)
+- inserted 指令所在元素被插入頁面時調用
+- update 指令所在的模板被重新解析時
+- 傳兩個參數(element, binding 對象)
+- 自動聚焦，需要在元素已經掛在頁面上時才能實現
 
 ```html
 
@@ -1811,10 +1844,36 @@ vm.persons.push === Array.prototype.push // false
       number: 1
     },
     directives: {
-      big(el, binding) {
-        element.innerText = binding.value * 10
-      },
+      fbind: {
+        bind(element, binding){
+          element.value = binding.value
+        },
+        inserted(element, binding){
+          element.focus()
+        }.
+        update(element, binding){
+           element.value = binding.value
+        }
+      }
     }
   })
 </script>
+```
+
+### 全域指令
+
+- 全域函式裡的 this 是 window
+
+```js
+Vue.directive('fbind', {
+  bind(element, binding){
+    element.value = binding.value
+  },
+  inserted(element, binding){
+    element.focus()
+  }.
+  update(element, binding){
+    element.value = binding.value
+  }
+})
 ```
