@@ -10,7 +10,7 @@ tags:
     - Deploy
 ---
 
-關於部署的工具有很多，身為工程師的你一定聽過GitHub!  
+關於部署的工具有很多，而你一定聽過GitHub!  
 <img src="./github_logo.png" alt="github" width="500"/>
 
 ## 為什麼用GitHub部署

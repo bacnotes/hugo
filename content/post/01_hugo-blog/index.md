@@ -5,6 +5,7 @@ date: 2021-12-23
 author: bacnotes
 slug: hugo-blog
 image: helena-hertz-wWZzXlDpMog-unsplash.jpg
+draft: true
 tags:
   - Hugo
 ---
